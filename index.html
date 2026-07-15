@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE DOSSIER PROJECT — Case Archive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0c0c0b;
+  --ink-2:#141311;
+  --paper:#e8e1c9;
+  --paper-dim:#d8cfae;
+  --manila:#cabf9d;
+  --manila-dark:#a89876;
+  --stamp-red:#9e1b1b;
+  --tag-yellow:#d4a72c;
+  --line:#4a463c;
+  --text-dim:#a39d86;
+  --text-faint:#6b6656;
+  --unverified:#7d5aa6;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html,body{background:var(--ink); color:var(--paper); font-family:'Libre Baskerville',serif; overflow-x:hidden;}
+body{ -webkit-font-smoothing:antialiased; }
+::selection{background:var(--stamp-red); color:var(--paper);}
+
+.stamp-font{font-family:'Special Elite',monospace; letter-spacing:0.03em;}
+.mono{font-family:'IBM Plex Mono',monospace;}
+
+a{color:inherit; text-decoration:none;}
+button{font-family:inherit; cursor:pointer;}
+
+/* subtle grain overlay for the whole app */
+.grain{
+  position:fixed; inset:0; pointer-events:none; z-index:9999;
+  opacity:0.05; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ============ NAV ============ */
+header.nav{
+  position:sticky; top:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:18px 40px; background:rgba(12,12,11,0.92); backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--line);
+}
+.brand{display:flex; align-items:center; gap:10px;}
+.brand .mark{
+  width:28px; height:28px; border:2px solid var(--tag-yellow); border-radius:2px;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Special Elite'; font-size:13px; color:var(--tag-yellow); transform:rotate(-3deg);
+}
+.brand .name{font-family:'Special Elite'; font-size:19px; letter-spacing:0.04em;}
+.brand .name span{color:var(--stamp-red);}
+nav.links{display:flex; gap:36px;}
+nav.links a{
+  font-family:'IBM Plex Mono'; font-size:12px; letter-spacing:0.12em; text-transform:uppercase;
+  color:var(--text-dim); position:relative; padding-bottom:4px; background:none; border:none;
+}
+nav.links a:hover, nav.links a.active{color:var(--paper);}
+nav.links a.active::after{
+  content:''; position:absolute; left:0; right:0; bottom:-6px; height:2px; background:var(--tag-yellow);
+}
+
+/* ============ PAGES ============ */
+.page{display:none; min-height:calc(100vh - 68px);}
+.page.active{display:block;}
+
+/* ---- HOME ---- */
+.hero{
+  padding:90px 40px 60px; text-align:center; position:relative;
+  border-bottom:1px solid var(--line);
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(212,167,44,0.06), transparent 60%);
+}
+.hero .eyebrow{
+  font-family:'IBM Plex Mono'; font-size:12px; letter-spacing:0.25em; color:var(--stamp-red);
+  text-transform:uppercase; margin-bottom:18px;
+}
+.hero h1{
+  font-family:'Special Elite'; font-size:clamp(34px,6vw,64px); line-height:1.05;
+  color:var(--paper); margin-bottom:18px;
+}
+.hero p.tagline{
+  font-style:italic; color:var(--text-dim); font-size:17px; max-width:520px; margin:0 auto 40px;
+}
+.search-wrap{max-width:640px; margin:0 auto;}
+.search-box{
+  display:flex; align-items:center; gap:12px;
+  background:var(--paper); border:1px solid var(--manila-dark); border-radius:2px;
+  padding:14px 18px; box-shadow:0 20px 50px rgba(0,0,0,0.5);
+}
+.search-box .icon{color:var(--text-faint); font-size:16px;}
+.search-box input{
+  flex:1; border:none; outline:none; background:transparent;
+  font-family:'IBM Plex Mono'; font-size:15px; color:var(--ink); letter-spacing:0.01em;
+}
+.search-box input::placeholder{color:var(--manila-dark);}
+.search-box button{
+  background:var(--ink); color:var(--paper); border:none; padding:9px 18px;
+  font-family:'Special Elite'; font-size:13px; letter-spacing:0.05em; border-radius:1px;
+}
+.search-box button:hover{background:var(--stamp-red);}
+.search-hint{margin-top:14px; font-family:'IBM Plex Mono'; font-size:11px; color:var(--text-faint); letter-spacing:0.05em;}
+.search-hint button.chip{
+  background:none; border:1px solid var(--line); color:var(--text-dim); padding:3px 10px; border-radius:20px;
+  font-family:'IBM Plex Mono'; font-size:11px; margin:0 4px;
+}
+.search-hint button.chip:hover{border-color:var(--tag-yellow); color:var(--tag-yellow);}
+
+/* stats strip */
+.stats{
+  display:flex; justify-content:center; gap:0; border-bottom:1px solid var(--line); flex-wrap:wrap;
+}
+.stat{
+  flex:1; min-width:180px; text-align:center; padding:28px 20px;
+  border-right:1px solid var(--line);
+}
+.stat:last-child{border-right:none;}
+.stat .num{font-family:'Special Elite'; font-size:32px; color:var(--tag-yellow);}
+.stat .lbl{font-family:'IBM Plex Mono'; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:var(--text-dim); margin-top:6px;}
+
+/* section heading pattern used across home */
+.section{padding:56px 40px;}
+.section-head{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:30px; border-bottom:1px solid var(--line); padding-bottom:16px;}
+.section-head h2{font-family:'Special Elite'; font-size:24px; letter-spacing:0.02em;}
+.section-head .sub{font-family:'IBM Plex Mono'; font-size:11px; color:var(--text-faint); letter-spacing:0.1em; text-transform:uppercase;}
+
+/* weapon wall */
+.weapon-grid{
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:18px;
+}
+.weapon-card{
+  background:linear-gradient(180deg,var(--ink-2),var(--ink));
+  border:1px solid var(--line); border-radius:2px; overflow:hidden; position:relative;
+  transition:transform 0.2s ease, border-color 0.2s ease;
+}
+.weapon-card:hover{transform:translateY(-4px); border-color:var(--tag-yellow);}
+.weapon-visual{
+  height:140px; display:flex; align-items:center; justify-content:center;
+  background:
+    repeating-linear-gradient(135deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 2px, transparent 2px, transparent 10px),
+    #1a1916;
+  border-bottom:1px dashed var(--line);
+  position:relative;
+}
+.weapon-visual svg{width:64px; height:64px; opacity:0.85;}
+.evidence-tag{
+  position:absolute; top:8px; left:8px; background:var(--tag-yellow); color:var(--ink);
+  font-family:'IBM Plex Mono'; font-size:10px; font-weight:600; padding:2px 6px; letter-spacing:0.05em;
+  transform:rotate(-4deg);
+}
+.weapon-info{padding:12px 14px;}
+.weapon-info .wname{font-family:'Special Elite'; font-size:14px; color:var(--paper); margin-bottom:6px;}
+.weapon-info .wcaption{font-family:'IBM Plex Mono'; font-size:10.5px; color:var(--text-dim); line-height:1.6;}
+.weapon-info .wcaption b{color:var(--stamp-red);}
+
+/* Recent / featured cases on home */
+.case-strip{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:20px;}
+
+/* ---- SEARCH RESULTS PAGE ---- */
+.results-header{
+  padding:50px 40px 30px; border-bottom:1px solid var(--line); text-align:center;
+}
+.results-header .range{font-family:'IBM Plex Mono'; font-size:12px; color:var(--tag-yellow); letter-spacing:0.15em; margin-bottom:10px;}
+.results-header h2{font-family:'Special Elite'; font-size:32px;}
+.results-header .count{font-family:'IBM Plex Mono'; font-size:12px; color:var(--text-dim); margin-top:10px;}
+.results-grid{padding:50px 40px; display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:26px;}
+.no-results{padding:80px 40px; text-align:center;}
+.no-results .big{font-family:'Special Elite'; font-size:22px; margin-bottom:14px;}
+.no-results p{color:var(--text-dim); margin-bottom:18px;}
+
+/* folder icon (case card) */
+.folder-card{cursor:pointer; text-align:center; position:relative;}
+.folder-icon{
+  width:100%; aspect-ratio:1.3/1; position:relative; margin-bottom:14px;
+  filter:drop-shadow(0 8px 16px rgba(0,0,0,0.5));
+}
+.folder-back{
+  position:absolute; inset:0; background:var(--manila-dark); border-radius:2px 6px 2px 2px;
+}
+.folder-tab{
+  position:absolute; top:-10px; left:14px; width:38%; height:14px;
+  background:var(--manila-dark); border-radius:4px 4px 0 0;
+}
+.folder-front{
+  position:absolute; left:0; right:0; bottom:0; height:82%; background:var(--manila);
+  border-radius:2px 2px 2px 2px; transition:transform 0.25s ease;
+  display:flex; align-items:flex-end; justify-content:center; padding-bottom:8px;
+}
+.folder-card:hover .folder-front{transform:translateY(-6px) rotate(-1deg);}
+.status-stamp-mini{
+  font-family:'Special Elite'; font-size:10px; letter-spacing:0.05em; padding:2px 6px;
+  border:1.5px solid; border-radius:2px; transform:rotate(-6deg);
+}
+.status-stamp-mini.cold{color:#5b7fa6; border-color:#5b7fa6;}
+.status-stamp-mini.solved{color:var(--stamp-red); border-color:var(--stamp-red);}
+.status-stamp-mini.unexplained{color:var(--unverified); border-color:var(--unverified);}
+.real-badge{
+  position:absolute; top:8px; right:8px; background:var(--tag-yellow); color:var(--ink);
+  font-family:'IBM Plex Mono'; font-size:8.5px; font-weight:600; padding:2px 5px; letter-spacing:0.05em;
+  border-radius:2px; z-index:2;
+}
+.sources-box{
+  margin-top:24px; padding:16px 18px; border:1px solid var(--line); border-radius:2px; background:var(--ink-2);
+}
+.sources-box .stitle{font-family:'IBM Plex Mono'; font-size:10px; color:var(--tag-yellow); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:10px;}
+.sources-box ul{list-style:none; padding:0; margin:0;}
+.sources-box li{font-family:'IBM Plex Mono'; font-size:11.5px; color:var(--text-dim); margin-bottom:6px; padding-left:14px; position:relative;}
+.sources-box li::before{content:'—'; position:absolute; left:0; color:var(--text-faint);}
+.sources-box a{color:#8fb3d9; text-decoration:underline;}
+.folder-card .fname{font-family:'Special Elite'; font-size:14px; color:var(--paper);}
+.folder-card .fmeta{font-family:'IBM Plex Mono'; font-size:10.5px; color:var(--text-faint); margin-top:3px;}
+
+footer{
+  border-top:1px solid var(--line); padding:30px 40px; text-align:center;
+  font-family:'IBM Plex Mono'; font-size:11px; color:var(--text-faint); letter-spacing:0.05em;
+}
+
+/* ============ CASE FILE VIEWER (overlay "new tab") ============ */
+.viewer-overlay{
+  position:fixed; inset:0; z-index:500; background:var(--ink);
+  display:none; flex-direction:column;
+}
+.viewer-overlay.active{display:flex;}
+
+/* the folder-opening intro animation stage */
+.folder-stage{
+  flex:1; display:flex; align-items:center; justify-content:center; position:relative;
+  perspective:1800px;
+}
+.big-folder{
+  width:min(70vw,420px); aspect-ratio:1.35/1; position:relative;
+}
+.big-folder .back{
+  position:absolute; inset:0; background:var(--manila-dark); border-radius:3px 10px 3px 3px;
+  box-shadow:0 30px 80px rgba(0,0,0,0.6);
+}
+.big-folder .tab{
+  position:absolute; top:-16px; left:8%; width:34%; height:22px;
+  background:var(--manila-dark); border-radius:6px 6px 0 0;
+}
+.big-folder .paper-stack{
+  position:absolute; left:6%; right:6%; bottom:4%; top:14%;
+  background:var(--paper); border-radius:2px;
+  opacity:0; transform:translateY(20px);
+  box-shadow:0 -2px 0 var(--paper-dim), 0 -4px 0 var(--paper);
+  transition:opacity 0.5s ease 0.5s, transform 0.6s ease 0.5s;
+  display:flex; align-items:center; justify-content:center; flex-direction:column; text-align:center; padding:20px;
+}
+.big-folder.opened .paper-stack{opacity:1; transform:translateY(-30px);}
+.big-folder .front-flap{
+  position:absolute; left:0; right:0; bottom:0; height:88%; background:var(--manila);
+  border-radius:3px; transform-origin:bottom center; transform:rotateX(0deg);
+  transition:transform 0.7s cubic-bezier(.6,.05,.3,1);
+  box-shadow:0 6px 16px rgba(0,0,0,0.3);
+  z-index:2;
+}
+.big-folder.opened .front-flap{transform:rotateX(-100deg);}
+.paper-stack .case-no{font-family:'IBM Plex Mono'; font-size:13px; color:var(--stamp-red); letter-spacing:0.1em; margin-bottom:10px;}
+.paper-stack .case-title{font-family:'Special Elite'; font-size:20px; color:var(--ink); margin-bottom:8px;}
+.paper-stack .case-loc{font-family:'IBM Plex Mono'; font-size:11px; color:var(--manila-dark);}
+.folder-front-label{
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center; flex-direction:column; z-index:3;
+  font-family:'Special Elite'; color:var(--ink); text-align:center; padding:0 20px;
+}
+.folder-front-label .tap{font-family:'IBM Plex Mono'; font-size:10px; color:var(--manila-dark); margin-top:14px; letter-spacing:0.1em;}
+.big-folder.opened .folder-front-label{display:none;}
+
+/* Document viewer proper (after opening) */
+.doc-viewer{display:none; flex:1; flex-direction:column;}
+.doc-viewer.active{display:flex;}
+.doc-topbar{
+  display:flex; align-items:center; justify-content:space-between; padding:14px 30px;
+  border-bottom:1px solid var(--line); background:var(--ink-2);
+}
+.doc-topbar .close-btn{
+  background:none; border:1px solid var(--line); color:var(--text-dim); font-family:'IBM Plex Mono';
+  font-size:11px; padding:6px 12px; letter-spacing:0.1em; border-radius:2px;
+}
+.doc-topbar .close-btn:hover{border-color:var(--stamp-red); color:var(--stamp-red);}
+.doc-topbar .case-tag{font-family:'IBM Plex Mono'; font-size:11px; color:var(--tag-yellow); letter-spacing:0.1em;}
+
+.doc-tabs{
+  display:flex; overflow-x:auto; border-bottom:1px solid var(--line); background:var(--ink);
+  padding:0 20px;
+}
+.doc-tab{
+  padding:14px 18px; font-family:'IBM Plex Mono'; font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--text-faint); background:none; border:none; border-bottom:2px solid transparent; white-space:nowrap;
+}
+.doc-tab.active{color:var(--tag-yellow); border-bottom-color:var(--tag-yellow);}
+.doc-tab:hover{color:var(--paper);}
+
+.doc-body{flex:1; overflow-y:auto; padding:50px 40px 80px; perspective:1400px;}
+.doc-page{max-width:780px; margin:0 auto; display:none; transform-origin:left center;}
+.doc-page.active{display:block; animation:pageIn 0.35s ease;}
+.doc-page.leaving{display:block; animation:pageOut 0.22s ease forwards;}
+@keyframes pageIn{from{opacity:0; transform:rotateY(-14deg) translateX(-16px);} to{opacity:1; transform:rotateY(0) translateX(0);}}
+@keyframes pageOut{from{opacity:1; transform:rotateY(0) translateX(0);} to{opacity:0; transform:rotateY(14deg) translateX(16px);}}
+
+.doc-page h3{font-family:'Special Elite'; font-size:24px; margin-bottom:6px; color:var(--paper);}
+.doc-page .page-sub{font-family:'IBM Plex Mono'; font-size:11px; color:var(--text-faint); letter-spacing:0.1em; margin-bottom:26px; text-transform:uppercase;}
+.doc-page p{color:var(--text-dim); line-height:1.85; margin-bottom:16px; font-size:15px;}
+.doc-page p b{color:var(--paper);}
+
+.paper-card{
+  background:var(--paper); color:var(--ink); border-radius:2px; padding:30px 34px; margin-bottom:20px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.4);
+}
+.paper-card p{color:#3a3527;}
+.paper-card p b{color:var(--ink);}
+.field-row{display:flex; gap:30px; flex-wrap:wrap; margin-bottom:18px; font-family:'IBM Plex Mono'; font-size:12.5px;}
+.field-row .field{min-width:150px;}
+.field-row .field .k{color:var(--manila-dark); text-transform:uppercase; letter-spacing:0.08em; font-size:10px; margin-bottom:3px;}
+.field-row .field .v{color:var(--ink); font-weight:600;}
+
+/* scene / weapon / forensic visual placeholder */
+.visual-frame{
+  background:#1a1916; border:1px dashed var(--line); border-radius:2px; padding:40px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; margin-bottom:20px;
+  min-height:220px;
+}
+.visual-frame svg{width:90px; height:90px; opacity:0.7; margin-bottom:16px;}
+.visual-frame .cap{font-family:'IBM Plex Mono'; font-size:11px; color:var(--text-faint); letter-spacing:0.05em;}
+.redacted{
+  display:inline-block; background:#111; color:#111; border-radius:1px; padding:0 4px;
+}
+
+/* suspects grid */
+.suspects-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:22px;}
+.suspect-card{background:var(--ink-2); border:1px solid var(--line); border-radius:2px; overflow:hidden;}
+.suspect-photo{
+  height:150px; background:linear-gradient(180deg,#26241f,#1a1916); display:flex; align-items:center; justify-content:center;
+  border-bottom:1px solid var(--line); position:relative;
+}
+.suspect-photo svg{width:60px; height:60px; opacity:0.5;}
+.suspect-photo .plate{
+  position:absolute; bottom:8px; left:8px; right:8px; font-family:'IBM Plex Mono'; font-size:9px; color:var(--text-faint);
+  border-top:1px solid var(--line); padding-top:5px; letter-spacing:0.05em;
+}
+.suspect-body{padding:16px;}
+.suspect-body .sname{font-family:'Special Elite'; font-size:15px; color:var(--paper); margin-bottom:4px;}
+.suspect-body .sstatus{
+  display:inline-block; font-family:'IBM Plex Mono'; font-size:9.5px; letter-spacing:0.08em; text-transform:uppercase;
+  padding:2px 8px; border-radius:20px; margin-bottom:10px;
+}
+.sstatus.charged{background:rgba(158,27,27,0.15); color:#d97575; border:1px solid #6b3030;}
+.sstatus.cleared{background:rgba(91,127,166,0.15); color:#8fb3d9; border:1px solid #3c5670;}
+.sstatus.convicted{background:rgba(212,167,44,0.15); color:var(--tag-yellow); border:1px solid #7a6528;}
+.suspect-body p{font-size:13px; color:var(--text-dim); line-height:1.7; margin:0;}
+
+/* conclusion stamp */
+.conclusion-wrap{text-align:center; padding:30px 0;}
+.big-stamp{
+  display:inline-block; font-family:'Special Elite'; font-size:38px; letter-spacing:0.05em;
+  border:4px solid; padding:14px 40px; border-radius:4px; transform:rotate(-5deg); margin-bottom:24px;
+}
+.big-stamp.cold{color:#5b7fa6; border-color:#5b7fa6;}
+.big-stamp.solved{color:var(--stamp-red); border-color:var(--stamp-red);}
+.big-stamp.unexplained{color:var(--unverified); border-color:var(--unverified);}
+
+.doc-nav-footer{
+  display:flex; justify-content:space-between; max-width:780px; margin:30px auto 0;
+}
+.nav-btn{
+  background:none; border:1px solid var(--line); color:var(--text-dim); font-family:'IBM Plex Mono';
+  font-size:11px; padding:10px 18px; letter-spacing:0.1em; border-radius:2px; text-transform:uppercase;
+}
+.nav-btn:hover{border-color:var(--tag-yellow); color:var(--tag-yellow);}
+.nav-btn:disabled{opacity:0.3; cursor:not-allowed;}
+
+.disclaimer-banner{
+  background:rgba(212,167,44,0.08); border:1px solid var(--tag-yellow); color:var(--tag-yellow);
+  font-family:'IBM Plex Mono'; font-size:10.5px; padding:8px 14px; text-align:center; letter-spacing:0.03em;
+  margin:0 40px 0;
+}
+
+@media (max-width:640px){
+  header.nav{padding:14px 18px;}
+  nav.links{gap:16px;}
+  nav.links a{font-size:10px;}
+  .hero{padding:60px 18px 40px;}
+  .section{padding:40px 18px;}
+  .results-grid{padding:30px 18px;}
+  .doc-body{padding:30px 18px 60px;}
+  .stats{flex-direction:column;}
+  .stat{border-right:none; border-bottom:1px solid var(--line);}
+}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<header class="nav">
+  <div class="brand">
+    <div class="mark">✕</div>
+    <div class="name stamp-font">THE DOSSIER <span>PROJECT</span></div>
+  </div>
+  <nav class="links">
+    <a href="#" data-page="home" class="active">Home</a>
+    <a href="#" data-page="search">Search</a>
+    <a href="#" data-page="weapons">Weapons Wall</a>
+    <a href="#" data-page="unexplained">Unexplained Files</a>
+    <a href="#" data-page="about">About</a>
+  </nav>
+</header>
+
+<div class="disclaimer-banner">DEMO ARCHIVE — most case files below are fictional placeholders for interface testing. Files marked "SOURCED" (e.g. the Gacy file) use real, publicly documented, fully adjudicated cases with cited sources.</div>
+
+<!-- ============ HOME PAGE ============ -->
+<div class="page active" id="page-home">
+  <section class="hero">
+    <div class="eyebrow">Case Archive &amp; Public Record</div>
+    <h1>Every case leaves<br>a paper trail.</h1>
+    <p class="tagline">Search documented homicide cases by city, case number, or weapon — plus unexplained files: ghost reports, cryptid sightings, and urban legends with no confirmed resolution.</p>
+    <div class="search-wrap">
+      <div class="search-box">
+        <span class="icon">⌕</span>
+        <input type="text" id="home-search-input" placeholder="Try &quot;Chicago murders&quot;, case #, or a weapon type…">
+        <button onclick="runSearch()">Search</button>
+      </div>
+      <div class="search-hint">
+        Try: <button class="chip" onclick="quickSearch('Chicago')">Chicago</button><button class="chip" onclick="quickSearch('Detroit')">Detroit</button><button class="chip" onclick="quickSearch('London')">London</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="stat"><div class="num mono">1,204</div><div class="lbl">Cases Documented</div></div>
+    <div class="stat"><div class="num mono">312</div><div class="lbl">Still Cold</div></div>
+    <div class="stat"><div class="num mono">892</div><div class="lbl">Solved / Closed</div></div>
+    <div class="stat"><div class="num mono">6</div><div class="lbl">Archived Cities</div></div>
+  </div>
+
+  <section class="section">
+    <div class="section-head">
+      <h2>Evidence Wall — Murder Weapons</h2>
+      <div class="sub">Filed by type</div>
+    </div>
+    <div class="weapon-grid" id="weapon-wall"></div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2>Unexplained Files</h2>
+      <div class="sub">Ghosts · Cryptids · Urban Legends — reported, not confirmed</div>
+    </div>
+    <div class="case-strip" id="home-unexplained"></div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2>Recently Filed</h2>
+      <div class="sub">Across all archives</div>
+    </div>
+    <div class="case-strip" id="home-recent"></div>
+  </section>
+
+  <footer>THE DOSSIER PROJECT — an independent public-record case archive. Facts sourced from official reporting; disputed claims labeled as alleged. Not affiliated with any law enforcement agency.</footer>
+</div>
+
+<!-- ============ SEARCH RESULTS PAGE ============ -->
+<div class="page" id="page-search">
+  <div id="search-results-container"></div>
+  <footer>THE DOSSIER PROJECT — an independent public-record archive of homicide cases and unexplained files.</footer>
+</div>
+
+<!-- ============ WEAPONS PAGE ============ -->
+<div class="page" id="page-weapons">
+  <section class="section">
+    <div class="section-head">
+      <h2>The Evidence Wall</h2>
+      <div class="sub">Every murder weapon on file, by case</div>
+    </div>
+    <div class="weapon-grid" id="weapon-wall-full"></div>
+  </section>
+  <footer>THE DOSSIER PROJECT — an independent public-record archive of homicide cases and unexplained files.</footer>
+</div>
+
+<!-- ============ UNEXPLAINED FILES PAGE ============ -->
+<div class="page" id="page-unexplained">
+  <div class="results-header">
+    <div class="range mono">REPORTED · UNCONFIRMED · ARCHIVED</div>
+    <h2 class="stamp-font">UNEXPLAINED FILES</h2>
+    <div class="count mono">Ghost sightings, cryptid reports, and urban legends — filed as reported accounts, not established fact</div>
+  </div>
+  <section class="section">
+    <div class="results-grid" id="unexplained-grid"></div>
+  </section>
+  <footer>THE DOSSIER PROJECT — an independent public-record archive of homicide cases and unexplained files.</footer>
+</div>
+
+<!-- ============ ABOUT PAGE ============ -->
+<div class="page" id="page-about">
+  <section class="section" style="max-width:720px;margin:0 auto;">
+    <div class="section-head"><h2>About This Archive</h2></div>
+    <p style="color:var(--text-dim); line-height:1.9; margin-bottom:16px;">The Dossier Project documents homicide investigations using publicly available information — court records, law enforcement statements, and verified news reporting. Every case is labeled with its current status: <b style="color:var(--paper)">solved</b>, <b style="color:var(--paper)">closed</b>, or <b style="color:var(--paper)">cold</b>. A separate Unexplained Files section covers ghost reports, cryptid sightings, and urban legends — these are filed as <b style="color:var(--paper)">reported accounts</b>, not verified events.</p>
+    <p style="color:var(--text-dim); line-height:1.9; margin-bottom:16px;">Suspects are named only where law enforcement or courts have publicly identified them. Unproven allegations are marked <i>alleged</i>. If you believe a case file contains an error, contact us for correction.</p>
+    <p style="color:var(--text-dim); line-height:1.9;">This is a demo build — all cases currently shown are fictional placeholders for interface design purposes.</p>
+  </section>
+  <footer>THE DOSSIER PROJECT — an independent public-record archive of homicide cases and unexplained files.</footer>
+</div>
+
+<!-- ============ CASE FILE VIEWER OVERLAY ============ -->
+<div class="viewer-overlay" id="viewer-overlay">
+  <div class="folder-stage" id="folder-stage">
+    <div class="big-folder" id="big-folder" onclick="openFolder()">
+      <div class="back"></div>
+      <div class="tab"></div>
+      <div class="paper-stack">
+        <div class="case-no mono" id="stage-caseno">FILE #0000-00</div>
+        <div class="case-title" id="stage-title">Case Title</div>
+        <div class="case-loc mono" id="stage-loc">City · Year</div>
+      </div>
+      <div class="front-flap"></div>
+      <div class="folder-front-label">
+        <div style="font-size:15px;letter-spacing:0.05em;">TAP TO OPEN FILE</div>
+        <div class="tap">CLICK ANYWHERE ON FOLDER</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-viewer" id="doc-viewer">
+    <div class="doc-topbar">
+      <button class="close-btn" onclick="closeViewer()">✕ CLOSE FILE</button>
+      <div class="case-tag mono" id="doc-topbar-case">FILE #0000-00</div>
+    </div>
+    <div class="doc-tabs" id="doc-tabs"></div>
+    <div class="doc-body" id="doc-body"></div>
+  </div>
+</div>
+
+<script>
+/* ================= DATA ================= */
+const WEAPON_ICONS = {
+  knife: `<svg viewBox="0 0 24 24" fill="none" stroke="#d4a72c" stroke-width="1.4"><path d="M4 20 L15 9 M13 7l4 4 3-3-4-4z"/></svg>`,
+  blunt: `<svg viewBox="0 0 24 24" fill="none" stroke="#d4a72c" stroke-width="1.4"><path d="M5 19l6-6M9 9a3 3 0 114.2-4.2A3 3 0 019 9z"/><path d="M13 5l6 6"/></svg>`,
+  firearm: `<svg viewBox="0 0 24 24" fill="none" stroke="#d4a72c" stroke-width="1.4"><path d="M3 13h9l2-3h5l1 2-2 3h-5l-2 3H6z"/></svg>`,
+  ligature: `<svg viewBox="0 0 24 24" fill="none" stroke="#d4a72c" stroke-width="1.4"><path d="M4 6c4 0 4 12 8 12s4-12 8-12"/></svg>`,
+  poison: `<svg viewBox="0 0 24 24" fill="none" stroke="#d4a72c" stroke-width="1.4"><path d="M9 3h6M10 3v5l-5 9a2 2 0 002 3h10a2 2 0 002-3l-5-9V3"/></svg>`,
+  unknown: `<svg viewBox="0 0 24 24" fill="none" stroke="#d4a72c" stroke-width="1.4"><path d="M12 17h.01M9.5 9a2.5 2.5 0 015 0c0 1.5-2.5 2-2.5 4"/><circle cx="12" cy="12" r="9"/></svg>`
+};
+
+const SCENE_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="#a39d86" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M7 17l4-6 3 4 3-5"/></svg>`;
+const AUTOPSY_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="#a39d86" stroke-width="1.2"><circle cx="12" cy="6" r="2.4"/><path d="M12 8.4v7M8 11h8M9 20l3-4.6L15 20"/></svg>`;
+const SUSPECT_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="#a39d86" stroke-width="1.2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>`;
+
+const CASES = {
+  chicago: {
+    label: "CHICAGO HOMICIDE ARCHIVE",
+    range: "1972 — 2026",
+    items: [
+      {
+        id: "IL-1980-GACY", real: true, title: "The Norwood Park Murders (John Wayne Gacy)", city: "Norwood Park Twp. / Chicago", year: 1978, status: "solved",
+        weaponType: "ligature", weaponName: "Rope garrote (asphyxiation/strangulation); one victim stabbed",
+        complaint: "Missing-person report filed with Des Plaines Police Department, December 12, 1978, by the family of 15-year-old Robert Piest, who had not returned home after telling his mother he was going to speak with a contractor about a summer job.",
+        story: "Between 1972 and 1978, John Wayne Gacy murdered at least 33 young men and boys in Norwood Park Township, a Chicago suburb, typically luring victims to his home with a job offer or under other pretenses before killing them, usually by strangulation. He maintained a public reputation as a successful contractor and community volunteer throughout this period, performing as a clown at children's events.",
+        scene: "Investigators traced Piest's disappearance to Gacy and obtained a search warrant. Officers found items belonging to other missing young men inside the house and detected a smell of decomposition. A second warrant led to the discovery of human remains in the crawl space beneath the home. Twenty-six bodies were recovered from the crawl space, three more elsewhere on the property, and four — including Piest's — from the Des Plaines River.",
+        suspects: [
+          { firstName: "John", status: "convicted", desc: "Contractor and community volunteer. Arrested December 21, 1978. Confessed to killing over 30 young men during questioning. Convicted on all 33 counts of murder in March 1980. (Full name — John Wayne Gacy — is public record following conviction and execution; shown as first name only here per site display policy.)" }
+        ],
+        evidence: "Primary method: strangulation with a rope garrote after victims were persuaded to wear handcuffs. The first known victim, 16-year-old Timothy McCoy, was killed by stabbing in 1972. With no DNA testing available at the time, investigators relied on dental records for identification; several remains were unidentified for decades until modern DNA and genetic genealogy work (2011 onward) identified additional victims, most recently in 2021.",
+        trial: "Trial began February 6, 1980, in Cook County Criminal Court. The defense argued insanity; the prosecution argued the killings were premeditated. The jury deliberated under two hours before convicting on all 33 counts. Gacy was sentenced to death the next day. Appeals — including claims of an invalid search warrant and ineffective counsel — were rejected at every level through 1993.",
+        conclusion: "solved",
+        conclusionText: "Gacy was executed by lethal injection on May 10, 1994, at Stateville Correctional Center, maintaining his innocence to the end. The criminal case is closed; the effort to identify his remaining unidentified victims continues under the Cook County Sheriff's Office.",
+        sources: [
+          { label: "FBI — John Wayne Gacy case file (FBI Vault)", url: "https://vault.fbi.gov/John%20Wayne%20Gacy" },
+          { label: "People v. Gacy, 103 Ill.2d 1 (1984) — Illinois Supreme Court opinion, Justia", url: "https://law.justia.com/cases/illinois/supreme-court/1984/53212-6.html" },
+          { label: "Cook County Sheriff's Office — Gacy victim identification updates", url: "https://www.cookcountysheriffil.gov" }
+        ]
+      },
+      {
+        id: "CHI-1997-0142", title: "The Wabash Ave. Disappearance", city: "Chicago", year: 1997, status: "cold",
+        weaponType: "unknown", weaponName: "Undetermined",
+        complaint: "Missing-person report filed by the victim's employer after he failed to return home from a late warehouse shift, later upgraded to a death investigation when the body was recovered eleven days after.",
+        story: "A 34-year-old warehouse clerk finished a late shift and never arrived home. His body was found eleven days later in an alley off Wabash Avenue. No weapon was recovered, and the eleven-day gap made establishing a clear timeline difficult for investigators.",
+        scene: "The body was located in a service alley behind a shuttered print shop. The area showed signs of a struggle: an overturned delivery cart and torn chain-link fencing. No blood trail led to or from the alley, suggesting the location may not be where the fatal incident occurred.",
+        suspects: [
+          { firstName: "Unidentified", status: "cleared", desc: "A maintenance worker seen on nearby security footage was questioned and cleared after his alibi was corroborated by three coworkers." }
+        ],
+        evidence: "Autopsy found blunt-force head trauma as cause of death, consistent with a heavy, flat object — no matching item was ever recovered despite a search of the surrounding blocks. Fingernail scrapings returned no usable DNA due to environmental degradation.",
+        trial: "No trial was held; the case was never referred for prosecution due to insufficient evidence linking any individual to the scene.",
+        conclusion: "cold",
+        conclusionText: "The case remains open but inactive. A 2019 review by the Cold Case Unit using updated forensic techniques produced no new leads."
+      },
+      {
+        id: "CHI-2003-0871", title: "The Lincoln Park Apartment Case", city: "Chicago", year: 2003, status: "solved",
+        weaponType: "knife", weaponName: "Kitchen knife (recovered)",
+        complaint: "911 call placed from the residence by the accused, reporting a domestic incident; responding officers arrived to find the victim deceased and the accused still at the scene.",
+        story: "A domestic dispute inside a Lincoln Park apartment escalated to a fatal stabbing. The accused was present when officers arrived and was arrested at the scene.",
+        scene: "Officers found the victim in the kitchen of a second-floor apartment. Signs of struggle were confined to the kitchen and hallway, with no forced entry — consistent with the two parties knowing each other.",
+        suspects: [
+          { firstName: "Marcus", status: "convicted", desc: "The victim's partner, present at the scene when police arrived. Convicted at trial on forensic and eyewitness evidence from a neighbor. (Surname withheld per site policy.)" }
+        ],
+        evidence: "A kitchen knife matching a set in the apartment's drawer was recovered on the kitchen floor; blood on the blade matched the victim. Autopsy confirmed a single fatal stab wound to the chest, with defensive wounds noted on the victim's forearms.",
+        trial: "Charged with second-degree homicide. The prosecution presented forensic matching, the 911 recording, and neighbor testimony. The defense argued self-defense; the jury returned a conviction.",
+        conclusion: "solved",
+        conclusionText: "Convicted and sentenced. Case closed with no ongoing appeal as of the last record update."
+      },
+      {
+        id: "CHI-2011-0459", title: "The South Side Warehouse Fire", city: "Chicago", year: 2011, status: "cold",
+        weaponType: "unknown", weaponName: "Fire — suspected accelerant",
+        complaint: "Fire department dispatch call for a structure fire; the case was reclassified as a homicide investigation after a body was recovered and arson investigators found signs of deliberate ignition.",
+        story: "A body was discovered following a warehouse fire on the South Side. Investigators determined the fire was set deliberately, reclassifying the death from accidental to homicide.",
+        scene: "The scene was heavily compromised by fire damage. Arson investigators identified pour patterns consistent with an accelerant near the building's rear entrance.",
+        suspects: [],
+        evidence: "No conventional weapon — the fire itself was the method. Accelerant residue was recovered from flooring samples but never matched to a specific purchase or suspect. The medical examiner determined the victim was deceased before the fire reached that section of the building.",
+        trial: "No suspects were ever formally charged.",
+        conclusion: "cold",
+        conclusionText: "The case remains classified as an open homicide, hampered by the destruction of physical evidence in the fire itself."
+      }
+    ]
+  },
+  detroit: {
+    label: "DETROIT HOMICIDE ARCHIVE",
+    range: "1995 — 2026",
+    items: [
+      {
+        id: "DET-2008-0233", title: "The Riverfront Marina Case", city: "Detroit", year: 2008, status: "solved",
+        weaponType: "firearm", weaponName: "9mm handgun (recovered)",
+        complaint: "Marina management called police after a security guard failed to check in during his night shift; officers found him deceased near the docks.",
+        story: "A marina security guard was found deceased near the docks during a night shift. A firearm matching shell casings from the scene was recovered from a nearby storm drain three days later.",
+        scene: "The body was found near a boat slip. Shell casings recovered at the scene were later matched to a firearm found nearby.",
+        suspects: [
+          { firstName: "Ryan", status: "convicted", desc: "A former marina employee with a documented workplace dispute with the victim. Linked to the firearm via a partial fingerprint. (Surname withheld per site policy.)" }
+        ],
+        evidence: "A 9mm handgun was recovered from a storm drain roughly 200 meters from the scene; ballistics matched it to the recovered shell casings. Autopsy confirmed two gunshot wounds.",
+        trial: "Tried and convicted on ballistic and fingerprint evidence, along with testimony about a prior workplace dispute.",
+        conclusion: "solved",
+        conclusionText: "Convicted and sentenced. Case closed."
+      }
+    ]
+  },
+  london: {
+    label: "LONDON HOMICIDE ARCHIVE",
+    range: "1988 — 2026",
+    items: [
+      {
+        id: "LDN-1994-0087", title: "The Camden Lock Case", city: "London", year: 1994, status: "cold",
+        weaponType: "ligature", weaponName: "Undetermined ligature",
+        complaint: "Reported to the Metropolitan Police by a canal maintenance worker who discovered the body during a routine morning inspection.",
+        story: "A victim was found near Camden Lock in the early morning. Evidence at the scene and post-mortem findings pointed to strangulation with a ligature that was never recovered.",
+        scene: "The body was discovered by the canal. Ligature marks were noted by the attending medical examiner; the item used was never recovered from the scene or surrounding waterway despite a search.",
+        suspects: [],
+        evidence: "No physical ligature was recovered. Marks were consistent with a rope or cord roughly 1cm in width. Post-mortem confirmed death by asphyxiation; no usable trace evidence was recovered from the ligature marks.",
+        trial: "No suspects were ever charged.",
+        conclusion: "cold",
+        conclusionText: "The Metropolitan Police file remains open. Periodic review has not produced new forensic leads as of the most recent update."
+      }
+    ]
+  }
+};
+
+const WEAPON_LABELS = { knife:"Bladed Weapon", blunt:"Blunt Object", firearm:"Firearm", ligature:"Ligature", poison:"Poison / Toxin", unknown:"Undetermined" };
+
+const MYSTERY_ICONS = {
+  ghost: `<svg viewBox="0 0 24 24" fill="none" stroke="#7d5aa6" stroke-width="1.4"><path d="M5 20V11a7 7 0 0114 0v9l-2.5-2-2 2-2.5-2-2 2-2.5-2z"/><circle cx="9.5" cy="10" r="0.6" fill="#7d5aa6"/><circle cx="14.5" cy="10" r="0.6" fill="#7d5aa6"/></svg>`,
+  cryptid: `<svg viewBox="0 0 24 24" fill="none" stroke="#7d5aa6" stroke-width="1.4"><path d="M4 19l3-9 5-4 5 4 3 9M9 19l1-5M15 19l-1-5"/></svg>`,
+  legend: `<svg viewBox="0 0 24 24" fill="none" stroke="#7d5aa6" stroke-width="1.4"><path d="M12 2l2.5 6.5L21 11l-6.5 2.5L12 20l-2.5-6.5L3 11l6.5-2.5z"/></svg>`,
+  disappearance: `<svg viewBox="0 0 24 24" fill="none" stroke="#7d5aa6" stroke-width="1.4"><circle cx="12" cy="8" r="3.2"/><path d="M6 20c0-3.8 2.7-6 6-6s6 2.2 6 6" stroke-dasharray="2 2"/></svg>`
+};
+const MYSTERY_CATEGORY_LABELS = { ghost:"Ghost / Haunting", cryptid:"Cryptid Sighting", legend:"Urban Legend", disappearance:"Unresolved Disappearance" };
+
+const MYSTERIES = [
+  {
+    id: "UNX-1968-011", kind:"mystery", title: "The Bellhaven Hotel Haunting", city: "Fictional, Bellhaven", year: 1968, status: "unexplained", category: "ghost",
+    overview: "Decades of staff and guest reports describe a recurring figure on the hotel's fourth floor, tied to a fire in the building's history. No official investigation has confirmed or debunked the reports.",
+    origin: "The legend traces back to a reported fire in the hotel's east wing in the 1930s. Local newspaper archives confirm the fire occurred, though the specific ghost story appears to have developed decades later through staff oral tradition rather than any contemporary account.",
+    sightings: "Reports collected from former staff describe footsteps and a shadowy figure near room 412, typically late at night. No two accounts fully agree on details, and no photographic or video evidence has been independently verified.",
+    evidence: "No physical evidence exists. A local paranormal research group conducted an overnight investigation in 1994 and reported unusual temperature readings, but published no peer-reviewed or independently repeatable findings.",
+    theories: "Skeptical explanation: old buildings with uneven heating and settling floors commonly produce sounds mistaken for footsteps; the fire history likely gave an existing phenomenon a narrative. Believer explanation: staff maintain the consistency of the sightings over 50+ years is notable despite turnover in who reports them.",
+    conclusion: "unexplained",
+    conclusionText: "Filed as an unresolved report. No conclusive evidence exists either way. Included here as a documented piece of local folklore, not a verified paranormal event."
+  },
+  {
+    id: "UNX-1977-004", kind:"mystery", title: "The Ridgeline Creature Reports", city: "Fictional, Ridgeline County", year: 1977, status: "unexplained", category: "cryptid",
+    overview: "A cluster of sightings of a large, bipedal animal were reported by hunters and residents over an 18-month period in a rural county. Wildlife officials investigated and found no conclusive evidence of an unknown species.",
+    origin: "Reports began with a single hunter's account in early 1977, followed by a wave of similar sightings reported to the local sheriff's office over the following year.",
+    sightings: "At least nine separate reports were logged with local law enforcement, describing a large animal, generally at dusk, near forested ridgelines. Descriptions varied in height and coloring across witnesses.",
+    evidence: "Plaster casts of purported footprints were taken by a local wildlife officer; a state university zoology department examined them and concluded they were consistent with a known bear species with an unusual gait, though the finding was disputed by some original witnesses.",
+    theories: "Official explanation: misidentified black bear activity, possibly one individual animal with an injury affecting its gait. Alternative view held by some original witnesses: the size and behavior described did not match bear behavior in the area.",
+    conclusion: "unexplained",
+    conclusionText: "Officially closed by wildlife authorities as likely bear activity. Filed here as unexplained because original witnesses disputed the closure and no DNA evidence was collected at the time to confirm either explanation."
+  },
+  {
+    id: "UNX-1952-019", kind:"mystery", title: "The Vanishing at Miller's Crossing", city: "Fictional, Miller's Crossing", year: 1952, status: "unexplained", category: "disappearance",
+    overview: "A traveler was reported to have vanished from a rural crossroads with no trace, giving rise to decades of local legend about the location. The disappearance itself is a matter of public record; the folklore built around it is not.",
+    origin: "A missing-person report was filed with local police in 1952. The case was never solved. Over subsequent decades, local storytelling added supernatural elements not present in the original police report.",
+    sightings: "Later generations of residents have reported unease or disorientation when passing the crossroads at night — anecdotal accounts with no formal documentation.",
+    evidence: "The original 1952 missing-person file exists in local police archives and confirms the disappearance as fact. No evidence supports the supernatural elements added later.",
+    theories: "The disappearance itself may have a mundane explanation (accident, unrecorded relocation, foul play never solved) consistent with many unsolved missing-person cases of that era. The supernatural reputation appears to be folklore layered on afterward.",
+    conclusion: "unexplained",
+    conclusionText: "The underlying disappearance remains an open, unsolved missing-person case. The folklore surrounding it is filed separately here as legend, clearly distinguished from the documented facts of the original report.",
+    sources: [
+      { label: "Example only — a real file would cite the local police department's missing-person report number and, if applicable, an FBI NCIC record.", url: "" }
+    ]
+  }
+];
+
+/* flatten all cases for weapon wall + recent strip */
+function allCases(){
+  return Object.values(CASES).flatMap(c => c.items);
+}
+
+/* ================= NAV ================= */
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  document.querySelectorAll('nav.links a').forEach(a=>a.classList.toggle('active', a.dataset.page===name));
+  window.scrollTo({top:0, behavior:'instant'});
+}
+document.querySelectorAll('nav.links a').forEach(a=>{
+  a.addEventListener('click', e=>{ e.preventDefault(); showPage(a.dataset.page); });
+});
+
+/* ================= WEAPON WALL ================= */
+function weaponCardHTML(item){
+  return `<div class="weapon-card" onclick="openCase('${item.id}')">
+    <div class="weapon-visual">
+      <div class="evidence-tag mono">EVID. ${item.id}</div>
+      ${WEAPON_ICONS[item.weaponType]}
+    </div>
+    <div class="weapon-info">
+      <div class="wname">${WEAPON_LABELS[item.weaponType]}</div>
+      <div class="wcaption">Case File <b>#${item.id}</b><br>Accused: ${item.suspects && item.suspects.length ? item.suspects[0].firstName + ' (' + item.suspects[0].status + ')' : 'Unidentified'}</div>
+    </div>
+  </div>`;
+}
+function renderWeaponWalls(){
+  const cases = allCases();
+  document.getElementById('weapon-wall').innerHTML = cases.slice(0,6).map(weaponCardHTML).join('');
+  document.getElementById('weapon-wall-full').innerHTML = cases.map(weaponCardHTML).join('');
+}
+
+/* ================= HOME RECENT STRIP ================= */
+function folderCardHTML(item){
+  return `<div class="folder-card" onclick="openCase('${item.id}')">
+    <div class="folder-icon">
+      <div class="folder-back"></div>
+      <div class="folder-tab"></div>
+      ${item.real ? '<div class="real-badge">SOURCED</div>' : ''}
+      <div class="folder-front">
+        <span class="status-stamp-mini ${item.status}">${item.status.toUpperCase()}</span>
+      </div>
+    </div>
+    <div class="fname">${item.title}</div>
+    <div class="fmeta mono">#${item.id} · ${item.city} ${item.year}</div>
+  </div>`;
+}
+function renderRecent(){
+  document.getElementById('home-recent').innerHTML = allCases().slice(0,4).map(folderCardHTML).join('');
+}
+
+function mysteryFolderCardHTML(item){
+  return `<div class="folder-card" onclick="openCase('${item.id}')">
+    <div class="folder-icon">
+      <div class="folder-back"></div>
+      <div class="folder-tab"></div>
+      <div class="folder-front">
+        <span class="status-stamp-mini unexplained">UNEXPLAINED</span>
+      </div>
+    </div>
+    <div class="fname">${item.title}</div>
+    <div class="fmeta mono">#${item.id} · ${MYSTERY_CATEGORY_LABELS[item.category]}</div>
+  </div>`;
+}
+function renderUnexplained(){
+  document.getElementById('home-unexplained').innerHTML = MYSTERIES.slice(0,4).map(mysteryFolderCardHTML).join('');
+  document.getElementById('unexplained-grid').innerHTML = MYSTERIES.map(mysteryFolderCardHTML).join('');
+}
+
+/* ================= SEARCH ================= */
+function quickSearch(term){
+  document.getElementById('home-search-input').value = term;
+  runSearch();
+}
+function runSearch(){
+  const q = document.getElementById('home-search-input').value.trim().toLowerCase();
+  showPage('search');
+  const container = document.getElementById('search-results-container');
+  const match = Object.keys(CASES).find(key => q.includes(key));
+  if(!match){
+    container.innerHTML = `<div class="no-results">
+      <div class="big stamp-font">NO ARCHIVE FOUND</div>
+      <p>We don't have a filed archive matching "${q || '…'}" yet.</p>
+      <p style="font-family:'IBM Plex Mono'; font-size:11px;">Available archives: Chicago · Detroit · London</p>
+    </div>`;
+    return;
+  }
+  const data = CASES[match];
+  container.innerHTML = `
+    <div class="results-header">
+      <div class="range mono">${data.range}</div>
+      <h2 class="stamp-font">${data.label}</h2>
+      <div class="count mono">${data.items.length} case file${data.items.length>1?'s':''} on record</div>
+    </div>
+    <div class="results-grid">${data.items.map(folderCardHTML).join('')}</div>
+  `;
+}
+document.getElementById('home-search-input').addEventListener('keydown', e=>{ if(e.key==='Enter') runSearch(); });
+
+/* ================= CASE FILE VIEWER ================= */
+let currentCase = null;
+let currentTabIndex = 0;
+let currentTabs = [];
+let currentLabels = {};
+
+const TABS_CASE = ['complaint','story','scene','suspects','evidence','trial','conclusion','sources'];
+const TAB_LABELS_CASE = { complaint:'Complaint / FIR', story:'The Murder', scene:'Crime Scene', suspects:'Suspects', evidence:'Evidence & Weapon', trial:'Court Trial', conclusion:'Conclusion', sources:'Sources' };
+
+const TABS_MYSTERY = ['cover','origin','sightings','evidence','theories','conclusion','sources'];
+const TAB_LABELS_MYSTERY = { cover:'Cover', origin:'Origin', sightings:'Reported Sightings', evidence:'Evidence', theories:'Theories', conclusion:'Conclusion', sources:'Sources' };
+
+function findCaseById(id){
+  for(const key in CASES){
+    const found = CASES[key].items.find(i=>i.id===id);
+    if(found) return found;
+  }
+  const m = MYSTERIES.find(i=>i.id===id);
+  if(m) return m;
+  return null;
+}
+
+function openCase(id){
+  currentCase = findCaseById(id);
+  if(!currentCase) return;
+  currentTabIndex = 0;
+  if(currentCase.kind === 'mystery'){
+    currentTabs = TABS_MYSTERY; currentLabels = TAB_LABELS_MYSTERY;
+  } else {
+    currentTabs = TABS_CASE; currentLabels = TAB_LABELS_CASE;
+  }
+  document.getElementById('viewer-overlay').classList.add('active');
+  document.getElementById('big-folder').classList.remove('opened');
+  document.getElementById('doc-viewer').classList.remove('active');
+  document.getElementById('folder-stage').style.display = 'flex';
+  document.getElementById('stage-caseno').textContent = 'FILE #' + currentCase.id;
+  document.getElementById('stage-title').textContent = currentCase.title;
+  document.getElementById('stage-loc').textContent = currentCase.city + ' · ' + currentCase.year;
+  document.body.style.overflow = 'hidden';
+}
+
+function openFolder(){
+  document.getElementById('big-folder').classList.add('opened');
+  setTimeout(()=>{
+    document.getElementById('folder-stage').style.display = 'none';
+    document.getElementById('doc-viewer').classList.add('active');
+    document.getElementById('doc-topbar-case').textContent = 'FILE #' + currentCase.id;
+    renderTabs();
+    renderDocPage();
+  }, 1300);
+}
+
+function renderTabs(){
+  document.getElementById('doc-tabs').innerHTML = currentTabs.map((t,i)=>
+    `<button class="doc-tab ${i===currentTabIndex?'active':''}" onclick="goToTab(${i})">${currentLabels[t]}</button>`
+  ).join('');
+}
+
+function goToTab(i){
+  if(i < 0 || i >= currentTabs.length) return;
+  const existing = document.querySelector('#doc-body .doc-page');
+  if(existing){
+    existing.classList.remove('active');
+    existing.classList.add('leaving');
+    setTimeout(()=>{
+      currentTabIndex = i;
+      renderTabs();
+      renderDocPage();
+    }, 200);
+  } else {
+    currentTabIndex = i;
+    renderTabs();
+    renderDocPage();
+  }
+}
+
+function renderDocPage(){
+  const c = currentCase;
+  const tab = currentTabs[currentTabIndex];
+  let html = '';
+
+  if(tab==='cover' && c.kind==='mystery'){
+    html = `
+      <h3>${c.title}</h3>
+      <div class="page-sub mono">File #${c.id} · ${c.city}, ${c.year} · ${MYSTERY_CATEGORY_LABELS[c.category]}</div>
+      <div class="paper-card">
+        <div class="field-row">
+          <div class="field"><div class="k">Status</div><div class="v">UNEXPLAINED</div></div>
+          <div class="field"><div class="k">Category</div><div class="v">${MYSTERY_CATEGORY_LABELS[c.category]}</div></div>
+          <div class="field"><div class="k">Location</div><div class="v">${c.city}</div></div>
+          <div class="field"><div class="k">First Reported</div><div class="v">${c.year}</div></div>
+        </div>
+        <p>${c.overview}</p>
+      </div>
+    `;
+  } else if(tab==='origin'){
+    html = `
+      <h3>Origin</h3>
+      <div class="page-sub mono">How the report or legend began</div>
+      <p>${c.origin}</p>
+    `;
+  } else if(tab==='sightings'){
+    html = `
+      <h3>Reported Sightings</h3>
+      <div class="page-sub mono">Accounts on record — unverified</div>
+      <div class="visual-frame">${MYSTERY_ICONS[c.category]}<div class="cap mono">No verified photographic evidence exists for this file</div></div>
+      <p>${c.sightings}</p>
+    `;
+  } else if(tab==='evidence' && c.kind==='mystery'){
+    html = `
+      <h3>Evidence</h3>
+      <div class="page-sub mono">Physical or documented material, if any</div>
+      <p>${c.evidence}</p>
+    `;
+  } else if(tab==='theories'){
+    html = `
+      <h3>Theories</h3>
+      <div class="page-sub mono">Skeptical and alternative explanations</div>
+      <p>${c.theories}</p>
+    `;
+  } else if(tab==='complaint'){
+    html = `
+      <h3>${c.title}</h3>
+      <div class="page-sub mono">Case File #${c.id} · ${c.city}, ${c.year} · Police Complaint / FIR</div>
+      <div class="paper-card">
+        <div class="field-row">
+          <div class="field"><div class="k">Status</div><div class="v">${c.status.toUpperCase()}</div></div>
+          <div class="field"><div class="k">Location</div><div class="v">${c.city}</div></div>
+          <div class="field"><div class="k">Year Filed</div><div class="v">${c.year}</div></div>
+          <div class="field"><div class="k">Weapon</div><div class="v">${WEAPON_LABELS[c.weaponType]}</div></div>
+        </div>
+        <p>${c.complaint}</p>
+      </div>
+    `;
+  } else if(tab==='story'){
+    html = `
+      <h3>The Murder</h3>
+      <div class="page-sub mono">How it happened</div>
+      <p>${c.story}</p>
+    `;
+  } else if(tab==='scene'){
+    html = `
+      <h3>Crime Scene</h3>
+      <div class="page-sub mono">Initial scene documentation</div>
+      <div class="visual-frame">${SCENE_SVG}<div class="cap mono">Scene diagram — photographic evidence withheld from public record</div></div>
+      <p>${c.scene}</p>
+    `;
+  } else if(tab==='evidence' && c.kind!=='mystery'){
+    html = `
+      <h3>Evidence &amp; Murder Weapon</h3>
+      <div class="page-sub mono">${c.weaponName}</div>
+      <div class="visual-frame">${WEAPON_ICONS[c.weaponType]}<div class="cap mono">${c.weaponName}</div></div>
+      <p>${c.evidence}</p>
+    `;
+  } else if(tab==='suspects'){
+    if(c.suspects.length===0){
+      html = `<h3>Suspects</h3><div class="page-sub mono">Persons of interest</div><p>No suspect has been publicly named by law enforcement in connection with this case.</p>`;
+    } else {
+      html = `<h3>Suspects</h3><div class="page-sub mono">Persons named by law enforcement — surnames withheld per site policy</div>
+      <div class="suspects-grid">
+        ${c.suspects.map(s=>`
+          <div class="suspect-card">
+            <div class="suspect-photo">${SUSPECT_SVG}<div class="plate mono">PHOTO WITHHELD</div></div>
+            <div class="suspect-body">
+              <div class="sname">${s.firstName} <span class="redacted">REDACTED</span></div>
+              <span class="sstatus ${s.status}">${s.status}</span>
+              <p>${s.desc}</p>
+            </div>
+          </div>
+        `).join('')}
+      </div>`;
+    }
+  } else if(tab==='trial'){
+    html = `<h3>Court Trial</h3><div class="page-sub mono">Proceedings summary</div><div class="paper-card"><p>${c.trial}</p></div>`;
+  } else if(tab==='conclusion'){
+    const stampClass = c.conclusion==='cold' ? 'cold' : c.conclusion==='unexplained' ? 'unexplained' : 'solved';
+    const stampText = c.conclusion==='cold' ? 'STILL COLD' : c.conclusion==='unexplained' ? 'UNEXPLAINED' : 'CASE SOLVED';
+    html = `
+      <h3>Conclusion</h3>
+      <div class="page-sub mono">Current file status</div>
+      <div class="conclusion-wrap">
+        <div class="big-stamp ${stampClass} stamp-font">${stampText}</div>
+        <p style="text-align:left;">${c.conclusionText}</p>
+      </div>
+    `;
+  } else if(tab==='sources'){
+    if(c.sources && c.sources.length){
+      html = `
+        <h3>Sources</h3>
+        <div class="page-sub mono">Official records cited — US &amp; UK only</div>
+        <div class="sources-box"><ul>${c.sources.map(s=>`<li>${s.url ? `<a href="${s.url}" target="_blank" rel="noopener">${s.label}</a>` : s.label}</li>`).join('')}</ul></div>
+      `;
+    } else {
+      html = `
+        <h3>Sources</h3>
+        <div class="page-sub mono">Official records cited</div>
+        <p>This is a demo placeholder case with no real official sources to cite. Real cases added to the archive will link DOJ, FBI, or UK court/police sources here.</p>
+      `;
+    }
+  }
+
+  html += `<div class="doc-nav-footer">
+    <button class="nav-btn" onclick="goToTab(${currentTabIndex-1})" ${currentTabIndex===0?'disabled':''}>← Previous</button>
+    <button class="nav-btn" onclick="goToTab(${currentTabIndex+1})" ${currentTabIndex===currentTabs.length-1?'disabled':''}>Next →</button>
+  </div>`;
+
+  document.getElementById('doc-body').innerHTML = `<div class="doc-page active">${html}</div>`;
+  document.getElementById('doc-body').scrollTop = 0;
+}
+
+function closeViewer(){
+  const doc = document.getElementById('doc-viewer');
+  const stage = document.getElementById('folder-stage');
+  const folder = document.getElementById('big-folder');
+  doc.classList.remove('active');
+  stage.style.display = 'flex';
+  requestAnimationFrame(()=>{
+    folder.classList.remove('opened');
+  });
+  setTimeout(()=>{
+    document.getElementById('viewer-overlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }, 750);
+}
+
+/* ================= INIT ================= */
+renderWeaponWalls();
+renderRecent();
+renderUnexplained();
+</script>
+</body>
+</html>
