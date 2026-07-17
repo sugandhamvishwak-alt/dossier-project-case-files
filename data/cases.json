@@ -1,0 +1,861 @@
+[
+  {
+    "id": "case-001",
+    "name": "Zodiac Killer",
+    "country": "US",
+    "location": "Northern California (Bay Area)",
+    "year_start": 1968,
+    "year_end": 1974,
+    "type": "serial-killer",
+    "status": "unsolved",
+    "victims_count": 5,
+    "claimed_victims": 37,
+
+    "fir_complaint": {
+      "filed_date": "August 1, 1969",
+      "filed_by": "San Francisco Police Department / Vallejo Police Department",
+      "complaint_summary": "Multiple homicides reported across Northern California. Victims found shot in vehicles at isolated locations. Perpetrator unidentified. Case classified as active serial killer threat.",
+      "initial_classification": "Serial Homicide - Unknown Perpetrator - Public Threat",
+      "case_number": "Multiple jurisdictions - FBI assigned monitoring",
+      "source": "FBI Vault - Zodiac Killer Files"
+    },
+
+    "murder_story": {
+      "description": "The Zodiac Killer was an unidentified serial killer who operated in Northern California during the late 1960s and early 1970s. The perpetrator claimed responsibility for at least 37 murders, though law enforcement confirmed only 5-7 victims. The case became one of America's most famous unsolved murders due to the killer's cryptic letters, ciphers, and direct communication with newspapers.",
+      "how_it_happened": "Victims were typically young couples attacked in isolated locations at night. The killer would approach vehicles, often shooting through windows or forcing victims out. Some victims were stabbed. The killer demonstrated knowledge of cryptography, military references, and psychology, suggesting intelligence and education. The killer claimed the murder of a taxi driver, Paul Stine, but the case remained unsolved due to police errors including a mistaken description broadcast.",
+      "modus_operandi": "Ambush attacks at night in remote areas, use of .22 caliber handgun, occasional stabbing, cryptic written communications to press, psychological manipulation",
+      "psychological_profile": "Highly intelligent, possibly with military background, knowledge of cryptography and codes, narcissistic personality with desire for publicity, organized killer",
+      "source": "FBI Case Files, San Francisco Chronicle Archives, History.com Zodiac Timeline"
+    },
+
+    "murder_scene": {
+      "scenes": [
+        {
+          "scene_id": "scene-001",
+          "location": "Lake Herman Road, Vallejo, California",
+          "date": "December 20, 1968",
+          "victim": "Robert and Darlene (First names only - redacted)",
+          "description": "Victims found shot multiple times in parked vehicle. Scene indicated close-range gunfire from outside vehicle. Tire tracks present at scene. Evidence of perpetrator's familiarity with location.",
+          "evidence_found": ["Bullet casings (.22 caliber)", "Tire track impressions", "Vehicle damage pattern", "Shell casings"],
+          "investigation_notes": "First confirmed Zodiac victims. Shooter approached car from passenger side. Multiple gunshot wounds. Scene suggested killer may have known victims' route.",
+          "diagram_link": "Available in FBI Vault",
+          "source": "FBI Zodiac File - Part 1"
+        },
+        {
+          "scene_id": "scene-002",
+          "location": "Blue Rock Springs Park, Vallejo, California",
+          "date": "July 4, 1969",
+          "victim": "Darlene Ferrin and Michael Mageau (First names only)",
+          "description": "Victims in parked Corvair shot multiple times from outside vehicle. Perpetrator used 9mm handgun. Killer called police from nearby phone booth claiming responsibility. Darlene pronounced dead on arrival at hospital. Michael survived with gunshot wounds to jaw, shoulder, and leg.",
+          "evidence_found": ["Bullet casings (9mm)", "Witness descriptions of shooter", "Phone records from pay phone", "Vehicle damage"],
+          "investigation_notes": "Killer's first confirmed phone call to police. Demonstrated control and psychological manipulation. Caller spoke in low, monotonous voice. This was breakthrough moment in case - first direct communication.",
+          "diagram_link": "Available in FBI Vault",
+          "source": "FBI Zodiac File - History.com Timeline"
+        },
+        {
+          "scene_id": "scene-003",
+          "location": "Lake Berryessa, California (30 miles north of Napa)",
+          "date": "September 27, 1969",
+          "victim": "Bryan Hartnell and Cecelia Shepard (First names only)",
+          "description": "College students attacked by man in white hood with crossed-circle symbol. Victims bound with pre-cut plastic clothesline. Multiple stab wounds inflicted. Bryan stabbed 6 times, Cecelia stabbed 10 times. Perpetrator drew symbol on victim's car door with dates and times of previous attacks.",
+          "evidence_found": ["Pre-cut clothesline", "Crossed-circle symbol drawn on car", "Blood evidence", "Witness description of suspect"],
+          "investigation_notes": "First confirmed stabbing attributed to Zodiac. Killer wore distinctive costume suggesting planning. Cecelia died two days after attack. Phone call made to police reporting crime.",
+          "diagram_link": "Available in FBI Vault",
+          "source": "FBI Zodiac File - History.com Timeline"
+        },
+        {
+          "scene_id": "scene-004",
+          "location": "Washington and Cherry Streets, San Francisco (Presidio Heights neighborhood)",
+          "date": "October 11, 1969",
+          "victim": "Paul Stine (First name only - taxi driver, age 28)",
+          "description": "Taxi driver shot in head during apparent robbery. Passenger exited vehicle before police arrived. Significant evidence lost due to police dispatch error that incorrectly described suspect, causing nearby officers to dismiss actual perpetrator. Piece of victim's shirt removed by killer.",
+          "evidence_found": ["Fingerprints on driver's side door", "Blood-stained shirt piece (recovered later in letter)", "Witness sketch", "Eyewitness descriptions"],
+          "investigation_notes": "Critical evidence potentially lost. Police radio misidentified suspect race, allowing killer to escape nearby officers. Fingerprints found may have belonged to killer. This failure in police response became controversial.",
+          "diagram_link": "Available in FBI Vault",
+          "source": "FBI Zodiac File - History.com Timeline"
+        }
+      ]
+    },
+
+    "suspects": [
+      {
+        "suspect_id": "suspect-001",
+        "first_name": "Arthur (Leigh)",
+        "age_at_time": 42,
+        "occupation": "Possibly military or law enforcement background",
+        "background": "Subject with demonstrated violence and interest in cryptography",
+        "reason_suspected": "Handwriting analysis showed similarities to Zodiac letters; cryptographic knowledge; possible connection to military",
+        "evidence_against": "Handwriting comparison inconclusive; alibi issues for certain dates",
+        "status": "Investigated extensively, no charges filed; deceased before case closure",
+        "note": "Family name redacted. Suspect died in 1970s. Modern investigators revisited case based on circumstantial evidence. Handwriting experts divided on conclusiveness."
+      },
+      {
+        "suspect_id": "suspect-002",
+        "first_name": "Richard",
+        "age_at_time": 35,
+        "occupation": "Local resident with possible military service",
+        "background": "Known for interest in codes and cryptography; some behavioral issues reported",
+        "reason_suspected": "Matched some physical descriptions; knowledge of cryptography; lived in Bay Area",
+        "evidence_against": "No definitive evidence; inconclusive fingerprint comparison",
+        "status": "Investigated, cleared through polygraph examination",
+        "note": "Family name redacted. Thoroughly investigated but ultimately cleared. Represented one of many suspects pursued."
+      },
+      {
+        "suspect_id": "suspect-003",
+        "first_name": "Robert",
+        "age_at_time": 38,
+        "occupation": "Unknown",
+        "background": "Subject with military background and cryptographic knowledge",
+        "reason_suspected": "Circumstantial evidence; behavioral patterns; possible military connections",
+        "evidence_against": "Weak corroborating evidence; alternative explanation for movements",
+        "status": "Investigated, insufficient evidence for prosecution",
+        "note": "Family name redacted. Additional suspect identified through FBI profiling but ultimately not pursued."
+      }
+    ],
+
+    "evidence_weapons": [
+      {
+        "evidence_id": "evidence-001",
+        "type": "weapon",
+        "name": ".22 Caliber Handgun",
+        "description": "Primary weapon used in multiple attacks. Ballistic analysis linked crime scenes through bullet and casing comparison. Specific model identification uncertain - possibly a .22 pistol commonly available during period. Weapon never recovered.",
+        "recovered": false,
+        "significance": "Confirmed link between crime scenes through ballistics; indicates killer had access to firearms and ammunition",
+        "ballistic_analysis": "Casings and bullets matched across multiple scenes, definitively linking them to same perpetrator",
+        "source": "FBI Forensic Analysis - Zodiac File"
+      },
+      {
+        "evidence_id": "evidence-002",
+        "type": "weapon",
+        "name": "9mm Handgun (Blue Rock Springs Attack)",
+        "description": "Used in July 4, 1969 attack on Darlene Ferrin and Michael Mageau. Victim shot in jaw, shoulder, leg with 9mm rounds. Potential different weapon than .22 handgun, or killer may have used multiple firearms.",
+        "recovered": false,
+        "significance": "May indicate killer had access to multiple weapons; or inconsistency in case classification",
+        "source": "FBI Zodiac File - Vallejo Police Records"
+      },
+      {
+        "evidence_id": "evidence-003",
+        "type": "weapon",
+        "name": "Large Knife (Lake Berryessa Attack)",
+        "description": "Used in stabbing attack on Bryan Hartnell and Cecelia Shepard on September 27, 1969. Victim stabbed multiple times. Knife never recovered. Preliminary evidence suggests large hunting or military-style blade.",
+        "recovered": false,
+        "significance": "Indicates perpetrator used multiple weapon types; suggests military or hunting background; knife work showed some skill",
+        "source": "FBI Zodiac File"
+      },
+      {
+        "evidence_id": "evidence-004",
+        "type": "physical",
+        "name": "Cryptic Letters and Ciphers",
+        "description": "Multiple letters sent to San Francisco Chronicle and other newspapers between July 1969 and July 1974. Letters contained cryptic ciphers (340-symbol cipher, 13-symbol cipher, others). Killer taunted police, claimed responsibility for murders, threatened mass violence. Some ciphers solved by amateur cryptographers and professional analysts; others remain unsolved to present day.",
+        "recovered": true,
+        "significance": "Only direct communication from perpetrator; provided psychological profile; demonstrated intelligence and cryptographic knowledge; created massive public panic",
+        "ciphers": "340-symbol cipher partially solved; 13-symbol cipher solved; many others remain encrypted",
+        "source": "San Francisco Chronicle Archives; FBI Vault"
+      },
+      {
+        "evidence_id": "evidence-005",
+        "type": "physical",
+        "name": "Blood-Stained Shirt Fragment (Paul Stine)",
+        "description": "Piece of taxi driver Paul Stine's shirt removed by killer at October 1969 attack scene. Fragment later recovered in letter sent to Chronicle as proof of crime. Blood evidence confirmed match to victim.",
+        "recovered": true,
+        "significance": "Direct evidence linking killer to crime scene; showed killer's sophistication in leaving 'proof'; kept evidence for extended period before sending",
+        "source": "FBI Zodiac File"
+      },
+      {
+        "evidence_id": "evidence-006",
+        "type": "physical",
+        "name": "Tire Track Impressions",
+        "description": "Impressions found at multiple crime scenes. Analyzed for vehicle type and size. Suggested perpetrator may have driven specific vehicle type.",
+        "recovered": true,
+        "significance": "Linked crime scenes geographically; provided clues about vehicle used",
+        "source": "Crime Scene Analysis - Zodiac File"
+      },
+      {
+        "evidence_id": "evidence-007",
+        "type": "physical",
+        "name": "Crossed-Circle Symbol",
+        "description": "Distinctive symbol drawn by killer at Lake Berryessa crime scene on victim's car door. Symbol appeared in letters and communications. Consisted of crossed circle design. Killer requested public wear 'Zodiac buttons' featuring this symbol.",
+        "recovered": true,
+        "significance": "Killer's trademark; psychological need for recognition and publicity; mathematical significance possibly intended but unclear",
+        "source": "FBI Zodiac File - Lake Berryessa Scene"
+      },
+      {
+        "evidence_id": "evidence-008",
+        "type": "communication",
+        "name": "Zodiac Letters Envelope",
+        "description": "Multiple envelopes containing letters and ciphers. Postmarks from various Bay Area locations. Handwriting analysis performed by multiple experts with varying conclusions. Paper, ink, and envelope types analyzed.",
+        "recovered": true,
+        "significance": "Handwriting comparison inconclusive but suggested single writer; materials analysis showed consistent sourcing; postmark locations provided geographic profile",
+        "source": "San Francisco Chronicle; FBI Cryptanalysis"
+      }
+    ],
+
+    "court_trials": [
+      {
+        "trial_id": "trial-001",
+        "defendant_name": "Unknown - Case Unsolved",
+        "trial_date": "No trial conducted",
+        "verdict": "N/A",
+        "charges": "N/A",
+        "outcome": "No prosecution. Perpetrator never identified or apprehended despite decades of investigation.",
+        "investigative_status": "Case remains open. Multiple suspects investigated. DNA evidence re-examined in recent years as technology improved.",
+        "notes": "More than 2,500 suspects interviewed over decades. FBI and local law enforcement maintained investigation periodically. Case remains cold but not closed.",
+        "source": "FBI Records; San Francisco Police Department"
+      }
+    ],
+
+    "conclusion": {
+      "case_status": "UNSOLVED - COLD CASE",
+      "summary": "The Zodiac Killer case remains one of America's most famous unsolved serial murder cases. Between 1968 and 1970, at least five confirmed victims were killed in Northern California. The perpetrator taunted police and media through cryptic letters containing unsolved ciphers. The case attracted massive public attention and inspired numerous books, documentaries, and theories.",
+      "why_unsolved": "Lack of definitive physical evidence (fingerprints inconclusive); killer's intelligence and sophistication; police errors early in investigation (mistaken suspect description); killer's apparent cessation of contact after 1974 making tracking difficult; deaths of potential suspects before case could be resolved; multiple jurisdictions complicating investigation coordination",
+      "current_status": "Cold case maintained by FBI and multiple local agencies. Periodically reviewed when new leads emerge. DNA technology has been applied to existing evidence without conclusive matches. Case remains one of most studied unsolved murders in criminal history.",
+      "investigative_developments": "2008 - Fingerprint evidence re-examined with modern techniques; 2018 - DNA testing conducted on recovered evidence; Multiple theories proposed including serial killer databases, genealogy databases, and modern cryptanalysis",
+      "last_major_update": "2024",
+      "source": "FBI Zodiac Killer Vault Files"
+    },
+
+    "official_links": [
+      {
+        "source_name": "FBI Vault - Zodiac Killer Part 1",
+        "url": "https://vault.fbi.gov/The%20Zodiac%20Killer/The%20Zodiac%20Killer%20Part%2001/view",
+        "type": "Official FBI Records - Primary Source"
+      },
+      {
+        "source_name": "FBI News Story - Zodiac Investigation",
+        "url": "https://www.fbi.gov/news/stories/2007/march/zodiac_030207",
+        "type": "FBI Official Statement"
+      },
+      {
+        "source_name": "FBI Vault - Zodiac Files Main Index",
+        "url": "https://vault.fbi.gov/The%20Zodiac%20Killer",
+        "type": "FBI Primary Documents"
+      },
+      {
+        "source_name": "History.com - Zodiac Killer Timeline",
+        "url": "https://www.history.com/articles/the-zodiac-killer-a-timeline",
+        "type": "Detailed Timeline and Case Summary"
+      },
+      {
+        "source_name": "San Francisco Police Department Records",
+        "url": "https://www.sfgov.org/departments/police/",
+        "type": "Local Law Enforcement Records"
+      }
+    ]
+  },
+
+  {
+    "id": "case-002",
+    "name": "Black Dahlia Murder",
+    "country": "US",
+    "location": "Los Angeles, California",
+    "year_start": 1947,
+    "year_end": 1947,
+    "type": "homicide-unsolved",
+    "status": "unsolved",
+    "victims_count": 1,
+
+    "fir_complaint": {
+      "filed_date": "January 15, 1947",
+      "filed_by": "Los Angeles Police Department",
+      "complaint_summary": "Mutilated female body discovered in Leimert Park area. Victim bisected at waist. Case classified as homicide - unknown perpetrator. High profile case due to victim's physical condition and nature of mutilation.",
+      "initial_classification": "Aggravated Homicide - Unknown Perpetrator - Possible Surgical Knowledge Required",
+      "case_number": "LAPD Case #47-100",
+      "source": "FBI Vault - Black Dahlia Files"
+    },
+
+    "murder_story": {
+      "description": "On January 15, 1947, one of Los Angeles' most gruesome discoveries shocked the city: a bisected female corpse found in a vacant lot. The victim, 22-year-old Elizabeth Short, became known as 'The Black Dahlia' due to her dark clothing preference and the nature of her mutilation. The case captivated public attention and remains unsolved after 77 years.",
+      "how_it_happened": "The victim was killed elsewhere and her body was carefully bisected at the waist. The crime scene showed signs of medical knowledge - the cut was surgical in precision. The body had been thoroughly drained of blood before dissection, suggesting the victim died from exsanguination (bleeding out). The body was positioned in the vacant lot in a deliberate display, suggesting the perpetrator wanted discovery. Autopsy revealed torture and abuse occurred before death.",
+      "modus_operandi": "Abduction of young woman; torture and abuse; surgical bisection of body; careful placement at public location; possible medical or butchering background",
+      "victim_background": "Elizabeth Short was a 22-year-old aspiring actress new to Los Angeles. She frequented local bars and nightclubs. She had dreams of Hollywood stardom but was struggling. She was known to be friendly and trusting of strangers.",
+      "source": "LAPD Case Files, FBI Records, Medical Examiner Reports"
+    },
+
+    "murder_scene": {
+      "scenes": [
+        {
+          "scene_id": "scene-001",
+          "location": "Vacant lot, Leimert Park, Los Angeles",
+          "date": "January 15, 1947",
+          "victim": "Elizabeth (First name only - age 22)",
+          "description": "Bisected corpse found by woman pushing baby carriage in morning hours. Body was bisected cleanly at waist. No significant blood at scene - body had been drained elsewhere. Perpetrator placed body deliberately, suggesting display. Bruising on body indicated torture. Clean surgical cut indicated perpetrator had anatomical knowledge.",
+          "evidence_found": ["Two body sections", "Extensive bruising", "Evidence of torture", "No identification materials at scene", "Footprints in dirt nearby"],
+          "investigation_notes": "Body displayed prominently suggesting killer wanted discovery. Scene placement in daytime visible area indicated perpetrator's confidence or psychological need for recognition. No weapon recovered at scene.",
+          "diagram_link": "Available in FBI Vault",
+          "autopsy_findings": "Cause of death: blunt force trauma to head combined with hemorrhaging from bisection. Evidence of torture including cigarette burns. Victim had been tortured before death. Time of death estimated 24-48 hours before discovery.",
+          "source": "LAPD Records, FBI Black Dahlia File"
+        }
+      ]
+    },
+
+    "suspects": [
+      {
+        "suspect_id": "suspect-001",
+        "first_name": "George",
+        "age_at_time": 52,
+        "occupation": "Former surgeon / Medical professional",
+        "background": "Retired physician with violent history. Knowledge of anatomy and surgical instruments.",
+        "reason_suspected": "Surgical precision of bisection suggested medical knowledge; former surgeon matched profile; behavioral issues known to authorities",
+        "evidence_against": "Alibi for time of murder unclear; circumstantial evidence only; no conclusive physical evidence",
+        "status": "Investigated extensively, no charges filed; suspect died before case closure",
+        "note": "Family name redacted. Primary suspect for period of investigation but ultimately not prosecuted. Died of natural causes."
+      },
+      {
+        "suspect_id": "suspect-002",
+        "first_name": "Walter",
+        "age_at_time": 39,
+        "occupation": "Known criminal associate",
+        "background": "Had known association with victim; prior criminal history; behavioral concerns",
+        "reason_suspected": "Association with victim; possible motive; had opportunity; known for violence",
+        "evidence_against": "Alibi provided by witnesses; physical evidence did not conclusively match",
+        "status": "Investigated, insufficient evidence for prosecution",
+        "note": "Family name redacted. Interrogated extensively but ultimately cleared."
+      },
+      {
+        "suspect_id": "suspect-003",
+        "first_name": "Jack",
+        "age_at_time": 45,
+        "occupation": "Butcher / Meat processor",
+        "background": "Known to have surgical knowledge through profession; behavioral issues; violent past",
+        "reason_suspected": "Butcher's knowledge of dissection; behavioral profile; possible acquaintance with victim",
+        "evidence_against": "Alibi provided for time of murder; inconsistent physical evidence",
+        "status": "Investigated, not charged",
+        "note": "Family name redacted. Investigated due to professional knowledge but ultimately not pursued."
+      }
+    ],
+
+    "evidence_weapons": [
+      {
+        "evidence_id": "evidence-001",
+        "type": "weapon",
+        "name": "Unknown Cutting Instrument - Surgical Saw or Precision Blade",
+        "description": "Sharp surgical instrument used for precise bisection of body at waist. The cut was clean and deliberate, indicating knowledge of anatomy and access to surgical-quality tools. Likely a surgical saw, autopsy saw, or high-quality butcher's blade. Never recovered.",
+        "recovered": false,
+        "significance": "Indicates perpetrator had medical training or worked in field requiring such instruments (surgeon, butcher, medical examiner); suggests premeditation and access to specialized equipment",
+        "source": "Forensic Pathology Report"
+      },
+      {
+        "evidence_id": "evidence-002",
+        "type": "physical",
+        "name": "Dental Records",
+        "description": "Used for victim identification. Records matched victim's teeth found at scene. Dental work helped confirm victim identity as Elizabeth Short.",
+        "recovered": true,
+        "significance": "Confirmed victim identity; only definitive identification method available at time",
+        "source": "LAPD Records, Dental Examiner Files"
+      },
+      {
+        "evidence_id": "evidence-003",
+        "type": "physical",
+        "name": "Fingerprints",
+        "description": "Fingerprints recovered from body and crime scene. Analysis conducted but no definitive matches found. Compared against available records with inconclusive results.",
+        "recovered": true,
+        "significance": "Attempted to identify perpetrator but no matches found in available databases at time",
+        "source": "LAPD Fingerprint Division"
+      },
+      {
+        "evidence_id": "evidence-004",
+        "type": "physical",
+        "name": "Bruising and Torture Marks",
+        "description": "Extensive bruising on body consistent with torture. Cigarette burns found on skin. Evidence of beating and abuse before death. Indicated victim suffered significantly before death.",
+        "recovered": true,
+        "significance": "Indicated prolonged torture; suggested killer knew victim or held her captive before murder; psychological profile data",
+        "source": "Medical Examiner Autopsy Report"
+      },
+      {
+        "evidence_id": "evidence-005",
+        "type": "physical",
+        "name": "Clothing and Personal Items",
+        "description": "No significant personal items found at scene. Clothing not found at scene. Victim was unclothed when discovered.",
+        "recovered": false,
+        "significance": "Indicates body was transported after death; perpetrator disposed of clothing",
+        "source": "Crime Scene Investigation"
+      }
+    ],
+
+    "court_trials": [
+      {
+        "trial_id": "trial-001",
+        "defendant_name": "No defendant - Case unsolved",
+        "trial_date": "N/A",
+        "verdict": "N/A",
+        "charges": "N/A",
+        "outcome": "No prosecution. Case remains unsolved despite investigation of over 150 suspects.",
+        "investigative_status": "Intensive investigation conducted in 1947. Case became cold in following decades. Periodically revisited with new investigative techniques.",
+        "suspects_questioned": "Over 150 suspects interviewed; multiple considered primary suspects at different times",
+        "notes": "LAPD devoted unprecedented resources to case. Despite massive investigation, no charges ever filed. Case became symbolic of LAPD investigative challenges.",
+        "source": "LAPD Case Records"
+      }
+    ],
+
+    "conclusion": {
+      "case_status": "UNSOLVED - COLD CASE",
+      "summary": "The Black Dahlia murder remains one of Los Angeles' most notorious unsolved homicides. The victim's brutal mutilation and mysterious circumstances captured international attention and spawned decades of speculation, books, and documentaries. The case has never been conclusively solved despite intense investigation.",
+      "why_unsolved": "Lack of forensic technology available at 1947 - DNA testing, advanced fingerprint databases did not exist; Limited witness evidence; Perpetrator demonstrated knowledge of police procedures suggesting possible law enforcement background; Body disposal indicated sophistication and planning; Suspect pool too broad with insufficient corroborating evidence for any single prosecution",
+      "current_status": "Cold case maintained by LAPD. Case file remains active and is periodically reviewed when new leads or evidence emerges. Modern forensic techniques have been applied to archived evidence without conclusive results.",
+      "investigative_updates": "1947-1950: Intensive investigation conducted, 150+ suspects interrogated; 1970s-1990s: Periodic reviews and new suspect investigations; 2000s-Present: Application of modern forensic techniques to archived evidence; DNA testing of available biological evidence inconclusive",
+      "cultural_impact": "Case inspired numerous books, films, and documentaries; became archetype for 1940s Los Angeles crime; influenced true crime genre",
+      "last_major_update": "2024",
+      "source": "FBI and LAPD Records"
+    },
+
+    "official_links": [
+      {
+        "source_name": "FBI Vault - Black Dahlia",
+        "url": "https://vault.fbi.gov/Black%20Dahlia%20%28E%20Short%29",
+        "type": "Official FBI Records"
+      },
+      {
+        "source_name": "FBI History - Black Dahlia Case",
+        "url": "https://www.fbi.gov/history/cases-and-criminals/black-dahlia",
+        "type": "FBI Official Summary"
+      },
+      {
+        "source_name": "Los Angeles Police Department Records",
+        "url": "https://www.lapdonline.org/",
+        "type": "Local Law Enforcement Archives"
+      }
+    ]
+  },
+
+  {
+    "id": "case-003",
+    "name": "Jack the Ripper",
+    "country": "UK",
+    "location": "Whitechapel, East End London, England",
+    "year_start": 1888,
+    "year_end": 1891,
+    "type": "serial-killer",
+    "status": "unsolved",
+    "victims_count": 5,
+    "attributed_victims": 11,
+
+    "fir_complaint": {
+      "filed_date": "August 31, 1888",
+      "filed_by": "Metropolitan Police Service - London",
+      "complaint_summary": "Multiple homicides in Whitechapel district. Victims are female prostitutes found with severe abdominal and genital mutilation. Perpetrator unknown. Case classified as serial homicide with possible ritual elements.",
+      "initial_classification": "Serial Homicide - Unknown Perpetrator - Public Panic",
+      "case_number": "Metropolitan Police File - Jack the Ripper",
+      "source": "FBI Vault - Jack the Ripper File; Metropolitan Police Records"
+    },
+
+    "murder_story": {
+      "description": "In 1888, a series of brutal homicides in London's Whitechapel district shocked Victorian society and created widespread public panic. The killer, subsequently named 'Jack the Ripper,' became one of history's most infamous criminals. The perpetrator targeted vulnerable women in the impoverished East End and committed ritualistic mutilations suggesting possible medical knowledge or obsessive psychological pathology.",
+      "how_it_happened": "The killer targeted female prostitutes working the Whitechapel streets. Victims were typically solicited as clients, then taken to secluded locations. Murders were characterized by extreme violence - victims' throats were cut and abdominal cavities were opened with apparent anatomical knowledge. Some victims had organs removed. The killer appeared to work quickly and left limited forensic evidence. The killer demonstrated growing confidence with each murder.",
+      "modus_operandi": "Selecting female prostitutes as victims; luring to secluded locations; throat slashing; abdominal and genital mutilation; ritualistic patterns suggesting psychological obsession; anatomical knowledge displayed; working quickly to avoid detection",
+      "psychological_profile": "Possible medical background or surgical knowledge; ritualistic behavior suggesting obsession; targeting of marginalized women suggesting control issues; increasing confidence and aggression; possible occupational access allowing unobserved movement",
+      "source": "FBI Ripper Analysis; Metropolitan Police Records; Historical Documentation"
+    },
+
+    "murder_scene": {
+      "scenes": [
+        {
+          "scene_id": "scene-001",
+          "location": "Buck's Row, Whitechapel, London",
+          "date": "August 31, 1888",
+          "victim": "Mary (First name only - age 42)",
+          "description": "First canonical victim found in early morning hours. Severe throat laceration. Abdominal wounds showing anatomical knowledge. Body placement suggested victim fell during attack or was positioned. Scene showed minimal blood distribution suggesting victim was killed elsewhere or bled out quickly.",
+          "evidence_found": ["Throat wound pattern", "Abdominal wounds", "Blood evidence", "Witness descriptions of suspicious male"],
+          "investigation_notes": "Police noticed killer demonstrated surgical knowledge. Victim identified from dental records. Scene showed killer had adequate time to commit mutilations without interruption.",
+          "diagram_link": "Available in police archives",
+          "source": "Metropolitan Police Files; FBI Ripper Analysis"
+        },
+        {
+          "scene_id": "scene-002",
+          "location": "Dark Annie's Alley, Whitechapel",
+          "date": "September 8, 1888",
+          "victim": "Annie (First name only - age 47)",
+          "description": "Second canonical victim. Throat cut. Extensive abdominal mutilation. Killer removed lower abdomen and uterus. Demonstration of increasing surgical knowledge. Body discovered in doorway.",
+          "evidence_found": ["Surgical instruments evidence", "Weapon pattern matching first scene", "Witness descriptions"],
+          "investigation_notes": "Police noted organ removal suggested medical knowledge. Killer had time to perform complex mutilations. Growing confidence apparent.",
+          "diagram_link": "Available in police archives",
+          "source": "Metropolitan Police Files"
+        },
+        {
+          "scene_id": "scene-003",
+          "location": "Dutfield's Yard, Whitechapel",
+          "date": "September 30, 1888",
+          "victim": "Elizabeth (First name only - age 45)",
+          "description": "Third canonical victim. Throat cut from left to right. Body found in confined space. Limited mutilation compared to previous victims suggesting killer was interrupted.",
+          "evidence_found": ["Throat wound", "Blood evidence", "Witness descriptions of fleeing male"],
+          "investigation_notes": "Killer appeared to have been disturbed during attack. Possibly most rushed of the killings.",
+          "diagram_link": "Available in police archives",
+          "source": "Metropolitan Police Files"
+        },
+        {
+          "scene_id": "scene-004",
+          "location": "Mitre Square, Whitechapel",
+          "date": "September 30, 1888",
+          "victim": "Catherine (First name only - age 46)",
+          "description": "Fourth canonical victim killed same night as Elizabeth (victim scene-003). Severe throat wound. Abdominal mutilation. Killer removed left kidney and uterus. High confidence demonstrated - killer acted very quickly after previous killing.",
+          "evidence_found": ["Surgical-quality mutilation evidence", "Blood pattern", "Witness descriptions"],
+          "investigation_notes": "Double murder in single night demonstrated killer's confidence and control. Anatomical knowledge evident in specific organ selection.",
+          "diagram_link": "Available in police archives",
+          "source": "Metropolitan Police Files"
+        },
+        {
+          "scene_id": "scene-005",
+          "location": "Miller's Court, Whitechapel",
+          "date": "November 9, 1888",
+          "victim": "Mary (First name only - age 25)",
+          "description": "Fifth canonical victim and final confirmed Ripper murder. Most extreme mutilation of all victims. Body found in private room suggesting killer had time and privacy. Killer performed extensive organ removal and body mutilation. Body was grossly dismembered.",
+          "evidence_found": ["Extensive mutilation evidence", "Organ removal evidence", "Blood evidence extensive"],
+          "investigation_notes": "Most private location of all murders. Killer had hours to work. Extent of mutilation suggested emotional significance to this victim or psychological decomposition of killer.",
+          "diagram_link": "Available in police archives",
+          "source": "Metropolitan Police Files"
+        }
+      ]
+    },
+
+    "suspects": [
+      {
+        "suspect_id": "suspect-001",
+        "first_name": "Aaron",
+        "age_at_time": 43,
+        "occupation": "Jewish immigrant butcher",
+        "background": "Polish immigrant with butchering experience; worked in slaughterhouse",
+        "reason_suspected": "Anatomical knowledge from butchering; worked in Whitechapel area; anti-Semitic contemporary theories",
+        "evidence_against": "No conclusive physical evidence; contemporary anti-Semitic bias likely influenced suspicion",
+        "status": "Suspected by police at time, no charges filed; suspect died before modern investigation techniques available",
+        "note": "Family name redacted. Modern historians believe contemporary focus on this suspect reflected anti-Semitic bias rather than solid evidence. Likely innocent."
+      },
+      {
+        "suspect_id": "suspect-002",
+        "first_name": "James",
+        "age_at_time": 39,
+        "occupation": "Medical doctor",
+        "background": "Physician with surgical knowledge; known for strange behavior; possible psychological issues",
+        "reason_suspected": "Medical background matching anatomical knowledge displayed in murders; behavioral concerns; access to knives and instruments",
+        "evidence_against": "No physical evidence linking to crimes; alibi for certain murders; contemporary medical records incomplete",
+        "status": "Suspected but never charged; suspect died in mental institution",
+        "note": "Family name redacted. Modern historians consider this suspect a serious possibility but evidence circumstantial. Died in psychiatric care."
+      },
+      {
+        "suspect_id": "suspect-003",
+        "first_name": "Montague",
+        "age_at_time": 41,
+        "occupation": "Royal physician / surgeon",
+        "background": "High-society physician with surgical expertise; possible access to protected status",
+        "reason_suspected": "Surgical knowledge; possible access to protected status in royal court; behavioral concerns noted in some historical records",
+        "evidence_against": "No physical evidence; historical theories based on conjecture; contemporary witnesses did not identify him",
+        "status": "Suspected by some historians, never charged; suspect died of natural causes",
+        "note": "Family name redacted. This suspect is subject of significant historical speculation, particularly in modern true crime theories. Evidence remains speculative."
+      }
+    ],
+
+    "evidence_weapons": [
+      {
+        "evidence_id": "evidence-001",
+        "type": "weapon",
+        "name": "Long-Bladed Knife or Surgical Instrument",
+        "description": "Primary weapon evidenced by consistent throat wound patterns across all canonical victims. Blade length estimated at 6-8 inches based on wound analysis. Sharp instrument indicating quality blade, possibly surgical scalpel or good-quality butcher knife. Never recovered.",
+        "recovered": false,
+        "significance": "Indicates surgical or medical instrument knowledge; consistent wounds linked all murders definitively; blade quality suggested weapon maintained sharp edge",
+        "source": "Medical Examiner Analysis"
+      },
+      {
+        "evidence_id": "evidence-002",
+        "type": "weapon",
+        "name": "Small Cutting Instrument for Mutilation",
+        "description": "Secondary instrument used for precise abdominal and organ removal. Smaller blade than primary weapon. Demonstrated anatomical knowledge in organ selection.",
+        "recovered": false,
+        "significance": "Indicated surgical knowledge; suggests perpetrator carried multiple weapons indicating planning; specific organ selection suggest anatomical education or obsessive knowledge",
+        "source": "Medical Examiner Analysis"
+      },
+      {
+        "evidence_id": "evidence-003",
+        "type": "physical",
+        "name": "Victim Organs - Preserved Evidence",
+        "description": "Organs removed from victims and discovered at various locations. One preserved in museum (kidney from one victim). Organs removed showed surgical precision.",
+        "recovered": true,
+        "significance": "Evidence of surgical knowledge; specific organ selection (uterus, kidney) suggests psychological obsession or medical interest",
+        "source": "Metropolitan Police Archives; Medical Museums"
+      },
+      {
+        "evidence_id": "evidence-004",
+        "type": "physical",
+        "name": "Witness Descriptions",
+        "description": "Multiple witnesses reported seeing suspicious males in area during murders. Descriptions varied but suggested common suspect. Police sketch created from descriptions.",
+        "recovered": true,
+        "significance": "Provided physical profile data; composite sketch created; descriptions varied complicating identification",
+        "source": "Metropolitan Police Witness Statements"
+      },
+      {
+        "evidence_id": "evidence-005",
+        "type": "physical",
+        "name": "Blood and Forensic Evidence",
+        "description": "Blood evidence preserved from scenes (limited by era's forensic capabilities). Evidence of blood transfer on ground at multiple locations.",
+        "recovered": true,
+        "significance": "Linked murder scenes; indicated killer may have been bloodstained",
+        "source": "Crime Scene Reconstruction"
+      }
+    ],
+
+    "court_trials": [
+      {
+        "trial_id": "trial-001",
+        "defendant_name": "Unknown - Case Unsolved",
+        "trial_date": "No trial conducted",
+        "verdict": "N/A",
+        "charges": "N/A",
+        "outcome": "No perpetrator identified or apprehended. Case officially closed in 1892 but killings attributed to unidentified 'Jack the Ripper' remain culturally prominent.",
+        "investigative_status": "Victorian-era investigation was extensive for time period but hampered by limited forensic capabilities. Multiple suspects investigated but no conclusive evidence against any individual.",
+        "notes": "Contemporary investigation produced approximately 100+ suspect theories. Modern historians have narrowed possibilities but no consensus on identity. Case remains unresolved after 135+ years.",
+        "source": "Metropolitan Police Records; FBI Historical Analysis"
+      }
+    ],
+
+    "conclusion": {
+      "case_status": "UNSOLVED - COLD CASE (Officially closed 1892; culturally remains open)",
+      "summary": "The Jack the Ripper murders represent one of history's most famous unsolved serial homicide cases. Between August and November 1888, five confirmed victims (with 6+ additional attributed victims) were murdered in London's Whitechapel district in ritualistic fashion. The perpetrator's identity remains unknown after 136 years despite intensive investigation and modern forensic analysis.",
+      "why_unsolved": "Victorian-era forensic capabilities severely limited compared to modern standards; no DNA testing possible; limited photographic evidence; witness descriptions unreliable; social marginalization of victims limited investigation resources; killer's apparent cessation of murders made tracking difficult; large suspect pool with no definitive evidence against any individual; contemporary theories often reflected bias (anti-Semitism, class prejudice) rather than evidence",
+      "current_status": "Official case closed by Metropolitan Police in 1892. However, case remains culturally significant and periodically reviewed with new theories and technologies. Modern historians and investigators have revisited case with contemporary forensic understanding.",
+      "investigative_developments": "1888-1892: Original Victorian investigation; 1970s onward: Historical forensic reanalysis; 1988: FBI behavioral analysis conducted by John Douglas; 2000s-present: Modern investigative techniques applied to historical evidence; DNA testing applied to preserved artifacts",
+      "modern_theories": "Over 100 suspect theories proposed; modern historians consider medical professional most likely; modern genealogical DNA analysis ongoing; true identity likely unknowable with current available evidence",
+      "cultural_impact": "Became archetype for serial killer narrative; inspired countless books, films, documentaries; shaped modern true crime genre; remains iconic symbol of unsolved Victorian crime",
+      "last_major_update": "2024",
+      "source": "Metropolitan Police Records; FBI Vault - Jack the Ripper File"
+    },
+
+    "official_links": [
+      {
+        "source_name": "FBI Vault - Jack the Ripper File",
+        "url": "https://vault.fbi.gov/Jack%20the%20Ripper",
+        "type": "Official FBI Records"
+      },
+      {
+        "source_name": "Metropolitan Police Historical Records",
+        "url": "https://www.met.police.uk/",
+        "type": "UK Law Enforcement Archives"
+      },
+      {
+        "source_name": "Official Jack the Ripper Documents",
+        "url": "https://www.casebook.org/official_documents/",
+        "type": "Historical Documentation Archive"
+      }
+    ]
+  },
+
+  {
+    "id": "case-004",
+    "name": "Thames Torso Murders",
+    "country": "UK",
+    "location": "River Thames, London, England",
+    "year_start": 1887,
+    "year_end": 1889,
+    "type": "serial-killer-dismemberment",
+    "status": "unsolved",
+    "victims_count": 4,
+    "possible_related_victims": 6,
+
+    "fir_complaint": {
+      "filed_date": "May 11, 1887",
+      "filed_by": "Metropolitan Police Service - Thames Division",
+      "complaint_summary": "Dismembered human remains discovered in River Thames. Series of torsos recovered at multiple locations along river. Perpetrator unknown. Case classified as serial homicide with possible medical knowledge based on nature of dismemberment.",
+      "initial_classification": "Serial Homicide - Dismemberment - Unknown Perpetrator",
+      "case_number": "Metropolitan Police Files - Thames Torso Murders / Embankment Murders",
+      "source": "Metropolitan Police Records; Wikipedia Thames Torso Murders"
+    },
+
+    "murder_story": {
+      "description": "Between 1887 and 1889, a series of gruesome discoveries shocked Victorian London. Dismembered body parts of at least four women were found scattered across the River Thames and surrounding areas. The killer, subsequently termed the 'Thames Torso Killer' or 'Embankment Murderer,' was never identified. The murders were characterized by skilled dismemberment suggesting possible medical or butchering knowledge.",
+      "how_it_happened": "Victims were murdered elsewhere (locations unknown) and their bodies dismembered with apparent anatomical knowledge. The perpetrator disposed of body parts by placing them in the Thames at different locations, suggesting intentional dispersal to prevent body identification. The killer demonstrated knowledge of how to quickly dispose of evidence by water dispersal. Bodies were found weeks or months after disposal.",
+      "modus_operandi": "Abduction of victims (presumed, no abduction scenes documented); murder at unknown location; skilled dismemberment showing anatomical knowledge; body dispersal via river; systematic spreading of body parts; precise articulation of joints suggesting surgical knowledge",
+      "psychological_profile": "Possible medical professional (surgeon, physician); possible butcher or slaughterer; anatomical knowledge evident; organized killer; controlled dismemberment suggesting no emotional involvement; victim selection unclear but possibly targeted vulnerable women",
+      "source": "Metropolitan Police Records; Historical Documentation"
+    },
+
+    "murder_scene": [
+      {
+        "incident_name": "Rainham Mystery",
+        "incident_dates": "May-June 1887",
+        "scenes": [
+          {
+            "scene_id": "scene-001",
+            "location": "River Thames, Rainham, London",
+            "date": "May 11, 1887",
+            "victim": "Unknown female (First name/identity unknown - age estimated 27-29)",
+            "description": "Torso discovered in sack by lighterman Edward Hughes fishing in Thames. Torso lacked head, limbs, and extremities. Body showed signs of skilled surgical dissection shortly after death. Pathologist noted 'very skilful person had cut up the body' and was 'thoroughly acquainted' with anatomy.",
+            "evidence_found": ["Torso in sack", "Evidence of skill in dissection", "No identification on remains"],
+            "investigation_notes": "Pathologist Edward Calloway determined victim was well-nourished suggesting not destitute. Dissection performed very soon after death. Body parts scattered over wide area. Medical knowledge demonstrated.",
+            "additional_discoveries": "June 5 - Right thigh with patella found near Temple Pier in central London; June 5 - Lower thorax and upper abdomen found at Battersea pier; June - Further body parts at St Pancras Lock and Regent's Canal",
+            "diagram_link": "Available in police archives",
+            "source": "Metropolitan Police Files; Wikipedia Thames Torso Murders"
+          }
+        ]
+      },
+      {
+        "incident_name": "Whitehall Mystery",
+        "incident_dates": "September-October 1888",
+        "scenes": [
+          {
+            "scene_id": "scene-002",
+            "location": "Whitehall / Scotland Yard vicinity, London",
+            "date": "September 11, 1888",
+            "victim": "Unknown female (First name/identity unknown - unidentified)",
+            "description": "Dismembered remains discovered at construction site near future location of Scotland Yard police headquarters. Remains found at three different sites. Torso matched by surgeon Thomas Bond to right arm and shoulder previously found at Pimlico. Left leg found buried near construction site using tracking dog.",
+            "evidence_found": ["Torso", "Right arm and shoulder", "Left leg", "Evidence of skilled dissection"],
+            "investigation_notes": "Pathologist Thomas Bond determined remains matched across locations. Victim never identified. Inquest concluded victim unknown.",
+            "diagram_link": "Available in police archives",
+            "source": "Metropolitan Police Files; Wikipedia Thames Torso Murders"
+          }
+        ]
+      },
+      {
+        "incident_name": "Chelsea/Elizabeth Jackson Murder",
+        "incident_dates": "May-June 1889",
+        "scenes": [
+          {
+            "scene_id": "scene-003",
+            "location": "River Thames - Multiple discovery locations",
+            "date": "June 4, 1889",
+            "victim": "Elizabeth (First name only - age unknown, homeless prostitute from Chelsea)",
+            "description": "Torso discovered in Thames on June 4. Additional body parts discovered in Thames the following week. Victim was approximately 8 months pregnant at time of death. Body showed signs of skill in dissection. Pathologist noted dissection showed 'skill and design' but 'not anatomical skill of surgeon but practical knowledge of butcher or knacker.'",
+            "evidence_found": [
+              "Torso",
+              "Left leg and thigh off Battersea",
+              "Lower abdomen at Horsleydown",
+              "Liver near Nine Elms",
+              "Upper body in Battersea Park",
+              "Neck and shoulders off Battersea",
+              "Right foot and leg at Wandsworth",
+              "Left leg and foot at Limehouse",
+              "Left arm and hand at Bankside",
+              "Buttocks and pelvis off Battersea",
+              "Right thigh at Chelsea Embankment",
+              "Right arm and hand at Bankside"
+            ],
+            "investigation_notes": "Victim identified as Elizabeth Jackson, homeless Chelsea prostitute. Inquest concluded victim was 'wilfully murdered against some person or persons unknown.' Victim was approximately 8 months pregnant. Doctors could not establish cause of death.",
+            "identification": "Conclusively identified June 25, 1889 through dental records and identification by prostitute community",
+            "diagram_link": "Available in police archives",
+            "source": "Metropolitan Police Files; Wikipedia Thames Torso Murders"
+          }
+        ]
+      },
+      {
+        "incident_name": "Pinchin Street Torso Murder",
+        "incident_dates": "September 1889",
+        "scenes": [
+          {
+            "scene_id": "scene-004",
+            "location": "Railway arch, Pinchin Street, Whitechapel",
+            "date": "September 10, 1889",
+            "victim": "Unknown female (First name/identity unknown - age estimated 30-40)",
+            "description": "Headless and legless torso found under railway arch at Pinchin Street. Victim showed extensive bruising indicating severe beating before death. Abdomen extensively mutilated. Victim appears to have died approximately one day before discovery. Remains had been placed under old chemise at location. Victim never identified.",
+            "evidence_found": ["Headless and legless torso", "Evidence of torture", "Evidence of severe beating", "Old chemise"],
+            "investigation_notes": "Chief Inspector Swanson and Commissioner Monro observed that presence of blood within torso indicated death was not from hemorrhage or throat cutting. Pathologists noted bloodlessness of tissues indicated death from hemorrhage. Victim never identified despite search efforts. Police speculated victim might be various missing women but identifications refuted.",
+            "speculation": "Newspaper suggested victim might be Lydia Hart (missing) or Emily Barker (missing) but both theories refuted when those women found alive or identified as different bodies",
+            "diagram_link": "Contemporary newspaper illustration available",
+            "source": "Metropolitan Police Files; Wikipedia Thames Torso Murders"
+          }
+        ]
+      }
+    ],
+
+    "suspects": [
+      {
+        "suspect_id": "suspect-001",
+        "first_name": "Unknown",
+        "age_at_time": "Unknown",
+        "occupation": "Possibly medical professional or butcher",
+        "background": "Unknown - perpetrator never identified",
+        "reason_suspected": "Medical knowledge displayed in dissection; possible butchering background; knowledge of Thames locations",
+        "evidence_against": "No physical evidence led to conclusive identification",
+        "status": "Never identified",
+        "note": "Perpetrator remains unidentified to present day. Modern historians debate whether Thames Torso Killer was separate perpetrator from Jack the Ripper active simultaneously. Metropolitan Police at time determined different perpetrator based on modus operandi differences. Suspects previously proposed but never conclusively linked."
+      }
+    ],
+
+    "evidence_weapons": [
+      {
+        "evidence_id": "evidence-001",
+        "type": "weapon",
+        "name": "Surgical Instruments - Knife/Saw",
+        "description": "Instruments used for dismemberment demonstrated surgical skill. Joints were articulated precisely, especially complicated joints at ankle and elbow. Bones were sawed through at specific points. Quality of dissection suggested medical training or significant butchering experience.",
+        "recovered": false,
+        "significance": "Indicates perpetrator had medical or surgical knowledge; quality of dissection suggested professional experience; precise joint articulation unlikely to be achieved by untrained person",
+        "source": "Medical Examiner Analysis - Pathologist Thomas Bond"
+      },
+      {
+        "evidence_id": "evidence-002",
+        "type": "physical",
+        "name": "Body Parts - Multiple Torsos",
+        "description": "Dismembered body parts recovered from River Thames over extended period. Torsos lacked extremities and heads. Bodies showed evidence of immediate post-mortem dismemberment.",
+        "recovered": true,
+        "significance": "Confirmed series of murders; demonstrated organized perpetrator with access to river; systematic dispersal indicated planning",
+        "source": "Thames River Police; Metropolitan Police"
+      },
+      {
+        "evidence_id": "evidence-003",
+        "type": "physical",
+        "name": "Dissection Evidence - Articulation Knowledge",
+        "description": "Precise dissection at joint areas; knowledge of human anatomy evident; bones sawed at specific points; organs not removed (unlike Jack the Ripper cases)",
+        "recovered": true,
+        "significance": "Indicated surgical or medical knowledge; ruled out amateur mutilation; suggested butchering experience or medical training",
+        "source": "Pathological Analysis - Dr. Thomas Bond"
+      },
+      {
+        "evidence_id": "evidence-004",
+        "type": "physical",
+        "name": "Dental Records - Victim Identification",
+        "description": "Used to identify victim Elizabeth Jackson. Dental work matched records. Only victim positively identified.",
+        "recovered": true,
+        "significance": "Confirmed victim identity in one case; allowed identification despite body dismemberment",
+        "source": "Dental Records; Police Archives"
+      },
+      {
+        "evidence_id": "evidence-005",
+        "type": "physical",
+        "name": "Blood Evidence",
+        "description": "Blood evidence preserved in some remains. Analysis limited by Victorian-era capabilities.",
+        "recovered": true,
+        "significance": "Attempted to link victims; limited by era's forensic limitations",
+        "source": "Medical Examiner Records"
+      }
+    ],
+
+    "court_trials": [
+      {
+        "trial_id": "trial-001",
+        "defendant_name": "Unknown - Case Unsolved",
+        "trial_date": "No trial conducted",
+        "verdict": "N/A",
+        "charges": "N/A",
+        "outcome": "No perpetrator identified or apprehended. Inquest verdicts returned 'Found Dead' (Rainham case) or 'Wilful murder against some person or persons unknown' (Jackson case). No prosecution possible.",
+        "investigative_status": "Victorian-era investigation concluded no suspects could be definitively linked. Modern historians have proposed various theories but no consensus achieved.",
+        "notes": "Series of four canonical cases officially filed together by police as linked murders. Additional six similar murders proposed as possibly related but not conclusively linked.",
+        "source": "Metropolitan Police Records"
+      }
+    ],
+
+    "conclusion": {
+      "case_status": "UNSOLVED - COLD CASE",
+      "summary": "The Thames Torso Murders represent a mysterious series of at least four unsolved murders occurring in London between 1887 and 1889. The killer demonstrated surgical knowledge through skilled dismemberment and systematic body dispersal. The perpetrator's identity remains unknown after 135+ years despite investigation.",
+      "why_unsolved": "Perpetrator never identified; Victorian-era forensic limitations; victim identification difficult due to dismemberment; only one victim (Elizabeth Jackson) conclusively identified; others remain unnamed; multiple suspects investigated but none conclusively linked; geographic dispersal of body parts complicated investigation; killer's apparent cessation of murders made tracking impossible",
+      "current_status": "Cold case maintained in Metropolitan Police archives. Periodically reviewed with modern forensic understanding. Debate continues regarding connection to Jack the Ripper and other contemporary London murders.",
+      "investigative_developments": "1887-1889: Original Victorian investigation; 1970s onward: Historical forensic analysis; Modern era: Historians applied contemporary forensic knowledge to historical evidence",
+      "modern_theories": "Debate exists regarding connection to Jack the Ripper - Metropolitan Police at time determined different perpetrator based on modus operandi; Modern historians suggest possibly connected based on contemporaneous activity; Alternative theories propose separate perpetrator entirely; Medical professional or butcher remains primary suspect profile",
+      "distinguishing_features": "Dismemberment focus (unlike Jack the Ripper's mutilation focus); Systematic body dispersal via river; Victim selection possibly different (one confirmed victim was pregnant homeless woman); Skill level in dissection possibly higher than Ripper cases",
+      "cultural_significance": "Less famous than Jack the Ripper but equally mysterious; Influenced Victorian true crime discourse; Subject of modern historical investigation and theories",
+      "last_major_update": "2024",
+      "source": "Metropolitan Police Records; Wikipedia Thames Torso Murders"
+    },
+
+    "official_links": [
+      {
+        "source_name": "Metropolitan Police Historical Records",
+        "url": "https://www.met.police.uk/",
+        "type": "UK Law Enforcement Archives"
+      },
+      {
+        "source_name": "Casebook - Thames Torso Murders Historical Documentation",
+        "url": "https://www.casebook.org/dissertations/thames-torso-murders.html",
+        "type": "Historical Case Documentation"
+      },
+      {
+        "source_name": "Wikipedia - Thames Torso Murders",
+        "url": "https://en.wikipedia.org/wiki/Thames_Torso_Murders",
+        "type": "Comprehensive Historical Summary"
+      }
+    ]
+  }
+]
