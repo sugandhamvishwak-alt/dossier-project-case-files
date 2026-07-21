@@ -1,516 +1,240 @@
-[
-  {
-    "id": "case-001",
-    "name": "Zodiac Killer",
-    "country": "US",
-    "location": "Northern California (Bay Area)",
-    "year_start": 1968,
-    "year_end": 1974,
-    "type": "serial-killer",
-    "status": "unsolved",
-    "victims_count": 5,
-    "claimed_victims": 37,
-    "fir_complaint": {
-      "filed_date": "August 1, 1969",
-      "filed_by": "San Francisco Police Department",
-      "complaint_summary": "Multiple homicides reported in Northern California. Victims found shot in vehicles. Perpetrator unknown, claimed 37 victims via letters to press.",
-      "initial_classification": "Serial Homicide - Unknown Perpetrator"
-    },
-    "murder_story": {
-      "description": "The Zodiac Killer was an unidentified serial killer who operated in Northern California between 1968-1974. He claimed responsibility for 37 murders, though only 5-7 are confirmed. The case became famous due to cryptic letters sent to newspapers containing unsolved ciphers.",
-      "how_it_happened": "Victims were attacked in isolated locations at night, usually shot in parked vehicles. Some victims were stabbed. The killer demonstrated intelligence and psychological manipulation through letters to press.",
-      "modus_operandi": "Ambush attacks at night, use of firearms and knives, cryptic letters to newspapers, psychological taunting"
-    },
-    "murder_scene": {
-      "scenes": [
-        {
-          "scene_id": "scene-001",
-          "location": "Lake Herman Road, Vallejo, California",
-          "date": "December 20, 1968",
-          "victim": "David and Betty Lou (First names only)",
-          "description": "Victims shot multiple times in parked vehicle. .22 caliber handgun used. Tire tracks found at scene.",
-          "evidence_found": ["Bullet casings", "Tire tracks", "Vehicle damage"]
-        },
-        {
-          "scene_id": "scene-002",
-          "location": "Blue Rock Springs Park, Vallejo",
-          "date": "July 4, 1969",
-          "victim": "Darlene and Michael (First names only)",
-          "description": "Victims shot in Corvair. 9mm handgun used. Killer called police claiming responsibility.",
-          "evidence_found": ["Bullet casings", "Phone records", "Witness descriptions"]
-        },
-        {
-          "scene_id": "scene-003",
-          "location": "Lake Berryessa, California",
-          "date": "September 27, 1969",
-          "victim": "Bryan and Cecelia (First names only)",
-          "description": "Victims attacked by hooded figure with crossed-circle symbol. Stabbed multiple times with knife.",
-          "evidence_found": ["Crossed-circle symbol on car", "Clothesline", "Blood evidence"]
-        },
-        {
-          "scene_id": "scene-004",
-          "location": "Washington and Cherry Streets, San Francisco",
-          "date": "October 11, 1969",
-          "victim": "Paul (First name only - taxi driver)",
-          "description": "Taxi driver shot in head. Piece of shirt removed by killer. Police dispatch error allowed killer to escape.",
-          "evidence_found": ["Fingerprints", "Blood-stained shirt piece", "Witness descriptions"]
-        }
-      ]
-    },
-    "suspects": [
-      {
-        "suspect_id": "suspect-001",
-        "first_name": "Arthur",
-        "age_at_time": 42,
-        "background": "Military background, interest in cryptography",
-        "reason_suspected": "Handwriting analysis similarities, cryptographic knowledge",
-        "status": "Investigated, no charges filed; deceased"
-      },
-      {
-        "suspect_id": "suspect-002",
-        "first_name": "Richard",
-        "age_at_time": 35,
-        "background": "Local resident with cryptographic knowledge",
-        "reason_suspected": "Knowledge of codes, lived in Bay Area",
-        "status": "Investigated, cleared through polygraph"
-      }
-    ],
-    "evidence_weapons": [
-      {
-        "evidence_id": "evidence-001",
-        "type": "weapon",
-        "name": ".22 Caliber Handgun",
-        "description": "Primary weapon used in multiple attacks. Ballistics linked crime scenes. Never recovered.",
-        "recovered": false,
-        "significance": "Confirmed link between murders through ballistic analysis"
-      },
-      {
-        "evidence_id": "evidence-002",
-        "type": "weapon",
-        "name": "Large Knife",
-        "description": "Used in Lake Berryessa attack. Victim stabbed multiple times. Never recovered.",
-        "recovered": false,
-        "significance": "Demonstrated perpetrator used multiple weapons"
-      },
-      {
-        "evidence_id": "evidence-003",
-        "type": "physical",
-        "name": "Cryptic Letters and Ciphers",
-        "description": "Multiple letters sent to newspapers with unsolved ciphers. Some decoded, others remain encrypted.",
-        "recovered": true,
-        "significance": "Only communication from perpetrator, provided psychological profile"
-      },
-      {
-        "evidence_id": "evidence-004",
-        "type": "physical",
-        "name": "Blood-Stained Shirt Fragment",
-        "description": "Piece of Paul Stine's shirt recovered in letter, confirmed as murder evidence",
-        "recovered": true,
-        "significance": "Direct evidence linking killer to crime scene"
-      }
-    ],
-    "court_trials": [
-      {
-        "trial_id": "trial-001",
-        "defendant_name": "Unknown - Case Unsolved",
-        "trial_date": "No trial",
-        "verdict": "N/A",
-        "charges": "N/A",
-        "outcome": "No perpetrator identified or apprehended despite investigation of 2,500+ suspects"
-      }
-    ],
-    "conclusion": {
-      "case_status": "UNSOLVED - COLD CASE",
-      "summary": "The Zodiac Killer remains one of America's most famous unsolved serial murder cases. Between 1968-1970, at least 5 confirmed victims were murdered. The perpetrator taunted police through cryptic letters.",
-      "why_unsolved": "Lack of definitive physical evidence, killer's intelligence, police investigation errors, killer ceased contact after 1974, deaths of suspects before resolution",
-      "current_status": "Cold case maintained by FBI. Periodically reviewed with new forensic technology.",
-      "last_update": "2024"
-    },
-    "official_links": [
-      {
-        "source_name": "FBI Vault - Zodiac Killer",
-        "url": "https://vault.fbi.gov/The%20Zodiac%20Killer",
-        "type": "Official FBI Records"
-      },
-      {
-        "source_name": "FBI News - Zodiac Investigation",
-        "url": "https://www.fbi.gov/news/stories/2007/march/zodiac_030207",
-        "type": "FBI Official Statement"
-      }
-    ]
-  },
+// Global variables
+let allCases = [];
 
-  {
-    "id": "case-002",
-    "name": "Black Dahlia Murder",
-    "country": "US",
-    "location": "Los Angeles, California",
-    "year_start": 1947,
-    "year_end": 1947,
-    "type": "homicide",
-    "status": "unsolved",
-    "victims_count": 1,
-    "fir_complaint": {
-      "filed_date": "January 15, 1947",
-      "filed_by": "Los Angeles Police Department",
-      "complaint_summary": "Mutilated female body discovered in Leimert Park. Victim bisected at waist. Case classified as homicide with unknown perpetrator.",
-      "initial_classification": "Aggravated Homicide - Unknown Perpetrator"
-    },
-    "murder_story": {
-      "description": "On January 15, 1947, a gruesome discovery shocked Los Angeles: a bisected female corpse found in a vacant lot. The victim, 22-year-old Elizabeth Short, became known as 'The Black Dahlia'. The case remains unsolved after 77 years.",
-      "how_it_happened": "The victim was killed elsewhere and her body was carefully bisected at the waist. The crime showed signs of medical knowledge - the cut was surgical in precision. Body drained of blood before dissection.",
-      "modus_operandi": "Abduction, torture, surgical bisection, careful body placement"
-    },
-    "murder_scene": {
-      "scenes": [
-        {
-          "scene_id": "scene-001",
-          "location": "Vacant lot, Leimert Park, Los Angeles",
-          "date": "January 15, 1947",
-          "victim": "Elizabeth (First name only - age 22)",
-          "description": "Bisected corpse found in vacant lot. Body was surgically clean cut at waist. No significant blood at scene - body drained elsewhere. Bruising indicated torture.",
-          "evidence_found": ["Two body sections", "Bruising evidence", "No identification materials"]
-        }
-      ]
-    },
-    "suspects": [
-      {
-        "suspect_id": "suspect-001",
-        "first_name": "George",
-        "age_at_time": 52,
-        "background": "Former surgeon",
-        "reason_suspected": "Surgical precision of cut suggested medical knowledge",
-        "status": "Investigated extensively, no charges; deceased"
-      },
-      {
-        "suspect_id": "suspect-002",
-        "first_name": "Walter",
-        "age_at_time": 39,
-        "background": "Known criminal associate of victim",
-        "reason_suspected": "Association with victim, possible motive",
-        "status": "Investigated, insufficient evidence"
-      }
-    ],
-    "evidence_weapons": [
-      {
-        "evidence_id": "evidence-001",
-        "type": "weapon",
-        "name": "Unknown Cutting Instrument - Surgical Saw",
-        "description": "Sharp surgical instrument used for precise bisection. Never recovered. Indicates medical training.",
-        "recovered": false,
-        "significance": "Perpetrator had medical or surgical knowledge"
-      },
-      {
-        "evidence_id": "evidence-002",
-        "type": "physical",
-        "name": "Dental Records",
-        "description": "Used to identify victim as Elizabeth Short",
-        "recovered": true,
-        "significance": "Confirmed victim identity"
-      },
-      {
-        "evidence_id": "evidence-003",
-        "type": "physical",
-        "name": "Torture Marks",
-        "description": "Extensive bruising and cigarette burns on body indicating torture before death",
-        "recovered": true,
-        "significance": "Victim suffered before death, perpetrator sadistic"
-      }
-    ],
-    "court_trials": [
-      {
-        "trial_id": "trial-001",
-        "defendant_name": "Unknown - Case Unsolved",
-        "trial_date": "No trial",
-        "verdict": "N/A",
-        "charges": "N/A",
-        "outcome": "Over 150 suspects investigated, no charges ever filed"
-      }
-    ],
-    "conclusion": {
-      "case_status": "UNSOLVED - COLD CASE",
-      "summary": "The Black Dahlia murder remains one of Los Angeles' most notorious unsolved homicides. The victim's brutal mutilation captivated public attention and spawned decades of speculation.",
-      "why_unsolved": "Limited forensic technology in 1947, lack of physical evidence, large suspect pool, perpetrator's knowledge of police procedures",
-      "current_status": "Cold case maintained by LAPD. Periodically reviewed with modern forensic techniques.",
-      "last_update": "2024"
-    },
-    "official_links": [
-      {
-        "source_name": "FBI Vault - Black Dahlia",
-        "url": "https://vault.fbi.gov/Black%20Dahlia%20%28E%20Short%29",
-        "type": "Official FBI Records"
-      },
-      {
-        "source_name": "FBI History - Black Dahlia Case",
-        "url": "https://www.fbi.gov/history/cases-and-criminals/black-dahlia",
-        "type": "FBI Official Summary"
-      }
-    ]
-  },
+// Load cases from JSON on page load
+document.addEventListener('DOMContentLoaded', () => {
+    loadCases();
+    setupEventListeners();
+});
 
-  {
-    "id": "case-003",
-    "name": "Jack the Ripper",
-    "country": "UK",
-    "location": "Whitechapel, East End London, England",
-    "year_start": 1888,
-    "year_end": 1891,
-    "type": "serial-killer",
-    "status": "unsolved",
-    "victims_count": 5,
-    "attributed_victims": 11,
-    "fir_complaint": {
-      "filed_date": "August 31, 1888",
-      "filed_by": "Metropolitan Police Service - London",
-      "complaint_summary": "Multiple homicides in Whitechapel district. Female prostitute victims found with severe abdominal and genital mutilation. Perpetrator unknown.",
-      "initial_classification": "Serial Homicide - Unknown Perpetrator - Public Panic"
-    },
-    "murder_story": {
-      "description": "In 1888, a series of brutal homicides in London's Whitechapel district shocked Victorian society and created widespread public panic. The killer, subsequently named 'Jack the Ripper', became one of history's most infamous criminals.",
-      "how_it_happened": "Killer targeted female prostitutes working Whitechapel streets. Victims taken to secluded locations and murdered. Characterized by throat slashing and ritualistic abdominal mutilation suggesting anatomical knowledge.",
-      "modus_operandi": "Targeting female prostitutes, luring to secluded locations, throat slashing, abdominal mutilation, anatomical knowledge displayed"
-    },
-    "murder_scene": {
-      "scenes": [
-        {
-          "scene_id": "scene-001",
-          "location": "Buck's Row, Whitechapel, London",
-          "date": "August 31, 1888",
-          "victim": "Mary (First name only - age 42)",
-          "description": "First canonical victim. Severe throat laceration. Abdominal wounds. Evidence of anatomical knowledge.",
-          "evidence_found": ["Throat wound pattern", "Abdominal wounds", "Blood evidence"]
-        },
-        {
-          "scene_id": "scene-002",
-          "location": "Hanbury Street, Whitechapel",
-          "date": "September 8, 1888",
-          "victim": "Annie (First name only - age 47)",
-          "description": "Second canonical victim. Throat cut. Extensive abdominal mutilation. Uterus removed.",
-          "evidence_found": ["Surgical evidence", "Weapon pattern", "Organ removal evidence"]
-        },
-        {
-          "scene_id": "scene-003",
-          "location": "Dutfield's Yard, Whitechapel",
-          "date": "September 30, 1888",
-          "victim": "Elizabeth (First name only - age 45)",
-          "description": "Third canonical victim. Throat cut. Limited mutilation suggesting interruption.",
-          "evidence_found": ["Throat wound", "Blood evidence"]
-        },
-        {
-          "scene_id": "scene-004",
-          "location": "Mitre Square, Whitechapel",
-          "date": "September 30, 1888",
-          "victim": "Catherine (First name only - age 46)",
-          "description": "Fourth canonical victim. Severe mutilation. Left kidney and uterus removed.",
-          "evidence_found": ["Surgical evidence", "Organ removal evidence"]
-        },
-        {
-          "scene_id": "scene-005",
-          "location": "Miller's Court, Whitechapel",
-          "date": "November 9, 1888",
-          "victim": "Mary (First name only - age 25)",
-          "description": "Fifth canonical victim. Most extreme mutilation. Extensive organ removal. Body grossly dismembered.",
-          "evidence_found": ["Extreme mutilation evidence", "Organ removal evidence"]
+// Load cases from cases.json
+async function loadCases() {
+    try {
+        // Try different paths
+        let response;
+        try {
+            response = await fetch('./data/cases.json');
+        } catch (e) {
+            response = await fetch('/dossier-project-case-files/data/cases.json');
         }
-      ]
-    },
-    "suspects": [
-      {
-        "suspect_id": "suspect-001",
-        "first_name": "Aaron",
-        "age_at_time": 43,
-        "background": "Polish immigrant butcher",
-        "reason_suspected": "Anatomical knowledge from butchering work",
-        "status": "Suspected, no charges filed; deceased"
-      },
-      {
-        "suspect_id": "suspect-002",
-        "first_name": "James",
-        "age_at_time": 39,
-        "background": "Medical doctor",
-        "reason_suspected": "Medical background matching anatomical knowledge",
-        "status": "Suspected, no charges; died in mental institution"
-      }
-    ],
-    "evidence_weapons": [
-      {
-        "evidence_id": "evidence-001",
-        "type": "weapon",
-        "name": "Long-Bladed Knife or Surgical Instrument",
-        "description": "Primary weapon evidenced by consistent throat wound patterns. Blade length 6-8 inches. Never recovered.",
-        "recovered": false,
-        "significance": "Consistent wounds linked all murders, blade quality suggested surgical instrument"
-      },
-      {
-        "evidence_id": "evidence-002",
-        "type": "physical",
-        "name": "Victim Organs",
-        "description": "Organs removed from victims and discovered at various locations. One preserved in museum.",
-        "recovered": true,
-        "significance": "Evidence of surgical knowledge, specific organ selection suggests obsession"
-      },
-      {
-        "evidence_id": "evidence-003",
-        "type": "physical",
-        "name": "Witness Descriptions",
-        "description": "Multiple witnesses reported seeing suspicious males. Police sketch created.",
-        "recovered": true,
-        "significance": "Provided physical profile, composite sketch created"
-      }
-    ],
-    "court_trials": [
-      {
-        "trial_id": "trial-001",
-        "defendant_name": "Unknown - Case Unsolved",
-        "trial_date": "No trial",
-        "verdict": "N/A",
-        "charges": "N/A",
-        "outcome": "No perpetrator identified or apprehended. Case officially closed 1892."
-      }
-    ],
-    "conclusion": {
-      "case_status": "UNSOLVED - COLD CASE",
-      "summary": "The Jack the Ripper murders remain one of history's most famous unsolved serial homicide cases. Five confirmed victims murdered in ritualistic fashion between August-November 1888.",
-      "why_unsolved": "Victorian-era forensic limitations, no DNA testing possible, unreliable witness descriptions, large suspect pool, killer's apparent cessation of murders",
-      "current_status": "Official case closed 1892. Remains culturally significant. Modern historians periodically review with contemporary forensic understanding.",
-      "last_update": "2024"
-    },
-    "official_links": [
-      {
-        "source_name": "FBI Vault - Jack the Ripper",
-        "url": "https://vault.fbi.gov/Jack%20the%20Ripper",
-        "type": "Official FBI Records"
-      },
-      {
-        "source_name": "Official Jack the Ripper Documents",
-        "url": "https://www.casebook.org/official_documents/",
-        "type": "Historical Documentation Archive"
-      }
-    ]
-  },
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        allCases = await response.json();
+        console.log('Cases loaded:', allCases.length);
+        displayCases(allCases);
+    } catch (error) {
+        console.error('Error loading cases:', error);
+        document.getElementById('casesList').innerHTML = 
+            '<p class="no-results">Error loading cases: ' + error.message + '<br>Make sure data/cases.json exists.</p>';
+    }
+}
 
-  {
-    "id": "case-004",
-    "name": "Thames Torso Murders",
-    "country": "UK",
-    "location": "River Thames, London, England",
-    "year_start": 1887,
-    "year_end": 1889,
-    "type": "serial-killer",
-    "status": "unsolved",
-    "victims_count": 4,
-    "possible_related_victims": 6,
-    "fir_complaint": {
-      "filed_date": "May 11, 1887",
-      "filed_by": "Metropolitan Police Service - Thames Division",
-      "complaint_summary": "Dismembered human remains discovered in River Thames. Series of torsos recovered at multiple locations. Perpetrator unknown.",
-      "initial_classification": "Serial Homicide - Dismemberment - Unknown Perpetrator"
-    },
-    "murder_story": {
-      "description": "Between 1887 and 1889, a series of gruesome discoveries shocked Victorian London. Dismembered body parts of at least four women were found scattered across the River Thames. The killer, the 'Thames Torso Murderer', was never identified.",
-      "how_it_happened": "Victims were murdered elsewhere and dismembered with apparent anatomical knowledge. Body parts were disposed of by placing them in the Thames at different locations, suggesting intentional dispersal.",
-      "modus_operandi": "Murder at unknown location, skilled dismemberment showing anatomical knowledge, body dispersal via river, systematic spreading of body parts"
-    },
-    "murder_scene": {
-      "scenes": [
-        {
-          "scene_id": "scene-001",
-          "location": "River Thames, Rainham, London",
-          "date": "May 11, 1887",
-          "victim": "Unknown female (First name unknown - age 27-29)",
-          "description": "Torso discovered in sack by fisherman. Lacked head, limbs, extremities. Evidence of skilled surgical dissection.",
-          "evidence_found": ["Torso in sack", "Evidence of surgical skill", "Body parts recovered over weeks"]
-        },
-        {
-          "scene_id": "scene-002",
-          "location": "Whitehall / Scotland Yard area, London",
-          "date": "September 1888",
-          "victim": "Unknown female (First name unknown - unidentified)",
-          "description": "Dismembered remains at construction site near Scotland Yard. Torso matched to arm and shoulder previously found.",
-          "evidence_found": ["Torso", "Arm and shoulder", "Evidence of skill"]
-        },
-        {
-          "scene_id": "scene-003",
-          "location": "River Thames - Multiple discovery locations",
-          "date": "June 1889",
-          "victim": "Elizabeth (First name only - age unknown, pregnant)",
-          "description": "Torso discovered in Thames, June 4. Additional body parts found in river following week. Victim was 8 months pregnant.",
-          "evidence_found": ["Multiple body parts", "Dental records for ID"]
-        },
-        {
-          "scene_id": "scene-004",
-          "location": "Railway arch, Pinchin Street, Whitechapel",
-          "date": "September 10, 1889",
-          "victim": "Unknown female (First name unknown - age 30-40)",
-          "description": "Headless and legless torso found under railway arch. Extensive bruising indicating torture before death.",
-          "evidence_found": ["Headless torso", "Evidence of torture", "Old chemise"]
+// Display cases
+function displayCases(cases) {
+    const casesList = document.getElementById('casesList');
+    const resultsTitle = document.getElementById('resultsTitle');
+
+    if (cases.length === 0) {
+        casesList.innerHTML = '<p class="no-results">No cases found matching your filters.</p>';
+        resultsTitle.textContent = 'No Results';
+        return;
+    }
+
+    resultsTitle.textContent = `Cases Found: ${cases.length}`;
+    
+    casesList.innerHTML = cases.map(caseItem => `
+        <div class="case-card" onclick="openCaseDetail('${caseItem.id}')">
+            <h3>${caseItem.name}</h3>
+            
+            <div class="case-info">
+                <span class="case-badge">${caseItem.country}</span>
+                <span class="case-badge ${caseItem.status === 'solved' ? 'solved' : ''}">${caseItem.status.toUpperCase()}</span>
+                <span class="case-badge">${caseItem.type.replace(/-/g, ' ').toUpperCase()}</span>
+            </div>
+            
+            <div class="case-details-text">
+                <strong>Location:</strong> ${caseItem.location}
+            </div>
+            <div class="case-details-text">
+                <strong>Period:</strong> ${caseItem.year_start} - ${caseItem.year_end}
+            </div>
+            <div class="case-details-text">
+                <strong>Victims:</strong> ${caseItem.victims_count}
+            </div>
+            
+            <button class="view-details-btn">View Full Details →</button>
+        </div>
+    `).join('');
+}
+
+// Setup event listeners
+function setupEventListeners() {
+    // Search
+    document.getElementById('searchInput').addEventListener('input', filterCases);
+    
+    // Filters
+    document.getElementById('countryFilter').addEventListener('change', filterCases);
+    document.getElementById('typeFilter').addEventListener('change', filterCases);
+    document.getElementById('statusFilter').addEventListener('change', filterCases);
+    
+    // Reset
+    document.getElementById('resetFilters').addEventListener('click', resetFilters);
+    
+    // Modal
+    document.querySelector('.close').addEventListener('click', closeCaseDetail);
+    window.addEventListener('click', (event) => {
+        const modal = document.getElementById('caseModal');
+        if (event.target === modal) {
+            closeCaseDetail();
         }
-      ]
-    },
-    "suspects": [
-      {
-        "suspect_id": "suspect-001",
-        "first_name": "Unknown",
-        "age_at_time": 0,
-        "background": "Possibly medical professional or butcher",
-        "reason_suspected": "Medical knowledge displayed in dissection; anatomical knowledge evident",
-        "status": "Never identified - perpetrator remains unknown"
-      }
-    ],
-    "evidence_weapons": [
-      {
-        "evidence_id": "evidence-001",
-        "type": "weapon",
-        "name": "Surgical Instruments - Knife/Saw",
-        "description": "Instruments used for dismemberment demonstrated surgical skill. Joints articulated precisely. Never recovered.",
-        "recovered": false,
-        "significance": "Perpetrator had medical or surgical knowledge; quality dissection suggests professional"
-      },
-      {
-        "evidence_id": "evidence-002",
-        "type": "physical",
-        "name": "Body Parts - Multiple Torsos",
-        "description": "Dismembered body parts recovered from River Thames. Torsos lacked extremities and heads.",
-        "recovered": true,
-        "significance": "Confirmed series of murders; organized perpetrator with river access"
-      },
-      {
-        "evidence_id": "evidence-003",
-        "type": "physical",
-        "name": "Dental Records",
-        "description": "Used to identify victim Elizabeth Jackson. Only victim positively identified.",
-        "recovered": true,
-        "significance": "Confirmed victim identity in one case"
-      }
-    ],
-    "court_trials": [
-      {
-        "trial_id": "trial-001",
-        "defendant_name": "Unknown - Case Unsolved",
-        "trial_date": "No trial",
-        "verdict": "N/A",
-        "charges": "N/A",
-        "outcome": "No perpetrator identified or apprehended. Inquest verdicts returned 'Wilful murder against person or persons unknown'."
-      }
-    ],
-    "conclusion": {
-      "case_status": "UNSOLVED - COLD CASE",
-      "summary": "The Thames Torso Murders remain a mysterious series of unsolved murders in London between 1887-1889. Perpetrator demonstrated surgical knowledge through skilled dismemberment and systematic body dispersal.",
-      "why_unsolved": "Perpetrator never identified, Victorian-era forensic limitations, victim identification difficult due to dismemberment, only one victim conclusively identified, killer's apparent cessation of murders",
-      "current_status": "Cold case maintained in Metropolitan Police archives. Periodically reviewed with modern forensic understanding.",
-      "last_update": "2024"
-    },
-    "official_links": [
-      {
-        "source_name": "Metropolitan Police Historical Records",
-        "url": "https://www.met.police.uk/",
-        "type": "UK Law Enforcement Archives"
-      },
-      {
-        "source_name": "Thames Torso Murders Documentation",
-        "url": "https://www.casebook.org/dissertations/thames-torso-murders.html",
-        "type": "Historical Case Documentation"
-      }
-    ]
-  }
-]
+    });
+}
+
+// Filter cases
+function filterCases() {
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+    const country = document.getElementById('countryFilter').value;
+    const type = document.getElementById('typeFilter').value;
+    const status = document.getElementById('statusFilter').value;
+
+    const filtered = allCases.filter(caseItem => {
+        const matchesSearch = caseItem.name.toLowerCase().includes(searchTerm) ||
+                            caseItem.location.toLowerCase().includes(searchTerm);
+        const matchesCountry = !country || caseItem.country === country;
+        const matchesType = !type || caseItem.type === type;
+        const matchesStatus = !status || caseItem.status === status;
+
+        return matchesSearch && matchesCountry && matchesType && matchesStatus;
+    });
+
+    displayCases(filtered);
+}
+
+// Reset filters
+function resetFilters() {
+    document.getElementById('searchInput').value = '';
+    document.getElementById('countryFilter').value = '';
+    document.getElementById('typeFilter').value = '';
+    document.getElementById('statusFilter').value = '';
+    displayCases(allCases);
+}
+
+// Open case detail modal
+function openCaseDetail(caseId) {
+    const caseItem = allCases.find(c => c.id === caseId);
+    if (!caseItem) return;
+
+    const detailHTML = generateCaseDetailHTML(caseItem);
+    document.getElementById('caseDetail').innerHTML = detailHTML;
+    document.getElementById('caseModal').classList.add('show');
+}
+
+// Close case detail modal
+function closeCaseDetail() {
+    document.getElementById('caseModal').classList.remove('show');
+}
+
+// Generate case detail HTML
+function generateCaseDetailHTML(caseItem) {
+    return `
+        <h2>${caseItem.name}</h2>
+        
+        <div class="badge-group">
+            <span class="case-badge">${caseItem.country}</span>
+            <span class="case-badge ${caseItem.status === 'solved' ? 'solved' : ''}">${caseItem.status.toUpperCase()}</span>
+            <span class="case-badge">${caseItem.type.replace(/-/g, ' ').toUpperCase()}</span>
+        </div>
+
+        <h3>📍 Basic Information</h3>
+        <div class="detail-section">
+            <p><strong>Location:</strong> ${caseItem.location}</p>
+            <p><strong>Period:</strong> ${caseItem.year_start} - ${caseItem.year_end}</p>
+            <p><strong>Confirmed Victims:</strong> ${caseItem.victims_count}</p>
+            ${caseItem.claimed_victims ? `<p><strong>Claimed Victims:</strong> ${caseItem.claimed_victims}</p>` : ''}
+        </div>
+
+        <h3>🚔 FIR / Police Complaint</h3>
+        <div class="detail-section">
+            <p><strong>Filed Date:</strong> ${caseItem.fir_complaint.filed_date}</p>
+            <p><strong>Filed By:</strong> ${caseItem.fir_complaint.filed_by}</p>
+            <p><strong>Classification:</strong> ${caseItem.fir_complaint.initial_classification}</p>
+            <p>${caseItem.fir_complaint.complaint_summary}</p>
+        </div>
+
+        <h3>📖 Murder Story & Methodology</h3>
+        <div class="detail-section">
+            <p>${caseItem.murder_story.description}</p>
+            <h4>How It Happened:</h4>
+            <p>${caseItem.murder_story.how_it_happened}</p>
+            <h4>Modus Operandi:</h4>
+            <p>${caseItem.murder_story.modus_operandi}</p>
+        </div>
+
+        <h3>🔍 Crime Scenes</h3>
+        <div class="detail-section">
+            ${caseItem.murder_scene.scenes.map((scene, idx) => `
+                <p><strong>Scene ${idx + 1}:</strong></p>
+                <p><strong>Location:</strong> ${scene.location}</p>
+                <p><strong>Date:</strong> ${scene.date}</p>
+                <p><strong>Description:</strong> ${scene.description}</p>
+                <p><strong>Evidence Found:</strong> ${scene.evidence_found.join(', ')}</p>
+                <hr style="margin: 15px 0; border: 1px solid rgba(233, 69, 96, 0.2);">
+            `).join('')}
+        </div>
+
+        <h3>👥 Suspects (Family Names Redacted)</h3>
+        <div class="detail-section">
+            ${caseItem.suspects.map((suspect, idx) => `
+                <h4>Suspect ${idx + 1}: ${suspect.first_name}</h4>
+                <p><strong>Age at Time:</strong> ${suspect.age_at_time}</p>
+                <p><strong>Background:</strong> ${suspect.background}</p>
+                <p><strong>Reason Suspected:</strong> ${suspect.reason_suspected}</p>
+                <p><strong>Status:</strong> ${suspect.status}</p>
+            `).join('<hr style="margin: 15px 0; border: 1px solid rgba(233, 69, 96, 0.2);">')}
+        </div>
+
+        <h3>🔨 Evidence & Murder Weapons</h3>
+        <div class="detail-section">
+            ${caseItem.evidence_weapons.map((evidence, idx) => `
+                <h4>${evidence.name}</h4>
+                <p><strong>Type:</strong> ${evidence.type}</p>
+                <p><strong>Description:</strong> ${evidence.description}</p>
+                <p><strong>Recovered:</strong> ${evidence.recovered ? 'Yes' : 'No'}</p>
+                <p><strong>Significance:</strong> ${evidence.significance}</p>
+            `).join('<hr style="margin: 15px 0; border: 1px solid rgba(233, 69, 96, 0.2);">')}
+        </div>
+
+        <h3>⚖️ Court Trials</h3>
+        <div class="detail-section">
+            ${caseItem.court_trials.map((trial, idx) => `
+                <h4>Trial ${idx + 1}</h4>
+                <p><strong>Defendant:</strong> ${trial.defendant_name}</p>
+                <p><strong>Date:</strong> ${trial.trial_date}</p>
+                <p><strong>Verdict:</strong> ${trial.verdict}</p>
+                <p><strong>Charges:</strong> ${trial.charges}</p>
+                <p><strong>Outcome:</strong> ${trial.outcome}</p>
+            `).join('')}
+        </div>
+
+        <h3>✅ Case Conclusion</h3>
+        <div class="detail-section">
+            <p><strong>Status:</strong> <span style="color: #e94560; font-size: 1.2em;">${caseItem.conclusion.case_status}</span></p>
+            <p><strong>Summary:</strong> ${caseItem.conclusion.summary}</p>
+            <p><strong>Why Unsolved/Solved:</strong> ${caseItem.conclusion.why_unsolved}</p>
+            <p><strong>Current Status:</strong> ${caseItem.conclusion.current_status}</p>
+            <p><strong>Last Update:</strong> ${caseItem.conclusion.last_update}</p>
+        </div>
+
+        <h3>🔗 Official Source Links</h3>
+        <div class="link-section">
+            ${caseItem.official_links.map(link => `
+                <a href="${link.url}" target="_blank" rel="noopener noreferrer">
+                    📄 ${link.source_name} (${link.type})
+                </a>
+            `).join('')}
+        </div>
+    `;
+}
