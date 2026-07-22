@@ -1,240 +1,341 @@
-// Global variables
-let allCases = [];
-
-// Load cases from JSON on page load
-document.addEventListener('DOMContentLoaded', () => {
-    loadCases();
-    setupEventListeners();
-});
-
-// Load cases from cases.json
-async function loadCases() {
-    try {
-        // Try different paths
-        let response;
-        try {
-            response = await fetch('./data/cases.json');
-        } catch (e) {
-            response = await fetch('/dossier-project-case-files/data/cases.json');
+[
+  {
+    "id": "case-001",
+    "name": "Zodiac Killer",
+    "country": "US",
+    "location": "Northern California (Bay Area)",
+    "year_start": 1968,
+    "year_end": 1974,
+    "type": "serial-killer",
+    "status": "unsolved",
+    "victims_count": 5,
+    "claimed_victims": 37,
+    "fir_complaint": {
+      "filed_date": "August 1, 1969",
+      "filed_by": "San Francisco Police Department",
+      "complaint_summary": "Multiple homicides reported in Northern California. Victims found shot in vehicles at isolated locations. Unknown perpetrator claimed 37 victims via letters to press.",
+      "initial_classification": "Serial Homicide - Unknown Perpetrator"
+    },
+    "murder_story": {
+      "description": "The Zodiac Killer was an unidentified serial killer operating in Northern California between 1968-1974. He claimed 37 victims though only 5-7 are confirmed. Famous for cryptic letters with unsolved ciphers sent to newspapers.",
+      "how_it_happened": "Victims were attacked in isolated locations at night, typically shot while in parked vehicles. Some victims were stabbed. The killer demonstrated intelligence and psychological manipulation through letters to press.",
+      "modus_operandi": "Ambush attacks at night, use of firearms and knives, cryptic letters to newspapers, psychological taunting"
+    },
+    "murder_scene": {
+      "scenes": [
+        {
+          "location": "Lake Herman Road, Vallejo",
+          "date": "December 20, 1968",
+          "victim": "First victims",
+          "description": "Victims shot multiple times in parked vehicle. .22 caliber handgun. Tire tracks found.",
+          "evidence_found": ["Bullet casings", "Tire tracks", "Vehicle damage"]
+        },
+        {
+          "location": "Blue Rock Springs Park, Vallejo",
+          "date": "July 4, 1969",
+          "victim": "Victims shot",
+          "description": "Victims shot in Corvair. Killer called police claiming responsibility.",
+          "evidence_found": ["Bullet casings", "Phone records", "Witness descriptions"]
         }
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+      ]
+    },
+    "suspects": [
+      {
+        "first_name": "Arthur",
+        "age_at_time": 42,
+        "background": "Military background, cryptography interest",
+        "reason_suspected": "Handwriting analysis similarities",
+        "status": "Investigated, no charges; deceased"
+      }
+    ],
+    "evidence_weapons": [
+      {
+        "name": ".22 Caliber Handgun",
+        "description": "Primary weapon. Ballistics linked crime scenes.",
+        "recovered": false,
+        "significance": "Confirmed connection between murders"
+      },
+      {
+        "name": "Cryptic Letters",
+        "description": "Letters sent to newspapers with unsolved ciphers",
+        "recovered": true,
+        "significance": "Direct communication from perpetrator"
+      }
+    ],
+    "court_trials": [
+      {
+        "defendant_name": "Unknown",
+        "trial_date": "No trial",
+        "verdict": "N/A",
+        "outcome": "No perpetrator identified"
+      }
+    ],
+    "conclusion": {
+      "case_status": "UNSOLVED - COLD CASE",
+      "summary": "Zodiac Killer remains one of America's most famous unsolved cases. 5 confirmed victims murdered between 1968-1970.",
+      "why_unsolved": "Lack of definitive evidence, killer's intelligence, police errors, killer ceased contact after 1974",
+      "current_status": "Cold case maintained by FBI. Periodically reviewed with new forensic technology.",
+      "last_update": "2024"
+    },
+    "official_links": [
+      {
+        "source_name": "FBI Vault - Zodiac Killer",
+        "url": "https://vault.fbi.gov/The%20Zodiac%20Killer",
+        "type": "Official FBI Records"
+      }
+    ]
+  },
+
+  {
+    "id": "case-002",
+    "name": "Black Dahlia Murder",
+    "country": "US",
+    "location": "Los Angeles, California",
+    "year_start": 1947,
+    "year_end": 1947,
+    "type": "homicide",
+    "status": "unsolved",
+    "victims_count": 1,
+    "fir_complaint": {
+      "filed_date": "January 15, 1947",
+      "filed_by": "Los Angeles Police Department",
+      "complaint_summary": "Mutilated female body discovered in Leimert Park. Victim bisected at waist. Unknown perpetrator.",
+      "initial_classification": "Aggravated Homicide - Unknown Perpetrator"
+    },
+    "murder_story": {
+      "description": "On January 15, 1947, a gruesome discovery shocked Los Angeles: a bisected female corpse in a vacant lot. The victim, 22-year-old Elizabeth Short, became known as The Black Dahlia.",
+      "how_it_happened": "Victim killed elsewhere and body carefully bisected at waist. Surgical precision suggested medical knowledge. Body drained of blood before dissection.",
+      "modus_operandi": "Abduction, torture, surgical bisection, careful body placement"
+    },
+    "murder_scene": {
+      "scenes": [
+        {
+          "location": "Leimert Park, Los Angeles",
+          "date": "January 15, 1947",
+          "victim": "Elizabeth",
+          "description": "Bisected corpse found in vacant lot. Surgical cut at waist. No significant blood at scene.",
+          "evidence_found": ["Two body sections", "Bruising evidence", "No identification"]
         }
-        
-        allCases = await response.json();
-        console.log('Cases loaded:', allCases.length);
-        displayCases(allCases);
-    } catch (error) {
-        console.error('Error loading cases:', error);
-        document.getElementById('casesList').innerHTML = 
-            '<p class="no-results">Error loading cases: ' + error.message + '<br>Make sure data/cases.json exists.</p>';
-    }
-}
+      ]
+    },
+    "suspects": [
+      {
+        "first_name": "George",
+        "age_at_time": 52,
+        "background": "Former surgeon",
+        "reason_suspected": "Surgical precision suggested medical knowledge",
+        "status": "Investigated, no charges; deceased"
+      }
+    ],
+    "evidence_weapons": [
+      {
+        "name": "Surgical Saw or Precision Blade",
+        "description": "Sharp instrument used for bisection. Never recovered.",
+        "recovered": false,
+        "significance": "Perpetrator had medical training"
+      },
+      {
+        "name": "Dental Records",
+        "description": "Used to identify victim",
+        "recovered": true,
+        "significance": "Confirmed victim identity"
+      }
+    ],
+    "court_trials": [
+      {
+        "defendant_name": "Unknown",
+        "trial_date": "No trial",
+        "verdict": "N/A",
+        "outcome": "150+ suspects investigated, no charges"
+      }
+    ],
+    "conclusion": {
+      "case_status": "UNSOLVED - COLD CASE",
+      "summary": "The Black Dahlia murder remains one of Los Angeles' most notorious unsolved homicides. Victim found brutally mutilated in 1947.",
+      "why_unsolved": "Limited 1947 forensic technology, lack of physical evidence, large suspect pool",
+      "current_status": "Cold case maintained by LAPD. Periodically reviewed.",
+      "last_update": "2024"
+    },
+    "official_links": [
+      {
+        "source_name": "FBI Vault - Black Dahlia",
+        "url": "https://vault.fbi.gov/Black%20Dahlia%20%28E%20Short%29",
+        "type": "Official FBI Records"
+      }
+    ]
+  },
 
-// Display cases
-function displayCases(cases) {
-    const casesList = document.getElementById('casesList');
-    const resultsTitle = document.getElementById('resultsTitle');
-
-    if (cases.length === 0) {
-        casesList.innerHTML = '<p class="no-results">No cases found matching your filters.</p>';
-        resultsTitle.textContent = 'No Results';
-        return;
-    }
-
-    resultsTitle.textContent = `Cases Found: ${cases.length}`;
-    
-    casesList.innerHTML = cases.map(caseItem => `
-        <div class="case-card" onclick="openCaseDetail('${caseItem.id}')">
-            <h3>${caseItem.name}</h3>
-            
-            <div class="case-info">
-                <span class="case-badge">${caseItem.country}</span>
-                <span class="case-badge ${caseItem.status === 'solved' ? 'solved' : ''}">${caseItem.status.toUpperCase()}</span>
-                <span class="case-badge">${caseItem.type.replace(/-/g, ' ').toUpperCase()}</span>
-            </div>
-            
-            <div class="case-details-text">
-                <strong>Location:</strong> ${caseItem.location}
-            </div>
-            <div class="case-details-text">
-                <strong>Period:</strong> ${caseItem.year_start} - ${caseItem.year_end}
-            </div>
-            <div class="case-details-text">
-                <strong>Victims:</strong> ${caseItem.victims_count}
-            </div>
-            
-            <button class="view-details-btn">View Full Details →</button>
-        </div>
-    `).join('');
-}
-
-// Setup event listeners
-function setupEventListeners() {
-    // Search
-    document.getElementById('searchInput').addEventListener('input', filterCases);
-    
-    // Filters
-    document.getElementById('countryFilter').addEventListener('change', filterCases);
-    document.getElementById('typeFilter').addEventListener('change', filterCases);
-    document.getElementById('statusFilter').addEventListener('change', filterCases);
-    
-    // Reset
-    document.getElementById('resetFilters').addEventListener('click', resetFilters);
-    
-    // Modal
-    document.querySelector('.close').addEventListener('click', closeCaseDetail);
-    window.addEventListener('click', (event) => {
-        const modal = document.getElementById('caseModal');
-        if (event.target === modal) {
-            closeCaseDetail();
+  {
+    "id": "case-003",
+    "name": "Jack the Ripper",
+    "country": "UK",
+    "location": "Whitechapel, East End London",
+    "year_start": 1888,
+    "year_end": 1891,
+    "type": "serial-killer",
+    "status": "unsolved",
+    "victims_count": 5,
+    "attributed_victims": 11,
+    "fir_complaint": {
+      "filed_date": "August 31, 1888",
+      "filed_by": "Metropolitan Police Service - London",
+      "complaint_summary": "Multiple homicides in Whitechapel. Female prostitute victims with severe mutilation. Unknown perpetrator.",
+      "initial_classification": "Serial Homicide - Unknown Perpetrator - Public Panic"
+    },
+    "murder_story": {
+      "description": "In 1888, a series of brutal homicides in London's Whitechapel district shocked Victorian society. The killer, named Jack the Ripper, became one of history's most infamous criminals.",
+      "how_it_happened": "Killer targeted female prostitutes. Victims taken to secluded locations and murdered. Characterized by throat slashing and ritualistic abdominal mutilation.",
+      "modus_operandi": "Targeting prostitutes, luring to secluded locations, throat slashing, abdominal mutilation"
+    },
+    "murder_scene": {
+      "scenes": [
+        {
+          "location": "Buck's Row, Whitechapel",
+          "date": "August 31, 1888",
+          "victim": "First victim - Mary",
+          "description": "Severe throat laceration. Abdominal wounds. Evidence of anatomical knowledge.",
+          "evidence_found": ["Throat wound", "Abdominal wounds", "Blood evidence"]
+        },
+        {
+          "location": "Hanbury Street, Whitechapel",
+          "date": "September 8, 1888",
+          "victim": "Second victim - Annie",
+          "description": "Throat cut. Extensive abdominal mutilation. Uterus removed.",
+          "evidence_found": ["Surgical evidence", "Organ removal evidence"]
         }
-    });
-}
+      ]
+    },
+    "suspects": [
+      {
+        "first_name": "Aaron",
+        "age_at_time": 43,
+        "background": "Polish immigrant butcher",
+        "reason_suspected": "Anatomical knowledge from butchering",
+        "status": "Suspected, no charges; deceased"
+      }
+    ],
+    "evidence_weapons": [
+      {
+        "name": "Long-Bladed Knife",
+        "description": "Primary weapon. Consistent throat wound patterns. Never recovered.",
+        "recovered": false,
+        "significance": "Linked all murders through ballistics"
+      },
+      {
+        "name": "Victim Organs",
+        "description": "Organs removed from victims",
+        "recovered": true,
+        "significance": "Evidence of surgical knowledge"
+      }
+    ],
+    "court_trials": [
+      {
+        "defendant_name": "Unknown",
+        "trial_date": "No trial",
+        "verdict": "N/A",
+        "outcome": "No perpetrator identified. Case closed 1892."
+      }
+    ],
+    "conclusion": {
+      "case_status": "UNSOLVED - COLD CASE",
+      "summary": "Jack the Ripper remains history's most famous unsolved serial case. 5 canonical victims murdered in ritualistic fashion 1888.",
+      "why_unsolved": "Victorian-era forensic limits, no DNA testing, unreliable witnesses, large suspect pool",
+      "current_status": "Official case closed 1892. Remains culturally significant.",
+      "last_update": "2024"
+    },
+    "official_links": [
+      {
+        "source_name": "FBI Vault - Jack the Ripper",
+        "url": "https://vault.fbi.gov/Jack%20the%20Ripper",
+        "type": "Official FBI Records"
+      }
+    ]
+  },
 
-// Filter cases
-function filterCases() {
-    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-    const country = document.getElementById('countryFilter').value;
-    const type = document.getElementById('typeFilter').value;
-    const status = document.getElementById('statusFilter').value;
-
-    const filtered = allCases.filter(caseItem => {
-        const matchesSearch = caseItem.name.toLowerCase().includes(searchTerm) ||
-                            caseItem.location.toLowerCase().includes(searchTerm);
-        const matchesCountry = !country || caseItem.country === country;
-        const matchesType = !type || caseItem.type === type;
-        const matchesStatus = !status || caseItem.status === status;
-
-        return matchesSearch && matchesCountry && matchesType && matchesStatus;
-    });
-
-    displayCases(filtered);
-}
-
-// Reset filters
-function resetFilters() {
-    document.getElementById('searchInput').value = '';
-    document.getElementById('countryFilter').value = '';
-    document.getElementById('typeFilter').value = '';
-    document.getElementById('statusFilter').value = '';
-    displayCases(allCases);
-}
-
-// Open case detail modal
-function openCaseDetail(caseId) {
-    const caseItem = allCases.find(c => c.id === caseId);
-    if (!caseItem) return;
-
-    const detailHTML = generateCaseDetailHTML(caseItem);
-    document.getElementById('caseDetail').innerHTML = detailHTML;
-    document.getElementById('caseModal').classList.add('show');
-}
-
-// Close case detail modal
-function closeCaseDetail() {
-    document.getElementById('caseModal').classList.remove('show');
-}
-
-// Generate case detail HTML
-function generateCaseDetailHTML(caseItem) {
-    return `
-        <h2>${caseItem.name}</h2>
-        
-        <div class="badge-group">
-            <span class="case-badge">${caseItem.country}</span>
-            <span class="case-badge ${caseItem.status === 'solved' ? 'solved' : ''}">${caseItem.status.toUpperCase()}</span>
-            <span class="case-badge">${caseItem.type.replace(/-/g, ' ').toUpperCase()}</span>
-        </div>
-
-        <h3>📍 Basic Information</h3>
-        <div class="detail-section">
-            <p><strong>Location:</strong> ${caseItem.location}</p>
-            <p><strong>Period:</strong> ${caseItem.year_start} - ${caseItem.year_end}</p>
-            <p><strong>Confirmed Victims:</strong> ${caseItem.victims_count}</p>
-            ${caseItem.claimed_victims ? `<p><strong>Claimed Victims:</strong> ${caseItem.claimed_victims}</p>` : ''}
-        </div>
-
-        <h3>🚔 FIR / Police Complaint</h3>
-        <div class="detail-section">
-            <p><strong>Filed Date:</strong> ${caseItem.fir_complaint.filed_date}</p>
-            <p><strong>Filed By:</strong> ${caseItem.fir_complaint.filed_by}</p>
-            <p><strong>Classification:</strong> ${caseItem.fir_complaint.initial_classification}</p>
-            <p>${caseItem.fir_complaint.complaint_summary}</p>
-        </div>
-
-        <h3>📖 Murder Story & Methodology</h3>
-        <div class="detail-section">
-            <p>${caseItem.murder_story.description}</p>
-            <h4>How It Happened:</h4>
-            <p>${caseItem.murder_story.how_it_happened}</p>
-            <h4>Modus Operandi:</h4>
-            <p>${caseItem.murder_story.modus_operandi}</p>
-        </div>
-
-        <h3>🔍 Crime Scenes</h3>
-        <div class="detail-section">
-            ${caseItem.murder_scene.scenes.map((scene, idx) => `
-                <p><strong>Scene ${idx + 1}:</strong></p>
-                <p><strong>Location:</strong> ${scene.location}</p>
-                <p><strong>Date:</strong> ${scene.date}</p>
-                <p><strong>Description:</strong> ${scene.description}</p>
-                <p><strong>Evidence Found:</strong> ${scene.evidence_found.join(', ')}</p>
-                <hr style="margin: 15px 0; border: 1px solid rgba(233, 69, 96, 0.2);">
-            `).join('')}
-        </div>
-
-        <h3>👥 Suspects (Family Names Redacted)</h3>
-        <div class="detail-section">
-            ${caseItem.suspects.map((suspect, idx) => `
-                <h4>Suspect ${idx + 1}: ${suspect.first_name}</h4>
-                <p><strong>Age at Time:</strong> ${suspect.age_at_time}</p>
-                <p><strong>Background:</strong> ${suspect.background}</p>
-                <p><strong>Reason Suspected:</strong> ${suspect.reason_suspected}</p>
-                <p><strong>Status:</strong> ${suspect.status}</p>
-            `).join('<hr style="margin: 15px 0; border: 1px solid rgba(233, 69, 96, 0.2);">')}
-        </div>
-
-        <h3>🔨 Evidence & Murder Weapons</h3>
-        <div class="detail-section">
-            ${caseItem.evidence_weapons.map((evidence, idx) => `
-                <h4>${evidence.name}</h4>
-                <p><strong>Type:</strong> ${evidence.type}</p>
-                <p><strong>Description:</strong> ${evidence.description}</p>
-                <p><strong>Recovered:</strong> ${evidence.recovered ? 'Yes' : 'No'}</p>
-                <p><strong>Significance:</strong> ${evidence.significance}</p>
-            `).join('<hr style="margin: 15px 0; border: 1px solid rgba(233, 69, 96, 0.2);">')}
-        </div>
-
-        <h3>⚖️ Court Trials</h3>
-        <div class="detail-section">
-            ${caseItem.court_trials.map((trial, idx) => `
-                <h4>Trial ${idx + 1}</h4>
-                <p><strong>Defendant:</strong> ${trial.defendant_name}</p>
-                <p><strong>Date:</strong> ${trial.trial_date}</p>
-                <p><strong>Verdict:</strong> ${trial.verdict}</p>
-                <p><strong>Charges:</strong> ${trial.charges}</p>
-                <p><strong>Outcome:</strong> ${trial.outcome}</p>
-            `).join('')}
-        </div>
-
-        <h3>✅ Case Conclusion</h3>
-        <div class="detail-section">
-            <p><strong>Status:</strong> <span style="color: #e94560; font-size: 1.2em;">${caseItem.conclusion.case_status}</span></p>
-            <p><strong>Summary:</strong> ${caseItem.conclusion.summary}</p>
-            <p><strong>Why Unsolved/Solved:</strong> ${caseItem.conclusion.why_unsolved}</p>
-            <p><strong>Current Status:</strong> ${caseItem.conclusion.current_status}</p>
-            <p><strong>Last Update:</strong> ${caseItem.conclusion.last_update}</p>
-        </div>
-
-        <h3>🔗 Official Source Links</h3>
-        <div class="link-section">
-            ${caseItem.official_links.map(link => `
-                <a href="${link.url}" target="_blank" rel="noopener noreferrer">
-                    📄 ${link.source_name} (${link.type})
-                </a>
-            `).join('')}
-        </div>
-    `;
-}
+  {
+    "id": "case-004",
+    "name": "Thames Torso Murders",
+    "country": "UK",
+    "location": "River Thames, London",
+    "year_start": 1887,
+    "year_end": 1889,
+    "type": "serial-killer",
+    "status": "unsolved",
+    "victims_count": 4,
+    "attributed_victims": 6,
+    "fir_complaint": {
+      "filed_date": "May 11, 1887",
+      "filed_by": "Metropolitan Police Service - Thames Division",
+      "complaint_summary": "Dismembered human remains in River Thames. Series of torsos at multiple locations. Unknown perpetrator.",
+      "initial_classification": "Serial Homicide - Dismemberment - Unknown Perpetrator"
+    },
+    "murder_story": {
+      "description": "Between 1887-1889, gruesome discoveries shocked London. Dismembered body parts of at least 4 women found scattered in River Thames.",
+      "how_it_happened": "Victims murdered elsewhere and dismembered with anatomical knowledge. Body parts disposed of via river at different locations.",
+      "modus_operandi": "Murder, skilled dismemberment, body dispersal via river, systematic part spreading"
+    },
+    "murder_scene": {
+      "scenes": [
+        {
+          "location": "River Thames, Rainham",
+          "date": "May 11, 1887",
+          "victim": "Unknown victim",
+          "description": "Torso in sack. Lacked head, limbs. Evidence of skilled surgical dissection.",
+          "evidence_found": ["Torso in sack", "Body parts recovered over weeks"]
+        },
+        {
+          "location": "River Thames, Whitehall",
+          "date": "September 1888",
+          "victim": "Unknown victim",
+          "description": "Dismembered remains at multiple sites. Evidence of surgical skill.",
+          "evidence_found": ["Torso", "Body parts", "Surgical evidence"]
+        }
+      ]
+    },
+    "suspects": [
+      {
+        "first_name": "Unknown",
+        "age_at_time": 0,
+        "background": "Possibly medical professional or butcher",
+        "reason_suspected": "Medical knowledge displayed in dissection",
+        "status": "Never identified"
+      }
+    ],
+    "evidence_weapons": [
+      {
+        "name": "Surgical Instruments",
+        "description": "Used for precise dismemberment. Never recovered.",
+        "recovered": false,
+        "significance": "Perpetrator had medical or surgical knowledge"
+      },
+      {
+        "name": "Body Parts",
+        "description": "Multiple torsos recovered from Thames",
+        "recovered": true,
+        "significance": "Confirmed series of murders"
+      }
+    ],
+    "court_trials": [
+      {
+        "defendant_name": "Unknown",
+        "trial_date": "No trial",
+        "verdict": "N/A",
+        "outcome": "No perpetrator identified. Inquest verdicts: Wilful murder by person unknown."
+      }
+    ],
+    "conclusion": {
+      "case_status": "UNSOLVED - COLD CASE",
+      "summary": "Thames Torso Murders remain mysterious. 4 confirmed victims dismembered between 1887-1889.",
+      "why_unsolved": "Perpetrator never identified, Victorian forensic limits, only 1 victim identified",
+      "current_status": "Cold case in Metropolitan Police archives. Periodically reviewed.",
+      "last_update": "2024"
+    },
+    "official_links": [
+      {
+        "source_name": "Metropolitan Police Records",
+        "url": "https://www.met.police.uk/",
+        "type": "UK Law Enforcement"
+      }
+    ]
+  }
+]
