@@ -13,16 +13,27 @@ async function loadCases() {
     const casesList = document.getElementById('casesList');
     
     try {
-        console.log('Starting to fetch cases.json');
+        console.log('Fetching cases.json...');
         
-        // Try fetching from the root data folder
-        const response = await fetch('/dossier-project-case-files/data/cases.json');
+        // Correct path for GitHub Pages
+        const response = await fetch('./data/cases.json');
         
-        console.log('Fetch response received, status:', response.status);
+        console.log('Response status:', response.status);
         
         if (!response.ok) {
-            throw new Error(`Failed to fetch: ${response.status}`);
+            throw new Error(`HTTP ${response.status}`);
         }
+        
+        allCases = await response.json();
+        console.log('Successfully loaded ' + allCases.length + ' cases');
+        displayCases(allCases);
+        
+    } catch (error) {
+        console.error('Error:', error);
+        casesList.innerHTML = `<p class="no-results">Error loading cases: ${error.message}</p>`;
+    }
+}
+
         
         const data = await response.json();
         console.log('JSON parsed successfully, cases count:', data.length);
