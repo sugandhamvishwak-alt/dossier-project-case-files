@@ -3,43 +3,51 @@ let allCases = [];
 
 // Load cases from JSON on page load
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('Page loaded, starting loadCases()');
     loadCases();
     setupEventListeners();
 });
 
-// Load cases from cases.json with better error handling
+// Load cases from cases.json
 async function loadCases() {
+    const casesList = document.getElementById('casesList');
+    
     try {
-        // Get the base path for GitHub Pages
-        const basePath = window.location.pathname.includes('dossier-project-case-files') 
-            ? '/dossier-project-case-files' 
-            : '';
+        console.log('Starting to fetch cases.json');
         
-        const jsonPath = basePath + '/data/cases.json';
+        // Try fetching from the root data folder
+        const response = await fetch('/dossier-project-case-files/data/cases.json');
         
-        console.log('Attempting to load from:', jsonPath);
-        
-        const response = await fetch(jsonPath);
-        
-        console.log('Response status:', response.status);
+        console.log('Fetch response received, status:', response.status);
         
         if (!response.ok) {
-            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            throw new Error(`Failed to fetch: ${response.status}`);
         }
         
-        allCases = await response.json();
-        console.log('Successfully loaded ' + allCases.length + ' cases');
+        const data = await response.json();
+        console.log('JSON parsed successfully, cases count:', data.length);
+        
+        allCases = data;
+        console.log('Cases assigned to allCases');
+        
         displayCases(allCases);
+        console.log('displayCases() called');
+        
     } catch (error) {
-        console.error('Error details:', error);
-        const errorMsg = 'Error: ' + error.message + '<br><br>' +
-                        'Troubleshooting:<br>' +
-                        '1. Make sure data/cases.json exists<br>' +
-                        '2. Check the file is valid JSON<br>' +
-                        '3. Try refreshing the page<br><br>' +
-                        'Check console (F12) for details.';
-        document.getElementById('casesList').innerHTML = 
-            '<p class="no-results">' + errorMsg + '</p>';
+        console.error('FULL ERROR:', error);
+        console.error('Error message:', error.message);
+        console.error('Error stack:', error.stack);
+        
+        casesList.innerHTML = `
+            <p class="no-results">
+                ❌ Failed to load cases<br><br>
+                Error: ${error.message}<br><br>
+                <strong>Debug Info:</strong><br>
+                Current URL: ${window.location.href}<br>
+                Fetch attempted: /dossier-project-case-files/data/cases.json<br><br>
+                <strong>Solution:</strong> Check that cases.json exists in the data folder
+            </p>
+        `;
     }
 }
 
@@ -49,7 +57,7 @@ function displayCases(cases) {
     const resultsTitle = document.getElementById('resultsTitle');
 
     if (!cases || cases.length === 0) {
-        casesList.innerHTML = '<p class="no-results">No cases found matching your filters.</p>';
+        casesList.innerHTML = '<p class="no-results">No cases found.</p>';
         resultsTitle.textContent = 'No Results';
         return;
     }
@@ -83,18 +91,12 @@ function displayCases(cases) {
 
 // Setup event listeners
 function setupEventListeners() {
-    // Search
     document.getElementById('searchInput').addEventListener('input', filterCases);
-    
-    // Filters
     document.getElementById('countryFilter').addEventListener('change', filterCases);
     document.getElementById('typeFilter').addEventListener('change', filterCases);
     document.getElementById('statusFilter').addEventListener('change', filterCases);
-    
-    // Reset
     document.getElementById('resetFilters').addEventListener('click', resetFilters);
     
-    // Modal
     document.querySelector('.close').addEventListener('click', closeCaseDetail);
     window.addEventListener('click', (event) => {
         const modal = document.getElementById('caseModal');
@@ -141,13 +143,11 @@ function openCaseDetail(caseId) {
     const detailHTML = generateCaseDetailHTML(caseItem);
     document.getElementById('caseDetail').innerHTML = detailHTML;
     document.getElementById('caseModal').classList.add('show');
-    document.body.style.overflow = 'hidden';
 }
 
 // Close case detail modal
 function closeCaseDetail() {
     document.getElementById('caseModal').classList.remove('show');
-    document.body.style.overflow = 'auto';
 }
 
 // Generate case detail HTML
@@ -194,20 +194,18 @@ function generateCaseDetailHTML(caseItem) {
                 <p><strong>Date:</strong> ${scene.date}</p>
                 <p><strong>Description:</strong> ${scene.description}</p>
                 <p><strong>Evidence Found:</strong> ${scene.evidence_found.join(', ')}</p>
-                ${idx < caseItem.murder_scene.scenes.length - 1 ? '<hr style="margin: 15px 0; border: 1px solid rgba(233, 69, 96, 0.2);">' : ''}
-            `).join('')}
+            `).join('<hr style="margin: 15px 0; border: 1px solid rgba(233, 69, 96, 0.2);">')}
         </div>
 
         <h3>👥 Suspects (Family Names Redacted)</h3>
         <div class="detail-section">
             ${caseItem.suspects.map((suspect, idx) => `
                 <h4>Suspect ${idx + 1}: ${suspect.first_name}</h4>
-                <p><strong>Age at Time:</strong> ${suspect.age_at_time}</p>
+                <p><strong>Age:</strong> ${suspect.age_at_time}</p>
                 <p><strong>Background:</strong> ${suspect.background}</p>
                 <p><strong>Reason Suspected:</strong> ${suspect.reason_suspected}</p>
                 <p><strong>Status:</strong> ${suspect.status}</p>
-                ${idx < caseItem.suspects.length - 1 ? '<hr style="margin: 15px 0; border: 1px solid rgba(233, 69, 96, 0.2);">' : ''}
-            `).join('')}
+            `).join('<hr style="margin: 15px 0; border: 1px solid rgba(233, 69, 96, 0.2);">')}
         </div>
 
         <h3>🔨 Evidence & Murder Weapons</h3>
@@ -218,37 +216,27 @@ function generateCaseDetailHTML(caseItem) {
                 <p><strong>Description:</strong> ${evidence.description}</p>
                 <p><strong>Recovered:</strong> ${evidence.recovered ? 'Yes' : 'No'}</p>
                 <p><strong>Significance:</strong> ${evidence.significance}</p>
-                ${idx < caseItem.evidence_weapons.length - 1 ? '<hr style="margin: 15px 0; border: 1px solid rgba(233, 69, 96, 0.2);">' : ''}
-            `).join('')}
+            `).join('<hr style="margin: 15px 0; border: 1px solid rgba(233, 69, 96, 0.2);">')}
         </div>
 
         <h3>⚖️ Court Trials</h3>
         <div class="detail-section">
-            ${caseItem.court_trials.map((trial, idx) => `
-                <h4>Trial ${idx + 1}</h4>
+            ${caseItem.court_trials.map((trial) => `
                 <p><strong>Defendant:</strong> ${trial.defendant_name}</p>
-                <p><strong>Date:</strong> ${trial.trial_date}</p>
-                <p><strong>Verdict:</strong> ${trial.verdict}</p>
-                <p><strong>Charges:</strong> ${trial.charges}</p>
                 <p><strong>Outcome:</strong> ${trial.outcome}</p>
             `).join('')}
         </div>
 
         <h3>✅ Case Conclusion</h3>
         <div class="detail-section">
-            <p><strong>Status:</strong> <span style="color: #e94560; font-size: 1.2em;">${caseItem.conclusion.case_status}</span></p>
-            <p><strong>Summary:</strong> ${caseItem.conclusion.summary}</p>
-            <p><strong>Why Unsolved/Solved:</strong> ${caseItem.conclusion.why_unsolved}</p>
-            <p><strong>Current Status:</strong> ${caseItem.conclusion.current_status}</p>
-            <p><strong>Last Update:</strong> ${caseItem.conclusion.last_update}</p>
+            <p><strong>Status:</strong> ${caseItem.conclusion.case_status}</p>
+            <p>${caseItem.conclusion.summary}</p>
         </div>
 
-        <h3>🔗 Official Source Links</h3>
+        <h3>🔗 Official Links</h3>
         <div class="link-section">
             ${caseItem.official_links.map(link => `
-                <a href="${link.url}" target="_blank" rel="noopener noreferrer">
-                    📄 ${link.source_name} (${link.type})
-                </a>
+                <a href="${link.url}" target="_blank">📄 ${link.source_name}</a>
             `).join('')}
         </div>
     `;
