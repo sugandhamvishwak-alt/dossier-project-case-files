@@ -7,16 +7,39 @@ document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
 });
 
-// Load cases from cases.json
+// Load cases from cases.json with better error handling
 async function loadCases() {
     try {
-        const response = await fetch('data/cases.json');
+        // Get the base path for GitHub Pages
+        const basePath = window.location.pathname.includes('dossier-project-case-files') 
+            ? '/dossier-project-case-files' 
+            : '';
+        
+        const jsonPath = basePath + '/data/cases.json';
+        
+        console.log('Attempting to load from:', jsonPath);
+        
+        const response = await fetch(jsonPath);
+        
+        console.log('Response status:', response.status);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
         allCases = await response.json();
+        console.log('Successfully loaded ' + allCases.length + ' cases');
         displayCases(allCases);
     } catch (error) {
-        console.error('Error loading cases:', error);
+        console.error('Error details:', error);
+        const errorMsg = 'Error: ' + error.message + '<br><br>' +
+                        'Troubleshooting:<br>' +
+                        '1. Make sure data/cases.json exists<br>' +
+                        '2. Check the file is valid JSON<br>' +
+                        '3. Try refreshing the page<br><br>' +
+                        'Check console (F12) for details.';
         document.getElementById('casesList').innerHTML = 
-            '<p class="no-results">Error loading cases. Please check that cases.json exists in the data folder.</p>';
+            '<p class="no-results">' + errorMsg + '</p>';
     }
 }
 
@@ -25,7 +48,7 @@ function displayCases(cases) {
     const casesList = document.getElementById('casesList');
     const resultsTitle = document.getElementById('resultsTitle');
 
-    if (cases.length === 0) {
+    if (!cases || cases.length === 0) {
         casesList.innerHTML = '<p class="no-results">No cases found matching your filters.</p>';
         resultsTitle.textContent = 'No Results';
         return;
@@ -118,11 +141,13 @@ function openCaseDetail(caseId) {
     const detailHTML = generateCaseDetailHTML(caseItem);
     document.getElementById('caseDetail').innerHTML = detailHTML;
     document.getElementById('caseModal').classList.add('show');
+    document.body.style.overflow = 'hidden';
 }
 
 // Close case detail modal
 function closeCaseDetail() {
     document.getElementById('caseModal').classList.remove('show');
+    document.body.style.overflow = 'auto';
 }
 
 // Generate case detail HTML
@@ -159,34 +184,18 @@ function generateCaseDetailHTML(caseItem) {
             <p>${caseItem.murder_story.how_it_happened}</p>
             <h4>Modus Operandi:</h4>
             <p>${caseItem.murder_story.modus_operandi}</p>
-            ${caseItem.murder_story.psychological_profile ? `
-                <h4>Psychological Profile:</h4>
-                <p>${caseItem.murder_story.psychological_profile}</p>
-            ` : ''}
         </div>
 
         <h3>🔍 Crime Scenes</h3>
         <div class="detail-section">
-            ${Array.isArray(caseItem.murder_scene) ? 
-                caseItem.murder_scene.map((incident, idx) => `
-                    <h4>${incident.incident_name || 'Scene ' + (idx + 1)}</h4>
-                    ${incident.scenes.map(scene => `
-                        <p><strong>Location:</strong> ${scene.location}</p>
-                        <p><strong>Date:</strong> ${scene.date}</p>
-                        <p><strong>Description:</strong> ${scene.description}</p>
-                        <p><strong>Evidence Found:</strong> ${scene.evidence_found.join(', ')}</p>
-                    `).join('<hr style="margin: 15px 0; border: 1px solid rgba(233, 69, 96, 0.2);">')}
-                `).join('')
-                :
-                caseItem.murder_scene.scenes.map((scene, idx) => `
-                    <p><strong>Scene ${idx + 1}:</strong></p>
-                    <p><strong>Location:</strong> ${scene.location}</p>
-                    <p><strong>Date:</strong> ${scene.date}</p>
-                    <p><strong>Description:</strong> ${scene.description}</p>
-                    <p><strong>Evidence Found:</strong> ${scene.evidence_found.join(', ')}</p>
-                    <hr style="margin: 15px 0; border: 1px solid rgba(233, 69, 96, 0.2);">
-                `).join('')
-            }
+            ${caseItem.murder_scene.scenes.map((scene, idx) => `
+                <p><strong>Scene ${idx + 1}:</strong></p>
+                <p><strong>Location:</strong> ${scene.location}</p>
+                <p><strong>Date:</strong> ${scene.date}</p>
+                <p><strong>Description:</strong> ${scene.description}</p>
+                <p><strong>Evidence Found:</strong> ${scene.evidence_found.join(', ')}</p>
+                ${idx < caseItem.murder_scene.scenes.length - 1 ? '<hr style="margin: 15px 0; border: 1px solid rgba(233, 69, 96, 0.2);">' : ''}
+            `).join('')}
         </div>
 
         <h3>👥 Suspects (Family Names Redacted)</h3>
@@ -194,12 +203,11 @@ function generateCaseDetailHTML(caseItem) {
             ${caseItem.suspects.map((suspect, idx) => `
                 <h4>Suspect ${idx + 1}: ${suspect.first_name}</h4>
                 <p><strong>Age at Time:</strong> ${suspect.age_at_time}</p>
-                <p><strong>Occupation:</strong> ${suspect.occupation}</p>
                 <p><strong>Background:</strong> ${suspect.background}</p>
                 <p><strong>Reason Suspected:</strong> ${suspect.reason_suspected}</p>
                 <p><strong>Status:</strong> ${suspect.status}</p>
-                <p><em>${suspect.note}</em></p>
-            `).join('<hr style="margin: 15px 0; border: 1px solid rgba(233, 69, 96, 0.2);">')}
+                ${idx < caseItem.suspects.length - 1 ? '<hr style="margin: 15px 0; border: 1px solid rgba(233, 69, 96, 0.2);">' : ''}
+            `).join('')}
         </div>
 
         <h3>🔨 Evidence & Murder Weapons</h3>
@@ -210,7 +218,8 @@ function generateCaseDetailHTML(caseItem) {
                 <p><strong>Description:</strong> ${evidence.description}</p>
                 <p><strong>Recovered:</strong> ${evidence.recovered ? 'Yes' : 'No'}</p>
                 <p><strong>Significance:</strong> ${evidence.significance}</p>
-            `).join('<hr style="margin: 15px 0; border: 1px solid rgba(233, 69, 96, 0.2);">')}
+                ${idx < caseItem.evidence_weapons.length - 1 ? '<hr style="margin: 15px 0; border: 1px solid rgba(233, 69, 96, 0.2);">' : ''}
+            `).join('')}
         </div>
 
         <h3>⚖️ Court Trials</h3>
@@ -222,7 +231,6 @@ function generateCaseDetailHTML(caseItem) {
                 <p><strong>Verdict:</strong> ${trial.verdict}</p>
                 <p><strong>Charges:</strong> ${trial.charges}</p>
                 <p><strong>Outcome:</strong> ${trial.outcome}</p>
-                <p>${trial.notes || ''}</p>
             `).join('')}
         </div>
 
