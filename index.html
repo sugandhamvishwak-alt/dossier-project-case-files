@@ -6,7 +6,636 @@
     <title>The Dossier Project — Case Files Database</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --ink: #0c0c0b;
+    --ink-2: #141311;
+    --paper: #e8e1c9;
+    --paper-dim: #d8cfae;
+    --manila: #cabf9d;
+    --manila-dark: #a89876;
+    --stamp-red: #9e1b1b;
+    --tag-yellow: #d4a72c;
+    --cold-blue: #5b7fa6;
+    --line: #4a463c;
+    --text-dim: #a39d86;
+    --text-faint: #6b6656;
+}
+
+body {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    background: var(--ink);
+    color: var(--paper);
+    line-height: 1.7;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* faint grain overlay for texture */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(212, 167, 44, 0.05) 0%, transparent 45%),
+        radial-gradient(circle at 80% 80%, rgba(158, 27, 27, 0.06) 0%, transparent 45%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+/* ============ HEADER ============ */
+.header {
+    text-align: center;
+    padding: 60px 30px;
+    background: var(--ink-2);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    margin-bottom: 36px;
+    position: relative;
+    overflow: hidden;
+}
+
+.header::after {
+    content: 'CLASSIFIED';
+    position: absolute;
+    top: 14px;
+    right: -34px;
+    background: var(--stamp-red);
+    color: var(--paper);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    padding: 4px 40px;
+    transform: rotate(35deg);
+    opacity: 0.85;
+}
+
+.header h1 {
+    font-family: 'Special Elite', 'Courier New', monospace;
+    font-size: 2.6em;
+    color: var(--paper);
+    margin-bottom: 14px;
+    letter-spacing: 0.02em;
+    animation: slideDownFade 0.8s ease-out;
+}
+
+@keyframes slideDownFade {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.header p {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.95em;
+    color: var(--text-dim);
+    margin: 6px 0;
+    letter-spacing: 0.05em;
+}
+
+.tagline {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.95em;
+    color: var(--text-faint);
+    font-style: italic;
+    margin-top: 10px;
+}
+
+/* ============ SEARCH SECTION ============ */
+.search-section {
+    background: var(--ink-2);
+    padding: 26px;
+    border-radius: 2px;
+    margin-bottom: 36px;
+    border: 1px solid var(--line);
+    animation: slideUpFade 0.8s ease-out 0.15s both;
+}
+
+@keyframes slideUpFade {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.search-box {
+    margin-bottom: 20px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 14px 18px;
+    font-size: 1.02em;
+    font-family: 'IBM Plex Mono', monospace;
+    border: 1px solid var(--manila-dark);
+    border-radius: 2px;
+    background: var(--paper);
+    color: var(--ink);
+    transition: box-shadow 0.25s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--tag-yellow);
+}
+
+.search-input::placeholder {
+    color: var(--manila-dark);
+}
+
+/* Filters */
+.filters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    align-items: flex-end;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-group label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72em;
+    color: var(--text-faint);
+    margin-bottom: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+.filter-select {
+    padding: 11px 14px;
+    border: 1px solid var(--manila-dark);
+    border-radius: 2px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85em;
+    cursor: pointer;
+    transition: box-shadow 0.25s ease;
+}
+
+.filter-select:hover,
+.filter-select:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--tag-yellow);
+}
+
+.reset-btn {
+    padding: 12px 22px;
+    background: transparent;
+    color: var(--text-dim);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    cursor: pointer;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78em;
+    font-weight: 600;
+    transition: all 0.25s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.reset-btn:hover {
+    border-color: var(--stamp-red);
+    color: var(--stamp-red);
+}
+
+/* ============ RESULTS SECTION ============ */
+.results-section {
+    margin-bottom: 40px;
+}
+
+#resultsTitle {
+    font-family: 'Special Elite', monospace;
+    color: var(--tag-yellow);
+    margin-bottom: 28px;
+    font-size: 1.4em;
+    letter-spacing: 0.03em;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 14px;
+    animation: slideInLeft 0.6s ease-out;
+}
+
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.cases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 22px;
+}
+
+/* ============ CASE CARD (folder styling) ============ */
+.case-card {
+    background: linear-gradient(180deg, var(--ink-2), var(--ink));
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 24px;
+    cursor: pointer;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+    position: relative;
+    overflow: hidden;
+    animation: cardFadeIn 0.5s ease-out backwards;
+}
+
+.case-card:nth-child(1) { animation-delay: 0s; }
+.case-card:nth-child(2) { animation-delay: 0.06s; }
+.case-card:nth-child(3) { animation-delay: 0.12s; }
+.case-card:nth-child(4) { animation-delay: 0.18s; }
+
+@keyframes cardFadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* folder tab up top */
+.case-card-tab {
+    position: absolute;
+    top: 0;
+    left: 20px;
+    width: 60px;
+    height: 8px;
+    background: var(--manila-dark);
+    border-radius: 0 0 4px 4px;
+    opacity: 0.7;
+}
+
+.case-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--tag-yellow);
+}
+
+.case-card h3 {
+    font-family: 'Special Elite', monospace;
+    color: var(--paper);
+    font-size: 1.15em;
+    margin-bottom: 14px;
+    margin-top: 6px;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+.case-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.case-badge {
+    display: inline-block;
+    background: rgba(91, 127, 166, 0.12);
+    border: 1px solid var(--cold-blue);
+    color: var(--cold-blue);
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.case-badge.unsolved {
+    background: rgba(91, 127, 166, 0.12);
+    border-color: var(--cold-blue);
+    color: var(--cold-blue);
+}
+
+.case-badge.solved {
+    background: rgba(158, 27, 27, 0.14);
+    border-color: var(--stamp-red);
+    color: #d97575;
+}
+
+.case-details-text {
+    color: var(--text-dim);
+    font-size: 0.88em;
+    margin: 7px 0;
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+.case-details-text strong {
+    color: var(--paper);
+    font-weight: 600;
+}
+
+.view-details-btn {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 9px 18px;
+    background: transparent;
+    color: var(--tag-yellow);
+    border: 1px solid var(--tag-yellow);
+    border-radius: 2px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75em;
+    font-weight: 600;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.view-details-btn:hover {
+    background: var(--tag-yellow);
+    color: var(--ink);
+}
+
+/* ============ LOADING & NO RESULTS ============ */
+.loading {
+    text-align: center;
+    color: var(--text-faint);
+    padding: 60px 20px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.9em;
+    letter-spacing: 0.05em;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+.no-results {
+    text-align: center;
+    color: var(--stamp-red);
+    padding: 60px 20px;
+    font-family: 'Special Elite', monospace;
+    font-size: 1.1em;
+    letter-spacing: 0.05em;
+    animation: slideInDown 0.5s ease-out;
+}
+
+@keyframes slideInDown {
+    from { opacity: 0; transform: translateY(-14px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============ MODAL — case file viewer ============ */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.88);
+    overflow-y: auto;
+    animation: fadeInBackground 0.25s ease-out;
+}
+
+@keyframes fadeInBackground {
+    from { background-color: rgba(0, 0, 0, 0); }
+    to { background-color: rgba(0, 0, 0, 0.88); }
+}
+
+.modal.show {
+    display: block;
+}
+
+.modal-content {
+    background: var(--paper);
+    color: var(--ink);
+    margin: 40px auto;
+    padding: 44px;
+    border: none;
+    border-radius: 2px;
+    width: 90%;
+    max-width: 860px;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6);
+    position: relative;
+    max-height: 85vh;
+    overflow-y: auto;
+    animation: pageFlip 0.5s cubic-bezier(.4,.1,.2,1);
+    perspective: 1400px;
+}
+
+@keyframes pageFlip {
+    0% { opacity: 0; transform: rotateY(-12deg) translateX(-20px); }
+    100% { opacity: 1; transform: rotateY(0) translateX(0); }
+}
+
+.close {
+    position: absolute;
+    right: 18px;
+    top: 18px;
+    font-size: 1.6em;
+    font-weight: bold;
+    color: var(--ink);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: transparent;
+    width: 40px;
+    height: 40px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--manila-dark);
+    font-family: 'IBM Plex Mono', monospace;
+    z-index: 2;
+}
+
+.close:hover {
+    color: var(--paper);
+    background: var(--stamp-red);
+    border-color: var(--stamp-red);
+}
+
+/* ============ CASE DETAIL STYLES ============ */
+.case-stamp {
+    display: inline-block;
+    font-family: 'Special Elite', monospace;
+    font-size: 1.1em;
+    letter-spacing: 0.08em;
+    border: 3px solid;
+    padding: 6px 18px;
+    border-radius: 3px;
+    transform: rotate(-4deg);
+    margin-bottom: 18px;
+}
+
+.case-stamp.solved { color: var(--stamp-red); border-color: var(--stamp-red); }
+.case-stamp.unsolved { color: var(--cold-blue); border-color: var(--cold-blue); }
+
+#caseDetail h2 {
+    font-family: 'Special Elite', monospace;
+    color: var(--ink);
+    font-size: 1.9em;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--manila-dark);
+    font-weight: 400;
+    animation: slideInLeft 0.4s ease-out;
+}
+
+#caseDetail h3 {
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--manila-dark);
+    font-size: 0.85em;
+    margin-top: 30px;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+}
+
+.redacted-note {
+    color: var(--text-faint);
+    text-transform: none;
+    font-style: italic;
+    letter-spacing: 0;
+}
+
+#caseDetail h4 {
+    font-family: 'Special Elite', monospace;
+    color: var(--ink);
+    font-size: 1.02em;
+    margin-top: 14px;
+    margin-bottom: 8px;
+    font-weight: 400;
+}
+
+.scene-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78em;
+    color: var(--stamp-red);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px !important;
+}
+
+#caseDetail p {
+    color: #3a3527;
+    margin-bottom: 12px;
+    line-height: 1.85;
+    font-size: 0.96em;
+}
+
+#caseDetail strong {
+    color: var(--ink);
+    font-weight: 700;
+}
+
+.redacted-bar {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--ink);
+    border-radius: 1px;
+    padding: 0 8px;
+    user-select: none;
+}
+
+.suspect-status {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85em;
+    text-transform: capitalize;
+    color: var(--stamp-red);
+    font-weight: 600;
+}
+
+.tear-divider {
+    border: none;
+    border-top: 1px dashed var(--manila-dark);
+    margin: 16px 0;
+}
+
+.detail-section {
+    background: rgba(202, 191, 157, 0.25);
+    padding: 20px 22px;
+    border-left: 3px solid var(--stamp-red);
+    margin-bottom: 22px;
+    border-radius: 2px;
+    animation: fadeInUp 0.4s ease-out backwards;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.conclusion-section {
+    border-left-color: var(--tag-yellow);
+    text-align: center;
+}
+
+.conclusion-stamp {
+    display: inline-block;
+    font-family: 'Special Elite', monospace;
+    font-size: 1.6em;
+    letter-spacing: 0.08em;
+    border: 4px solid;
+    padding: 10px 30px;
+    border-radius: 4px;
+    transform: rotate(-4deg);
+    margin-bottom: 18px;
+}
+
+.conclusion-stamp.solved { color: var(--stamp-red); border-color: var(--stamp-red); }
+.conclusion-stamp.unsolved { color: var(--cold-blue); border-color: var(--cold-blue); }
+
+.badge-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.link-section {
+    background: var(--ink-2);
+    padding: 18px 22px;
+    border-radius: 2px;
+    margin-top: 24px;
+    border: 1px solid var(--line);
+}
+
+.link-section a {
+    display: block;
+    color: #8fb3d9;
+    text-decoration: underline;
+    margin: 8px 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85em;
+    padding: 4px 0;
+}
+
+.link-section a:hover {
+    color: var(--tag-yellow);
+}
+
+/* ============ SCROLLBAR ============ */
+::-webkit-scrollbar { width: 9px; }
+::-webkit-scrollbar-track { background: var(--ink-2); }
+::-webkit-scrollbar-thumb { background: var(--manila-dark); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--tag-yellow); }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+    .header h1 { font-size: 1.7em; }
+    .header::after { display: none; }
+    .cases-grid { grid-template-columns: 1fr; }
+    .filters { grid-template-columns: 1fr; }
+    .modal-content { width: 95%; margin: 30px auto; padding: 24px; }
+    #caseDetail h2 { font-size: 1.4em; }
+}
+
+</style>
 </head>
 <body>
     <div class="container">
@@ -74,6 +703,254 @@
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script>
+// Global variables
+let allCases = [];
+
+// Load cases from JSON on page load
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('Page loaded, starting loadCases()');
+    loadCases();
+    setupEventListeners();
+});
+
+// Load cases from cases.json
+async function loadCases() {
+    const casesList = document.getElementById('casesList');
+
+    try {
+        console.log('Fetching cases.json...');
+
+        // Relative path — works whether the site is served from root or a subpath
+        const response = await fetch('./data/cases.json');
+
+        console.log('Response status:', response.status);
+
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('Successfully loaded ' + data.length + ' cases');
+
+        allCases = data;
+        displayCases(allCases);
+
+    } catch (error) {
+        console.error('FULL ERROR:', error);
+        casesList.innerHTML = `
+            <p class="no-results">
+                FILE NOT FOUND<br><br>
+                Error: ${error.message}<br><br>
+                <span style="font-size:0.7em; opacity:0.7;">
+                Current URL: ${window.location.href}<br>
+                Attempted fetch: ./data/cases.json<br><br>
+                Check that cases.json exists inside a /data folder in this repo.
+                </span>
+            </p>
+        `;
+    }
+}
+
+// Display cases
+function displayCases(cases) {
+    const casesList = document.getElementById('casesList');
+    const resultsTitle = document.getElementById('resultsTitle');
+
+    if (!cases || cases.length === 0) {
+        casesList.innerHTML = '<p class="no-results">NO MATCHING FILES ON RECORD</p>';
+        resultsTitle.textContent = 'No Results';
+        return;
+    }
+
+    resultsTitle.textContent = `${cases.length} File${cases.length !== 1 ? 's' : ''} on Record`;
+
+    casesList.innerHTML = cases.map(caseItem => `
+        <div class="case-card" onclick="openCaseDetail('${caseItem.id}')">
+            <div class="case-card-tab"></div>
+            <h3>${caseItem.name}</h3>
+
+            <div class="case-info">
+                <span class="case-badge">${caseItem.country}</span>
+                <span class="case-badge ${caseItem.status === 'solved' ? 'solved' : 'unsolved'}">${caseItem.status.toUpperCase()}</span>
+                <span class="case-badge">${caseItem.type.replace(/-/g, ' ').toUpperCase()}</span>
+            </div>
+
+            <div class="case-details-text">
+                <strong>Location:</strong> ${caseItem.location}
+            </div>
+            <div class="case-details-text">
+                <strong>Period:</strong> ${caseItem.year_start} – ${caseItem.year_end}
+            </div>
+            <div class="case-details-text">
+                <strong>Victims:</strong> ${caseItem.victims_count}
+            </div>
+
+            <button class="view-details-btn">Open File →</button>
+        </div>
+    `).join('');
+}
+
+// Setup event listeners
+function setupEventListeners() {
+    document.getElementById('searchInput').addEventListener('input', filterCases);
+    document.getElementById('countryFilter').addEventListener('change', filterCases);
+    document.getElementById('typeFilter').addEventListener('change', filterCases);
+    document.getElementById('statusFilter').addEventListener('change', filterCases);
+    document.getElementById('resetFilters').addEventListener('click', resetFilters);
+
+    document.querySelector('.close').addEventListener('click', closeCaseDetail);
+    window.addEventListener('click', (event) => {
+        const modal = document.getElementById('caseModal');
+        if (event.target === modal) {
+            closeCaseDetail();
+        }
+    });
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeCaseDetail();
+    });
+}
+
+// Filter cases
+function filterCases() {
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+    const country = document.getElementById('countryFilter').value;
+    const type = document.getElementById('typeFilter').value;
+    const status = document.getElementById('statusFilter').value;
+
+    const filtered = allCases.filter(caseItem => {
+        const matchesSearch = caseItem.name.toLowerCase().includes(searchTerm) ||
+                            caseItem.location.toLowerCase().includes(searchTerm);
+        const matchesCountry = !country || caseItem.country === country;
+        const matchesType = !type || caseItem.type === type;
+        const matchesStatus = !status || caseItem.status === status;
+
+        return matchesSearch && matchesCountry && matchesType && matchesStatus;
+    });
+
+    displayCases(filtered);
+}
+
+// Reset filters
+function resetFilters() {
+    document.getElementById('searchInput').value = '';
+    document.getElementById('countryFilter').value = '';
+    document.getElementById('typeFilter').value = '';
+    document.getElementById('statusFilter').value = '';
+    displayCases(allCases);
+}
+
+// Open case detail modal
+function openCaseDetail(caseId) {
+    const caseItem = allCases.find(c => c.id === caseId);
+    if (!caseItem) return;
+
+    const detailHTML = generateCaseDetailHTML(caseItem);
+    document.getElementById('caseDetail').innerHTML = detailHTML;
+    document.getElementById('caseModal').classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
+
+// Close case detail modal
+function closeCaseDetail() {
+    document.getElementById('caseModal').classList.remove('show');
+    document.body.style.overflow = '';
+}
+
+// Generate case detail HTML
+function generateCaseDetailHTML(caseItem) {
+    const statusClass = caseItem.status === 'solved' ? 'solved' : 'unsolved';
+    return `
+        <div class="case-stamp ${statusClass}">${caseItem.status.toUpperCase()}</div>
+        <h2>${caseItem.name}</h2>
+
+        <div class="badge-group">
+            <span class="case-badge">${caseItem.country}</span>
+            <span class="case-badge ${statusClass}">${caseItem.status.toUpperCase()}</span>
+            <span class="case-badge">${caseItem.type.replace(/-/g, ' ').toUpperCase()}</span>
+        </div>
+
+        <h3>01 · Basic Information</h3>
+        <div class="detail-section">
+            <p><strong>Location:</strong> ${caseItem.location}</p>
+            <p><strong>Period:</strong> ${caseItem.year_start} – ${caseItem.year_end}</p>
+            <p><strong>Confirmed Victims:</strong> ${caseItem.victims_count}</p>
+            ${caseItem.claimed_victims ? `<p><strong>Claimed Victims:</strong> ${caseItem.claimed_victims}</p>` : ''}
+        </div>
+
+        <h3>02 · Complaint / FIR</h3>
+        <div class="detail-section">
+            <p><strong>Filed Date:</strong> ${caseItem.fir_complaint.filed_date}</p>
+            <p><strong>Filed By:</strong> ${caseItem.fir_complaint.filed_by}</p>
+            <p><strong>Classification:</strong> ${caseItem.fir_complaint.initial_classification}</p>
+            <p>${caseItem.fir_complaint.complaint_summary}</p>
+        </div>
+
+        <h3>03 · The Murder</h3>
+        <div class="detail-section">
+            <p>${caseItem.murder_story.description}</p>
+            <h4>How It Happened</h4>
+            <p>${caseItem.murder_story.how_it_happened}</p>
+            <h4>Modus Operandi</h4>
+            <p>${caseItem.murder_story.modus_operandi}</p>
+        </div>
+
+        <h3>04 · Crime Scene</h3>
+        <div class="detail-section">
+            ${caseItem.murder_scene.scenes.map((scene, idx) => `
+                <p class="scene-label">Scene ${idx + 1}</p>
+                <p><strong>Location:</strong> ${scene.location}</p>
+                <p><strong>Date:</strong> ${scene.date}</p>
+                <p><strong>Description:</strong> ${scene.description}</p>
+                <p><strong>Evidence Found:</strong> ${scene.evidence_found.join(', ')}</p>
+            `).join('<hr class="tear-divider">')}
+        </div>
+
+        <h3>05 · Suspects <span class="redacted-note">(surnames redacted)</span></h3>
+        <div class="detail-section">
+            ${caseItem.suspects.map((suspect, idx) => `
+                <h4>Suspect ${idx + 1}: ${suspect.first_name} <span class="redacted-bar">SURNAME</span></h4>
+                <p><strong>Age at time:</strong> ${suspect.age_at_time}</p>
+                <p><strong>Background:</strong> ${suspect.background}</p>
+                <p><strong>Reason Suspected:</strong> ${suspect.reason_suspected}</p>
+                <p><strong>Status:</strong> <span class="suspect-status">${suspect.status}</span></p>
+            `).join('<hr class="tear-divider">')}
+        </div>
+
+        <h3>06 · Evidence &amp; Murder Weapons</h3>
+        <div class="detail-section">
+            ${caseItem.evidence_weapons.map((evidence) => `
+                <h4>${evidence.name}</h4>
+                <p><strong>Type:</strong> ${evidence.type}</p>
+                <p><strong>Description:</strong> ${evidence.description}</p>
+                <p><strong>Recovered:</strong> ${evidence.recovered ? 'Yes' : 'No'}</p>
+                <p><strong>Significance:</strong> ${evidence.significance}</p>
+            `).join('<hr class="tear-divider">')}
+        </div>
+
+        <h3>07 · Court Trial</h3>
+        <div class="detail-section">
+            ${caseItem.court_trials.map((trial) => `
+                <p><strong>Defendant:</strong> ${trial.defendant_name}</p>
+                <p><strong>Outcome:</strong> ${trial.outcome}</p>
+            `).join('<hr class="tear-divider">')}
+        </div>
+
+        <h3>08 · Conclusion</h3>
+        <div class="detail-section conclusion-section">
+            <div class="conclusion-stamp ${statusClass}">${caseItem.conclusion.case_status}</div>
+            <p>${caseItem.conclusion.summary}</p>
+        </div>
+
+        <h3>09 · Sources</h3>
+        <div class="link-section">
+            ${caseItem.official_links.map(link => `
+                <a href="${link.url}" target="_blank" rel="noopener">${link.source_name}</a>
+            `).join('')}
+        </div>
+    `;
+}
+
+</script>
 </body>
 </html>
