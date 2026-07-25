@@ -3,41 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dossier Project - Case Files Database</title>
+    <title>The Dossier Project — Case Files Database</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <!-- Header -->
         <header class="header">
-            <h1>📁 DOSSIER PROJECT</h1>
-            <p>Declassified Criminal Cases & Unsolved Mysteries Database</p>
-            <p class="tagline">US & UK Law Enforcement Cases</p>
+            <h1>The Dossier Project</h1>
+            <p>Declassified Criminal Cases &amp; Unsolved Mysteries Database</p>
+            <p class="tagline">US &amp; UK law enforcement cases — sourced and documented</p>
         </header>
 
         <!-- Search and Filter Section -->
         <div class="search-section">
             <div class="search-box">
-                <input 
-                    type="text" 
-                    id="searchInput" 
-                    placeholder="Search case by name... (e.g., Zodiac, Black Dahlia)"
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search by case name or location… (e.g., Zodiac, Black Dahlia)"
                     class="search-input"
                 >
             </div>
-
             <div class="filters">
                 <div class="filter-group">
-                    <label for="countryFilter">Country:</label>
+                    <label for="countryFilter">Country</label>
                     <select id="countryFilter" class="filter-select">
                         <option value="">All Countries</option>
                         <option value="US">United States</option>
                         <option value="UK">United Kingdom</option>
                     </select>
                 </div>
-
                 <div class="filter-group">
-                    <label for="typeFilter">Case Type:</label>
+                    <label for="typeFilter">Case Type</label>
                     <select id="typeFilter" class="filter-select">
                         <option value="">All Types</option>
                         <option value="serial-killer">Serial Killer</option>
@@ -45,16 +45,14 @@
                         <option value="serial-killer-dismemberment">Dismemberment</option>
                     </select>
                 </div>
-
                 <div class="filter-group">
-                    <label for="statusFilter">Status:</label>
+                    <label for="statusFilter">Status</label>
                     <select id="statusFilter" class="filter-select">
                         <option value="">All Status</option>
                         <option value="unsolved">Unsolved</option>
                         <option value="solved">Solved</option>
                     </select>
                 </div>
-
                 <button id="resetFilters" class="reset-btn">Reset Filters</button>
             </div>
         </div>
@@ -62,25 +60,20 @@
         <!-- Results Section -->
         <div class="results-section">
             <h2 id="resultsTitle">All Cases</h2>
-            
+
             <div id="casesList" class="cases-grid">
-                <!-- Cases will be dynamically loaded here -->
-                <p class="loading">Loading cases...</p>
+                <p class="loading">Loading case files…</p>
             </div>
         </div>
 
-        <!-- Case Detail Modal - Police Case File -->
+        <!-- Case Detail Modal -->
         <div id="caseModal" class="modal">
-            <div class="case-file-container">
-                <div class="case-folder">
-                    <span class="close">&times;</span>
-                    <div id="caseDetail"></div>
-                    <div id="pageNavigation" class="page-navigation"></div>
-                </div>
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div id="caseDetail"></div>
             </div>
         </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
