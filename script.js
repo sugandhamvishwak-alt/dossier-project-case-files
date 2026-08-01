@@ -140,15 +140,63 @@ function openCaseDetail(caseId) {
     if (!caseItem) return;
 
     const detailHTML = generateCaseDetailHTML(caseItem);
-    document.getElementById('caseDetail').innerHTML = detailHTML;
+    const caseDetail = document.getElementById('caseDetail');
+    const folderStage = document.getElementById('folderStage');
+    const bigFolder = document.getElementById('bigFolder');
+    const folderPeek = document.getElementById('folderPaperPeek');
+
+    // Load content into the paper layer, but keep it hidden until the folder opens
+    caseDetail.innerHTML = detailHTML;
+    caseDetail.classList.remove('reveal', 'show-papers');
+    folderPeek.textContent = `FILE: ${caseItem.name}`;
+
+    // Reset folder to closed state
+    bigFolder.classList.remove('opening');
+    folderStage.classList.remove('hidden');
+
     document.getElementById('caseModal').classList.add('show');
     document.body.style.overflow = 'hidden';
+
+    // Trigger the opening animation on the next frame
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            bigFolder.classList.add('opening');
+        });
+    });
+
+    // After the folder finishes opening, swap to the paper content
+    setTimeout(() => {
+        folderStage.classList.add('hidden');
+        caseDetail.classList.add('reveal');
+        requestAnimationFrame(() => {
+            caseDetail.classList.add('show-papers');
+        });
+    }, 900);
 }
 
 // Close case detail modal
 function closeCaseDetail() {
-    document.getElementById('caseModal').classList.remove('show');
-    document.body.style.overflow = '';
+    const caseDetail = document.getElementById('caseDetail');
+    const folderStage = document.getElementById('folderStage');
+    const bigFolder = document.getElementById('bigFolder');
+
+    // Fade the papers out first
+    caseDetail.classList.remove('show-papers');
+
+    setTimeout(() => {
+        caseDetail.classList.remove('reveal');
+        folderStage.classList.remove('hidden');
+        // Folder is still visually "open" at this point — trigger the close animation
+        requestAnimationFrame(() => {
+            bigFolder.classList.remove('opening');
+        });
+    }, 250);
+
+    // Fully close the modal once the folder-closing animation finishes
+    setTimeout(() => {
+        document.getElementById('caseModal').classList.remove('show');
+        document.body.style.overflow = '';
+    }, 250 + 700);
 }
 
 // Generate case detail HTML
