@@ -401,11 +401,11 @@ body::before {
 }
 
 .modal-content {
-    background: var(--paper);
+    background: var(--ink-2);
     color: var(--ink);
     margin: 40px auto;
-    padding: 44px;
-    border: none;
+    padding: 0;
+    border: 1px solid var(--line);
     border-radius: 2px;
     width: 90%;
     max-width: 860px;
@@ -413,13 +413,7 @@ body::before {
     position: relative;
     max-height: 85vh;
     overflow-y: auto;
-    animation: pageFlip 0.5s cubic-bezier(.4,.1,.2,1);
-    perspective: 1400px;
-}
-
-@keyframes pageFlip {
-    0% { opacity: 0; transform: rotateY(-12deg) translateX(-20px); }
-    100% { opacity: 1; transform: rotateY(0) translateX(0); }
+    min-height: 420px;
 }
 
 .close {
@@ -428,7 +422,7 @@ body::before {
     top: 18px;
     font-size: 1.6em;
     font-weight: bold;
-    color: var(--ink);
+    color: var(--paper);
     cursor: pointer;
     transition: all 0.2s ease;
     background: transparent;
@@ -438,15 +432,134 @@ body::before {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid var(--manila-dark);
+    border: 1px solid var(--line);
     font-family: 'IBM Plex Mono', monospace;
-    z-index: 2;
+    z-index: 10;
 }
 
 .close:hover {
     color: var(--paper);
     background: var(--stamp-red);
     border-color: var(--stamp-red);
+}
+
+/* ============ FOLDER OPENING ANIMATION ============ */
+.folder-stage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 420px;
+    padding: 60px 40px;
+    perspective: 1800px;
+}
+
+.folder-stage.hidden {
+    display: none;
+}
+
+.big-folder {
+    width: min(60vw, 380px);
+    aspect-ratio: 1.35 / 1;
+    position: relative;
+}
+
+.folder-back {
+    position: absolute;
+    inset: 0;
+    background: var(--manila-dark);
+    border-radius: 3px 10px 3px 3px;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+}
+
+.folder-tab {
+    position: absolute;
+    top: -16px;
+    left: 8%;
+    width: 34%;
+    height: 20px;
+    background: var(--manila-dark);
+    border-radius: 6px 6px 0 0;
+}
+
+/* papers that peek up and out as the flap opens */
+.folder-paper-peek {
+    position: absolute;
+    left: 6%;
+    right: 6%;
+    bottom: 6%;
+    top: 16%;
+    background: var(--paper);
+    border-radius: 2px;
+    box-shadow: 0 -2px 0 var(--paper-dim), 0 -4px 0 var(--paper);
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.5s ease 0.35s, transform 0.55s ease 0.35s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    font-family: 'Special Elite', monospace;
+    color: var(--ink);
+    font-size: 0.95em;
+    letter-spacing: 0.03em;
+}
+
+.folder-front-flap {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 88%;
+    background: var(--manila);
+    border-radius: 3px;
+    transform-origin: bottom center;
+    transform: rotateX(0deg);
+    transition: transform 0.65s cubic-bezier(.6, .05, .3, 1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.folder-front-flap::before {
+    content: 'OPENING FILE…';
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7em;
+    color: var(--manila-dark);
+    letter-spacing: 0.15em;
+}
+
+.big-folder.opening .folder-front-flap {
+    transform: rotateX(-100deg);
+}
+
+.big-folder.opening .folder-paper-peek {
+    opacity: 1;
+    transform: translateY(-24px);
+}
+
+/* the actual case content — hidden until the folder finishes opening */
+.case-papers {
+    background: var(--paper);
+    color: var(--ink);
+    padding: 44px;
+    display: none;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.case-papers.reveal {
+    display: block;
+}
+
+.case-papers.reveal.show-papers {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* ============ CASE DETAIL STYLES ============ */
@@ -622,6 +735,8 @@ body::before {
     .header::after { display: none; }
     .cases-grid { grid-template-columns: 1fr; }
     .filters { grid-template-columns: 1fr; }
-    .modal-content { width: 95%; margin: 30px auto; padding: 24px; }
+    .modal-content { width: 95%; margin: 20px auto; }
+    .case-papers { padding: 26px; }
+    .folder-stage { padding: 40px 20px; min-height: 320px; }
     #caseDetail h2 { font-size: 1.4em; }
 }
