@@ -1,340 +1,521 @@
 [
   {
-    "id": "case-001",
-    "name": "Zodiac Killer",
+    "id": "us-gacy-1978",
+    "name": "The Norwood Park Murders (John Wayne Gacy)",
     "country": "US",
-    "location": "Northern California (Bay Area)",
-    "year_start": 1968,
-    "year_end": 1974,
+    "status": "solved",
     "type": "serial-killer",
-    "status": "unsolved",
-    "victims_count": 5,
-    "claimed_victims": 37,
+    "location": "Norwood Park Township / Chicago, Illinois",
+    "year_start": 1972,
+    "year_end": 1978,
+    "victims_count": 33,
     "fir_complaint": {
-      "filed_date": "August 1, 1969",
-      "filed_by": "San Francisco Police Department",
-      "complaint_summary": "Multiple homicides reported in Northern California. Victims found shot in vehicles at isolated locations. Unknown perpetrator claimed 37 victims via letters to press.",
-      "initial_classification": "Serial Homicide - Unknown Perpetrator"
+      "filed_date": "December 11, 1978",
+      "filed_by": "Family of 15-year-old Robert Piest (missing person report)",
+      "initial_classification": "Missing person",
+      "complaint_summary": "Piest's family reported him missing after he told them he was going to speak with a contractor, identified as John Wayne Gacy, about a summer job. Des Plaines police traced Piest's last known movements to Gacy and began surveillance, which escalated into a homicide investigation after a search warrant uncovered evidence linking Gacy to other missing young men."
     },
     "murder_story": {
-      "description": "The Zodiac Killer was an unidentified serial killer operating in Northern California between 1968-1974. He claimed 37 victims though only 5-7 are confirmed. Famous for cryptic letters with unsolved ciphers sent to newspapers.",
-      "how_it_happened": "Victims were attacked in isolated locations at night, typically shot while in parked vehicles. Some victims were stabbed. The killer demonstrated intelligence and psychological manipulation through letters to press.",
-      "modus_operandi": "Ambush attacks at night, use of firearms and knives, cryptic letters to newspapers, psychological taunting"
+      "description": "Between 1972 and 1978, John Wayne Gacy murdered at least 33 young men and boys in Norwood Park Township, a Chicago suburb, most of whom he lured to his home before killing them.",
+      "how_it_happened": "Gacy, a contractor and active member of his local community, approached young men and teenage boys \u2014 often offering work, money, or alcohol \u2014 before bringing them back to his house. He would convince victims to put on handcuffs, sometimes framing it as a trick or game, then assaulted and killed them, usually by strangulation.",
+      "modus_operandi": "Most victims were buried in the crawl space beneath Gacy's house; when that space filled, later victims were disposed of in the Des Plaines River. His first known victim, in 1972, was killed by stabbing before strangulation became his primary method."
     },
     "murder_scene": {
       "scenes": [
         {
-          "location": "Lake Herman Road, Vallejo",
-          "date": "December 20, 1968",
-          "victim": "First victims",
-          "description": "Victims shot multiple times in parked vehicle. .22 caliber handgun. Tire tracks found.",
-          "evidence_found": ["Bullet casings", "Tire tracks", "Vehicle damage"]
+          "location": "Gacy residence, Norwood Park Township",
+          "date": "1972 - December 1978",
+          "description": "A search warrant executed after Piest's disappearance led officers to detect the smell of decomposition inside the home. A subsequent, more thorough search uncovered human remains buried in the crawl space beneath the house.",
+          "evidence_found": [
+            "Human remains (26 bodies recovered from the crawl space)",
+            "Personal effects belonging to missing young men",
+            "Physical evidence linking Gacy to Piest's disappearance"
+          ]
         },
         {
-          "location": "Blue Rock Springs Park, Vallejo",
-          "date": "July 4, 1969",
-          "victim": "Victims shot",
-          "description": "Victims shot in Corvair. Killer called police claiming responsibility.",
-          "evidence_found": ["Bullet casings", "Phone records", "Witness descriptions"]
+          "location": "Des Plaines River",
+          "date": "December 1978",
+          "description": "Four additional victims, including Robert Piest, were recovered from the river after Gacy indicated the crawl space could hold no more remains.",
+          "evidence_found": [
+            "Human remains (4 bodies, including Robert Piest)"
+          ]
+        }
+      ]
+    },
+    "suspects": [
+      {
+        "first_name": "John",
+        "age_at_time": "36",
+        "background": "Contractor and active local community volunteer; previously served time for a 1968 sodomy conviction in Iowa.",
+        "reason_suspected": "Directly linked to Robert Piest's disappearance through witness statements and a search warrant; later confessed to killing over 30 young men during police questioning.",
+        "status": "convicted"
+      }
+    ],
+    "evidence_weapons": [
+      {
+        "name": "Rope garrote",
+        "type": "Ligature",
+        "description": "Gacy's primary method in most killings was strangulation using a rope-based garrote, often applied while the victim was restrained in handcuffs.",
+        "recovered": true,
+        "significance": "Consistent ligature marks across multiple victims helped establish a common method across the killings."
+      },
+      {
+        "name": "Knife (first victim, 1972)",
+        "type": "Bladed weapon",
+        "description": "Gacy's first known victim, 16-year-old Timothy McCoy, was killed by stabbing in 1972, before strangulation became Gacy's typical method.",
+        "recovered": false,
+        "significance": "Establishes the earliest known killing in the series and a shift in method over time."
+      }
+    ],
+    "court_trials": [
+      {
+        "defendant_name": "John Wayne Gacy",
+        "outcome": "Tried in Cook County Criminal Court beginning February 6, 1980. Defense argued insanity; prosecution argued the killings were premeditated. The jury convicted Gacy on all 33 counts of murder in under two hours and he was sentenced to death the following day. Appeals were rejected at every level through 1993."
+      }
+    ],
+    "conclusion": {
+      "case_status": "SOLVED",
+      "summary": "Gacy was executed by lethal injection on May 10, 1994, at Stateville Correctional Center. He maintained his innocence to the end. The criminal case has been closed since his execution, but victim identification work has continued: the Cook County Sheriff's Office reopened efforts using DNA and genetic genealogy in 2011, identifying several previously unnamed victims, most recently in 2021. Five victims remain unidentified as of the most recent public update."
+    },
+    "official_links": [
+      {
+        "source_name": "FBI Vault \u2014 John Wayne Gacy case file",
+        "url": "https://vault.fbi.gov/John%20Wayne%20Gacy"
+      },
+      {
+        "source_name": "People v. Gacy, 103 Ill.2d 1 (1984) \u2014 Illinois Supreme Court opinion (Justia)",
+        "url": "https://law.justia.com/cases/illinois/supreme-court/1984/53212-6.html"
+      }
+    ]
+  },
+  {
+    "id": "us-zodiac-1968",
+    "name": "The Zodiac Killer",
+    "country": "US",
+    "status": "unsolved",
+    "type": "serial-killer",
+    "location": "San Francisco Bay Area, Northern California",
+    "year_start": 1968,
+    "year_end": 1970,
+    "victims_count": 5,
+    "claimed_victims": "37 (claimed by the killer in letters; unverified)",
+    "fir_complaint": {
+      "filed_date": "December 20, 1968",
+      "filed_by": "Responding officers, Vallejo Police Department",
+      "initial_classification": "Homicide",
+      "complaint_summary": "The case opened as a double-homicide investigation after two teenagers, David Faraday and Betty Lou Jensen, were found shot on a rural road outside Vallejo, California. The investigation expanded into a multi-agency task force after the killer began sending taunting letters and coded ciphers to Bay Area newspapers, claiming responsibility and taking credit for further attacks."
+    },
+    "murder_story": {
+      "description": "An unidentified individual killed at least five confirmed victims in the San Francisco Bay Area between December 1968 and October 1969, and is suspected in other unsolved attacks from the period.",
+      "how_it_happened": "The killer targeted young couples in secluded areas, using a handgun in most attacks and a knife in one. After each attack, he began sending letters to newspapers including the San Francisco Chronicle, often containing cryptic ciphers, claiming responsibility, and adopting the name 'Zodiac'.",
+      "modus_operandi": "Attacks combined direct violence with a public taunting campaign through the press \u2014 a pattern that set the case apart from typical unsolved homicides of the era and helped drive the intense, decades-long public and investigative interest in identifying him."
+    },
+    "murder_scene": {
+      "scenes": [
+        {
+          "location": "Lake Herman Road, near Vallejo, CA",
+          "date": "December 20, 1968",
+          "description": "David Faraday and Betty Lou Jensen were shot in a parked car on a rural road. This is considered the first confirmed Zodiac attack.",
+          "evidence_found": [
+            "Shell casings",
+            "Ballistic evidence later linked to subsequent shootings"
+          ]
+        },
+        {
+          "location": "Lake Berryessa, Napa County, CA",
+          "date": "September 27, 1969",
+          "description": "The killer approached a couple at a lakeside picnic area wearing a hood with a symbol on it, bound both victims, and stabbed them. One victim survived and provided a description.",
+          "evidence_found": [
+            "Handwritten symbol drawn on the victim's car door by the attacker",
+            "Survivor testimony and description"
+          ]
         }
       ]
     },
     "suspects": [
       {
         "first_name": "Arthur",
-        "age_at_time": 42,
-        "background": "Military background, cryptography interest",
-        "reason_suspected": "Handwriting analysis similarities",
-        "status": "Investigated, no charges; deceased"
+        "age_at_time": "Approx. 37 at time of first known attack",
+        "background": "Former schoolteacher; separately convicted of an unrelated child molestation offense in the 1970s.",
+        "reason_suspected": "Named as a person of interest by investigators after a tip from an acquaintance; some circumstantial and handwriting-adjacent evidence was examined. He was never charged. DNA testing conducted on surviving physical evidence did not produce a conclusive match to him. He died in 1992.",
+        "status": "person of interest \u2014 never charged"
       }
     ],
     "evidence_weapons": [
       {
-        "name": ".22 Caliber Handgun",
-        "description": "Primary weapon. Ballistics linked crime scenes.",
+        "name": "Handgun (caliber varied by attack)",
+        "type": "Firearm",
+        "description": "Used in the majority of the confirmed attacks. Ballistics from multiple scenes were compared and linked several shootings to the same series.",
         "recovered": false,
-        "significance": "Confirmed connection between murders"
+        "significance": "Ballistic matching was central to linking separate attacks to a single perpetrator."
       },
       {
-        "name": "Cryptic Letters",
-        "description": "Letters sent to newspapers with unsolved ciphers",
-        "recovered": true,
-        "significance": "Direct communication from perpetrator"
+        "name": "Knife",
+        "type": "Bladed weapon",
+        "description": "Used in the September 1969 Lake Berryessa attack.",
+        "recovered": false,
+        "significance": "Marked a change in method from the earlier shootings, though letters afterward claimed the same identity."
       }
     ],
-    "court_trials": [
-      {
-        "defendant_name": "Unknown",
-        "trial_date": "No trial",
-        "verdict": "N/A",
-        "outcome": "No perpetrator identified"
-      }
-    ],
+    "court_trials": [],
     "conclusion": {
-      "case_status": "UNSOLVED - COLD CASE",
-      "summary": "Zodiac Killer remains one of America's most famous unsolved cases. 5 confirmed victims murdered between 1968-1970.",
-      "why_unsolved": "Lack of definitive evidence, killer's intelligence, police errors, killer ceased contact after 1974",
-      "current_status": "Cold case maintained by FBI. Periodically reviewed with new forensic technology.",
-      "last_update": "2024"
+      "case_status": "UNSOLVED / COLD",
+      "summary": "The Zodiac Killer's identity has never been officially confirmed. The FBI has repeatedly stated the case remains open; as recently as 2023 it confirmed to press inquiries that the killer's identity is officially unknown. Independent groups have periodically claimed to have identified the killer \u2014 most notably a 2021 claim naming a deceased individual \u2014 but law enforcement has stated these claims are unconfirmed and has not filed charges against anyone."
     },
     "official_links": [
       {
-        "source_name": "FBI Vault - Zodiac Killer",
-        "url": "https://vault.fbi.gov/The%20Zodiac%20Killer",
-        "type": "Official FBI Records"
+        "source_name": "FBI Vault \u2014 Zodiac Killer case file",
+        "url": "https://vault.fbi.gov/zodiac"
       }
     ]
   },
-
   {
-    "id": "case-002",
-    "name": "Black Dahlia Murder",
-    "country": "US",
-    "location": "Los Angeles, California",
-    "year_start": 1947,
-    "year_end": 1947,
-    "type": "homicide",
-    "status": "unsolved",
-    "victims_count": 1,
-    "fir_complaint": {
-      "filed_date": "January 15, 1947",
-      "filed_by": "Los Angeles Police Department",
-      "complaint_summary": "Mutilated female body discovered in Leimert Park. Victim bisected at waist. Unknown perpetrator.",
-      "initial_classification": "Aggravated Homicide - Unknown Perpetrator"
-    },
-    "murder_story": {
-      "description": "On January 15, 1947, a gruesome discovery shocked Los Angeles: a bisected female corpse in a vacant lot. The victim, 22-year-old Elizabeth Short, became known as The Black Dahlia.",
-      "how_it_happened": "Victim killed elsewhere and body carefully bisected at waist. Surgical precision suggested medical knowledge. Body drained of blood before dissection.",
-      "modus_operandi": "Abduction, torture, surgical bisection, careful body placement"
-    },
-    "murder_scene": {
-      "scenes": [
-        {
-          "location": "Leimert Park, Los Angeles",
-          "date": "January 15, 1947",
-          "victim": "Elizabeth",
-          "description": "Bisected corpse found in vacant lot. Surgical cut at waist. No significant blood at scene.",
-          "evidence_found": ["Two body sections", "Bruising evidence", "No identification"]
-        }
-      ]
-    },
-    "suspects": [
-      {
-        "first_name": "George",
-        "age_at_time": 52,
-        "background": "Former surgeon",
-        "reason_suspected": "Surgical precision suggested medical knowledge",
-        "status": "Investigated, no charges; deceased"
-      }
-    ],
-    "evidence_weapons": [
-      {
-        "name": "Surgical Saw or Precision Blade",
-        "description": "Sharp instrument used for bisection. Never recovered.",
-        "recovered": false,
-        "significance": "Perpetrator had medical training"
-      },
-      {
-        "name": "Dental Records",
-        "description": "Used to identify victim",
-        "recovered": true,
-        "significance": "Confirmed victim identity"
-      }
-    ],
-    "court_trials": [
-      {
-        "defendant_name": "Unknown",
-        "trial_date": "No trial",
-        "verdict": "N/A",
-        "outcome": "150+ suspects investigated, no charges"
-      }
-    ],
-    "conclusion": {
-      "case_status": "UNSOLVED - COLD CASE",
-      "summary": "The Black Dahlia murder remains one of Los Angeles' most notorious unsolved homicides. Victim found brutally mutilated in 1947.",
-      "why_unsolved": "Limited 1947 forensic technology, lack of physical evidence, large suspect pool",
-      "current_status": "Cold case maintained by LAPD. Periodically reviewed.",
-      "last_update": "2024"
-    },
-    "official_links": [
-      {
-        "source_name": "FBI Vault - Black Dahlia",
-        "url": "https://vault.fbi.gov/Black%20Dahlia%20%28E%20Short%29",
-        "type": "Official FBI Records"
-      }
-    ]
-  },
-
-  {
-    "id": "case-003",
-    "name": "Jack the Ripper",
+    "id": "uk-ripper-1888",
+    "name": "The Whitechapel Murders (Jack the Ripper)",
     "country": "UK",
-    "location": "Whitechapel, East End London",
-    "year_start": 1888,
-    "year_end": 1891,
-    "type": "serial-killer",
     "status": "unsolved",
+    "type": "serial-killer-dismemberment",
+    "location": "Whitechapel, East London",
+    "year_start": 1888,
+    "year_end": 1888,
     "victims_count": 5,
-    "attributed_victims": 11,
+    "claimed_victims": "Additional murders in the period are debated by historians as possibly connected",
     "fir_complaint": {
       "filed_date": "August 31, 1888",
-      "filed_by": "Metropolitan Police Service - London",
-      "complaint_summary": "Multiple homicides in Whitechapel. Female prostitute victims with severe mutilation. Unknown perpetrator.",
-      "initial_classification": "Serial Homicide - Unknown Perpetrator - Public Panic"
+      "filed_by": "Metropolitan Police, J Division (Whitechapel)",
+      "initial_classification": "Homicide",
+      "complaint_summary": "The investigation opened following the murder of Mary Ann Nichols in Buck's Row, Whitechapel. As further killings with a similar pattern followed over the next ten weeks, the Metropolitan Police, Scotland Yard, and the City of London Police jointly investigated what became known as the Whitechapel Murders."
     },
     "murder_story": {
-      "description": "In 1888, a series of brutal homicides in London's Whitechapel district shocked Victorian society. The killer, named Jack the Ripper, became one of history's most infamous criminals.",
-      "how_it_happened": "Killer targeted female prostitutes. Victims taken to secluded locations and murdered. Characterized by throat slashing and ritualistic abdominal mutilation.",
-      "modus_operandi": "Targeting prostitutes, luring to secluded locations, throat slashing, abdominal mutilation"
+      "description": "Between August and November 1888, an unidentified individual murdered at least five women in the Whitechapel district of East London, in what became one of the most extensively documented unsolved murder cases in British history.",
+      "how_it_happened": "All five canonical victims \u2014 Mary Ann Nichols, Annie Chapman, Elizabeth Stride, Catherine Eddowes, and Mary Jane Kelly \u2014 were killed at night in or near Whitechapel. Most bodies showed extensive mutilation carried out after death.",
+      "modus_operandi": "The killer's use of a knife, the targeting of women in poverty in a specific small district, and the escalating mutilation across the murders led investigators at the time to conclude a single perpetrator was responsible for at least the five canonical killings."
     },
     "murder_scene": {
       "scenes": [
         {
           "location": "Buck's Row, Whitechapel",
           "date": "August 31, 1888",
-          "victim": "First victim - Mary",
-          "description": "Severe throat laceration. Abdominal wounds. Evidence of anatomical knowledge.",
-          "evidence_found": ["Throat wound", "Abdominal wounds", "Blood evidence"]
+          "description": "The body of Mary Ann Nichols was discovered in the early morning by a passer-by. The scene showed a fatal throat wound and abdominal mutilation.",
+          "evidence_found": [
+            "Body of victim",
+            "Limited physical trace evidence, consistent with the forensic limitations of the era"
+          ]
         },
         {
-          "location": "Hanbury Street, Whitechapel",
-          "date": "September 8, 1888",
-          "victim": "Second victim - Annie",
-          "description": "Throat cut. Extensive abdominal mutilation. Uterus removed.",
-          "evidence_found": ["Surgical evidence", "Organ removal evidence"]
+          "location": "Miller's Court, Spitalfields",
+          "date": "November 9, 1888",
+          "description": "Mary Jane Kelly, the final canonical victim, was found inside her rented room. The scene showed the most extensive mutilation of the series, leading some historians to consider it the culmination of the killings.",
+          "evidence_found": [
+            "Body of victim",
+            "Room interior processed by Metropolitan Police"
+          ]
         }
       ]
     },
     "suspects": [
       {
+        "first_name": "Montague",
+        "age_at_time": "31",
+        "background": "Barrister and schoolteacher.",
+        "reason_suspected": "Named as a leading suspect in a confidential 1894 internal police memorandum written by Assistant Chief Constable Melville Macnaghten. He was found dead by suicide weeks after the final canonical murder.",
+        "status": "person of interest \u2014 never charged"
+      },
+      {
         "first_name": "Aaron",
-        "age_at_time": 43,
-        "background": "Polish immigrant butcher",
-        "reason_suspected": "Anatomical knowledge from butchering",
-        "status": "Suspected, no charges; deceased"
+        "age_at_time": "23",
+        "background": "Polish-born resident of Whitechapel, later committed to an asylum for unrelated reasons.",
+        "reason_suspected": "Also named in the 1894 Macnaghten memorandum as a suspect. Some modern researchers have pointed to contested forensic re-analysis of a shawl reportedly linked to one victim, though this evidence and its chain of custody remain disputed among historians.",
+        "status": "person of interest \u2014 never charged"
       }
     ],
     "evidence_weapons": [
       {
-        "name": "Long-Bladed Knife",
-        "description": "Primary weapon. Consistent throat wound patterns. Never recovered.",
+        "name": "Knife (type undetermined)",
+        "type": "Bladed weapon",
+        "description": "Contemporary post-mortem reports described wounds consistent with a single-edged knife with a blade of six inches or longer. No weapon was ever recovered or definitively linked to a suspect.",
         "recovered": false,
-        "significance": "Linked all murders through ballistics"
-      },
-      {
-        "name": "Victim Organs",
-        "description": "Organs removed from victims",
-        "recovered": true,
-        "significance": "Evidence of surgical knowledge"
+        "significance": "Wound pattern analysis was one of the few forensic tools available to investigators in 1888 and remains central to modern re-examinations of the case."
       }
     ],
-    "court_trials": [
-      {
-        "defendant_name": "Unknown",
-        "trial_date": "No trial",
-        "verdict": "N/A",
-        "outcome": "No perpetrator identified. Case closed 1892."
-      }
-    ],
+    "court_trials": [],
     "conclusion": {
-      "case_status": "UNSOLVED - COLD CASE",
-      "summary": "Jack the Ripper remains history's most famous unsolved serial case. 5 canonical victims murdered in ritualistic fashion 1888.",
-      "why_unsolved": "Victorian-era forensic limits, no DNA testing, unreliable witnesses, large suspect pool",
-      "current_status": "Official case closed 1892. Remains culturally significant.",
-      "last_update": "2024"
+      "case_status": "UNSOLVED / COLD",
+      "summary": "No one was ever charged in connection with the Whitechapel Murders. The Metropolitan Police file remains officially unsolved. The case has been reviewed periodically by historians and forensic researchers using modern techniques, but no analysis has been accepted as conclusive by mainstream historians or law enforcement."
     },
     "official_links": [
       {
-        "source_name": "FBI Vault - Jack the Ripper",
-        "url": "https://vault.fbi.gov/Jack%20the%20Ripper",
-        "type": "Official FBI Records"
+        "source_name": "The National Archives (UK) \u2014 Metropolitan Police files, 'The Whitechapel murders: Jack the Ripper' (MEPO 3/141)",
+        "url": "https://discovery.nationalarchives.gov.uk/details/r/C1256550"
+      },
+      {
+        "source_name": "The National Archives (UK) \u2014 'Hoax letter signed by Jack the Ripper'",
+        "url": "https://www.nationalarchives.gov.uk/explore-the-collection/stories/hoax-letter-signed-by-jack-the-ripper/"
       }
     ]
   },
-
   {
-    "id": "case-004",
-    "name": "Thames Torso Murders",
-    "country": "UK",
-    "location": "River Thames, London",
-    "year_start": 1887,
-    "year_end": 1889,
+    "id": "us-bundy-1978",
+    "name": "The Chi Omega / Kimberly Leach Murders (Ted Bundy)",
+    "country": "US",
+    "status": "solved",
     "type": "serial-killer",
-    "status": "unsolved",
-    "victims_count": 4,
-    "attributed_victims": 6,
+    "location": "Tallahassee & Lake City, Florida",
+    "year_start": 1978,
+    "year_end": 1978,
+    "victims_count": 3,
+    "claimed_victims": "At least 30 confirmed across multiple states from 1974-1978; exact total disputed by researchers",
     "fir_complaint": {
-      "filed_date": "May 11, 1887",
-      "filed_by": "Metropolitan Police Service - Thames Division",
-      "complaint_summary": "Dismembered human remains in River Thames. Series of torsos at multiple locations. Unknown perpetrator.",
-      "initial_classification": "Serial Homicide - Dismemberment - Unknown Perpetrator"
+      "filed_date": "January 15, 1978",
+      "filed_by": "Florida State University campus police / Tallahassee Police Department",
+      "initial_classification": "Homicide / burglary",
+      "complaint_summary": "Police responded to the Chi Omega sorority house at Florida State University after an intruder attacked four women, killing two, in the early morning hours. A separate attack the same night injured another student nearby. Bundy was arrested weeks later in Pensacola after a traffic stop."
     },
     "murder_story": {
-      "description": "Between 1887-1889, gruesome discoveries shocked London. Dismembered body parts of at least 4 women found scattered in River Thames.",
-      "how_it_happened": "Victims murdered elsewhere and dismembered with anatomical knowledge. Body parts disposed of via river at different locations.",
-      "modus_operandi": "Murder, skilled dismemberment, body dispersal via river, systematic part spreading"
+      "description": "In the early morning of January 15, 1978, an intruder entered the Chi Omega sorority house at Florida State University and attacked four women, killing two. Weeks later, 12-year-old Kimberly Leach was abducted from her Lake City, Florida middle school and murdered.",
+      "how_it_happened": "The Chi Omega attacker entered the house and assaulted the victims while they slept, then fled after being disturbed. Leach was abducted from her school campus in a separate incident weeks later; her remains were found in April 1978.",
+      "modus_operandi": "Bundy had already been convicted of unrelated kidnapping in Utah and had escaped custody twice before these Florida attacks. Bite-mark evidence on one Chi Omega victim was used at trial to connect Bundy to the scene."
     },
     "murder_scene": {
       "scenes": [
         {
-          "location": "River Thames, Rainham",
-          "date": "May 11, 1887",
-          "victim": "Unknown victim",
-          "description": "Torso in sack. Lacked head, limbs. Evidence of skilled surgical dissection.",
-          "evidence_found": ["Torso in sack", "Body parts recovered over weeks"]
+          "location": "Chi Omega sorority house, Florida State University, Tallahassee",
+          "date": "January 15, 1978",
+          "description": "Four women were attacked in their rooms; two, Lisa Levy and Margaret Bowman, died from their injuries. A bite mark was left on one victim's body.",
+          "evidence_found": [
+            "Bite mark impression later matched via forensic dental comparison",
+            "Pantyhose fibers with hair evidence"
+          ]
         },
         {
-          "location": "River Thames, Whitehall",
-          "date": "September 1888",
-          "victim": "Unknown victim",
-          "description": "Dismembered remains at multiple sites. Evidence of surgical skill.",
-          "evidence_found": ["Torso", "Body parts", "Surgical evidence"]
+          "location": "Suwannee River State Park area, near Lake City, Florida",
+          "date": "April 1978",
+          "description": "The remains of Kimberly Leach, missing since February 9, were discovered roughly two months after her abduction.",
+          "evidence_found": [
+            "Victim remains",
+            "Fiber evidence linked to a van Bundy had access to"
+          ]
         }
       ]
     },
     "suspects": [
       {
-        "first_name": "Unknown",
-        "age_at_time": 0,
-        "background": "Possibly medical professional or butcher",
-        "reason_suspected": "Medical knowledge displayed in dissection",
-        "status": "Never identified"
+        "first_name": "Theodore",
+        "age_at_time": "31",
+        "background": "Former law student; previously convicted of kidnapping in Utah and had escaped custody twice, including a 1977 escape from a Colorado courthouse.",
+        "reason_suspected": "Arrested in Pensacola in February 1978 after a traffic stop revealed a stolen vehicle and other evidence. Forensic bite-mark comparison linked him to the Chi Omega attack; fiber evidence linked him to Leach's murder.",
+        "status": "convicted"
       }
     ],
     "evidence_weapons": [
       {
-        "name": "Surgical Instruments",
-        "description": "Used for precise dismemberment. Never recovered.",
+        "name": "Blunt object (Chi Omega attack)",
+        "type": "Blunt Object",
+        "description": "Victims at the Chi Omega house suffered blunt-force injuries consistent with a wooden club-like object, along with strangulation.",
         "recovered": false,
-        "significance": "Perpetrator had medical or surgical knowledge"
+        "significance": "Established a pattern consistent with the extreme violence in Bundy's confirmed western-state killings."
       },
       {
-        "name": "Body Parts",
-        "description": "Multiple torsos recovered from Thames",
+        "name": "Bite mark (forensic evidence)",
+        "type": "Forensic bite-mark comparison",
+        "description": "A bite mark left on victim Lisa Levy's body was photographed and later compared to dental impressions taken from Bundy under a judge's warrant.",
         "recovered": true,
-        "significance": "Confirmed series of murders"
+        "significance": "Became one of the first major U.S. criminal cases to rely heavily on forensic odontology testimony at trial."
       }
     ],
     "court_trials": [
       {
-        "defendant_name": "Unknown",
-        "trial_date": "No trial",
-        "verdict": "N/A",
-        "outcome": "No perpetrator identified. Inquest verdicts: Wilful murder by person unknown."
+        "defendant_name": "Theodore Robert Bundy",
+        "outcome": "Convicted in 1979 of the Chi Omega murders and sentenced to death; convicted separately in 1980 for the murder of Kimberly Leach and sentenced to death again. Both convictions were affirmed on appeal by the Florida Supreme Court."
       }
     ],
     "conclusion": {
-      "case_status": "UNSOLVED - COLD CASE",
-      "summary": "Thames Torso Murders remain mysterious. 4 confirmed victims dismembered between 1887-1889.",
-      "why_unsolved": "Perpetrator never identified, Victorian forensic limits, only 1 victim identified",
-      "current_status": "Cold case in Metropolitan Police archives. Periodically reviewed.",
-      "last_update": "2024"
+      "case_status": "SOLVED",
+      "summary": "Bundy was executed by electric chair on January 24, 1989, at Florida State Prison. He confessed to numerous additional murders across several states in the days before his execution, though the full scope of his crimes remains debated by researchers."
     },
     "official_links": [
       {
-        "source_name": "Metropolitan Police Records",
-        "url": "https://www.met.police.uk/",
-        "type": "UK Law Enforcement"
+        "source_name": "Bundy v. State, 455 So. 2d 330 (Fla. 1984) \u2014 Florida Supreme Court opinion (Justia)",
+        "url": "https://law.justia.com/cases/florida/supreme-court/1984/57772-0.html"
+      },
+      {
+        "source_name": "Bundy v. State, 471 So. 2d 9 (Fla. 1985) \u2014 Florida Supreme Court opinion, Leach case (Justia)",
+        "url": "https://law.justia.com/cases/florida/supreme-court/1985/59128-0.html"
+      }
+    ]
+  },
+  {
+    "id": "us-borden-1892",
+    "name": "The Borden Murders",
+    "country": "US",
+    "status": "unsolved",
+    "type": "homicide-unsolved",
+    "location": "Fall River, Massachusetts",
+    "year_start": 1892,
+    "year_end": 1892,
+    "victims_count": 2,
+    "fir_complaint": {
+      "filed_date": "August 4, 1892",
+      "filed_by": "Bridget Sullivan (household maid), via city marshal's office",
+      "initial_classification": "Homicide",
+      "complaint_summary": "Andrew and Abby Borden were found dead in their Second Street home in Fall River. Their daughter Lizzie Borden, who was in the house at the time, was questioned and later arrested and charged with both murders following an inquest."
+    },
+    "murder_story": {
+      "description": "Andrew Jackson Borden and his second wife, Abby Durfee Borden, were killed with a sharp-edged weapon in their home on the morning of August 4, 1892. Their daughter Lizzie Borden was tried for both murders and acquitted.",
+      "how_it_happened": "Abby Borden was killed first, in an upstairs guest room, struck repeatedly about the head. Andrew Borden was killed roughly ninety minutes later while resting on a downstairs sitting-room sofa, in a similar manner.",
+      "modus_operandi": "Both victims suffered repeated blows from a sharp, heavy-bladed instrument, believed to be a hatchet. No weapon was ever conclusively tied to either killing, though a hatchet head found in the Borden basement was examined at trial."
+    },
+    "murder_scene": {
+      "scenes": [
+        {
+          "location": "Second-floor guest room, Borden residence, Second Street, Fall River",
+          "date": "August 4, 1892 (morning)",
+          "description": "Abby Borden was found dead on the floor of the guest room, having suffered numerous blows to the head.",
+          "evidence_found": [
+            "Blood spatter pattern documented at trial",
+            "No weapon at the scene"
+          ]
+        },
+        {
+          "location": "Downstairs sitting room, Borden residence",
+          "date": "August 4, 1892 (late morning)",
+          "description": "Andrew Borden was found dead on the sitting-room sofa, discovered by Lizzie Borden and the household maid.",
+          "evidence_found": [
+            "Blood spatter pattern documented at trial",
+            "A hatchet head recovered from the basement, examined and disputed at trial"
+          ]
+        }
+      ]
+    },
+    "suspects": [
+      {
+        "first_name": "Lizzie",
+        "age_at_time": "32",
+        "background": "Andrew Borden's daughter from his first marriage, living in the family home at the time of the murders.",
+        "reason_suspected": "Was in or near the house at the time of both killings with no verified alibi for the relevant windows; inconsistencies in her statements to police were raised at trial. Tried before a jury in June 1893 and acquitted of all charges.",
+        "status": "tried and acquitted"
+      }
+    ],
+    "evidence_weapons": [
+      {
+        "name": "Hatchet head (handle-less)",
+        "type": "Bladed / Blunt Weapon",
+        "description": "A hatchet head with a broken handle was found in the Borden basement and introduced at trial as the possible murder weapon, though prosecutors could never conclusively link it to the wounds.",
+        "recovered": true,
+        "significance": "Central and disputed physical evidence at trial; the defense successfully argued it could not be definitively tied to the killings."
+      }
+    ],
+    "court_trials": [
+      {
+        "defendant_name": "Lizzie Andrew Borden",
+        "outcome": "Tried before the Massachusetts Superior Court in New Bedford in June 1893. The jury deliberated for about ninety minutes before returning a verdict of not guilty on all charges. No one else was ever charged in connection with the murders."
+      }
+    ],
+    "conclusion": {
+      "case_status": "UNSOLVED / COLD",
+      "summary": "Despite Lizzie Borden's trial and acquittal, no one was ever convicted of the murders of Andrew and Abby Borden, and the case is formally considered unsolved. Lizzie Borden lived in Fall River until her death in 1927, having never been charged again. The case remains one of the most extensively documented unsolved homicide cases in U.S. history."
+    },
+    "official_links": [
+      {
+        "source_name": "Fall River Historical Society \u2014 Lizzie Borden Collections (official archive, incl. Knowlton Papers, trial exhibits)",
+        "url": "https://fallriverhistorical.org/lizzie-borden-collections/"
+      }
+    ]
+  },
+  {
+    "id": "uk-moors-1965",
+    "name": "The Moors Murders (Ian Brady & Myra Hindley)",
+    "country": "UK",
+    "status": "solved",
+    "type": "serial-killer",
+    "location": "Greater Manchester, England",
+    "year_start": 1963,
+    "year_end": 1965,
+    "victims_count": 5,
+    "fir_complaint": {
+      "filed_date": "October 7, 1965",
+      "filed_by": "David Smith (witness, reported to Hyde police station)",
+      "initial_classification": "Homicide",
+      "complaint_summary": "David Smith, Myra Hindley's brother-in-law, reported witnessing the killing of 17-year-old Edward Evans at the couple's home on Wardle Brook Avenue, Hyde. Police raided the property the same night, arresting Ian Brady; Myra Hindley was arrested days later."
+    },
+    "murder_story": {
+      "description": "Between July 1963 and October 1965, Ian Brady and Myra Hindley abducted and murdered five children and teenagers in the Greater Manchester area, burying most of the victims on Saddleworth Moor.",
+      "how_it_happened": "The pair lured victims, sexually assaulted most of them, then killed and buried the bodies on the moor. The final victim, Edward Evans, was killed inside their home and witnessed by Hindley's brother-in-law, who reported it to police that same night.",
+      "modus_operandi": "Brady and Hindley recorded and photographed some of their crimes; a tape recording of one victim was used as evidence at trial. The couple's home and a left-luggage ticket found there led police to suitcases containing this evidence."
+    },
+    "murder_scene": {
+      "scenes": [
+        {
+          "location": "16 Wardle Brook Avenue, Hyde",
+          "date": "October 6, 1965",
+          "description": "Edward Evans was killed inside the couple's home with a hatchet, witnessed by David Smith, who reported it to police that night.",
+          "evidence_found": [
+            "Body of Edward Evans, recovered from a bedroom",
+            "Hatchet used in the killing"
+          ]
+        },
+        {
+          "location": "Saddleworth Moor, Greater Manchester",
+          "date": "October 1965 (initial searches); further remains found 1987",
+          "description": "Police searches of the moorland, guided by evidence recovered from the suitcases, located the graves of Lesley Ann Downey and John Kilbride in 1965. A third grave, that of Pauline Reade, was found in 1987 after Hindley confessed to additional murders.",
+          "evidence_found": [
+            "Remains of Lesley Ann Downey and John Kilbride (1965)",
+            "Remains of Pauline Reade (1987)",
+            "Audio recording and photographs recovered from left-luggage suitcases"
+          ]
+        }
+      ]
+    },
+    "suspects": [
+      {
+        "first_name": "Ian",
+        "age_at_time": "27",
+        "background": "Stock clerk; met Hindley at their shared workplace in 1961.",
+        "reason_suspected": "Arrested at the scene the night of Edward Evans's murder. Convicted on all three murder charges brought at trial.",
+        "status": "convicted"
+      },
+      {
+        "first_name": "Myra",
+        "age_at_time": "23",
+        "background": "Typist; Brady's partner, met through their shared workplace.",
+        "reason_suspected": "Arrested days after Brady following further evidence. Convicted of two murders and of being an accessory to a third.",
+        "status": "convicted"
+      }
+    ],
+    "evidence_weapons": [
+      {
+        "name": "Hatchet",
+        "type": "Bladed / Blunt Weapon",
+        "description": "Used in the killing of Edward Evans inside the couple's home.",
+        "recovered": true,
+        "significance": "Directly recovered at the crime scene the night of the arrest."
+      },
+      {
+        "name": "Audio tape recording",
+        "type": "Documentary evidence",
+        "description": "A tape recording made by Brady and Hindley during the killing of Lesley Ann Downey was recovered from a left-luggage suitcase and played at trial.",
+        "recovered": true,
+        "significance": "Considered some of the most damning evidence presented at the 1966 trial."
+      }
+    ],
+    "court_trials": [
+      {
+        "defendant_name": "Ian Brady",
+        "outcome": "Convicted at Chester Assizes on May 6, 1966, of three murders (Edward Evans, Lesley Ann Downey, John Kilbride). Sentenced to concurrent life terms; later confessed to two further murders in 1985, leading to the recovery of Pauline Reade's remains in 1987. Died in psychiatric custody in 2017."
+      },
+      {
+        "defendant_name": "Myra Hindley",
+        "outcome": "Convicted of two murders and of being an accessory to a third. Confessed to the remaining murders in 1987. Died in prison custody in 2002."
+      }
+    ],
+    "conclusion": {
+      "case_status": "SOLVED",
+      "summary": "Both Brady and Hindley were convicted and remained in custody until their deaths. The body of victim Keith Bennett has never been recovered despite repeated searches of Saddleworth Moor spanning decades, and efforts to locate his remains have continued into recent years."
+    },
+    "official_links": [
+      {
+        "source_name": "The National Archives (UK) \u2014 Records of Justices of Assize: Brady & Hindley trial exhibits (ASSI 84/427)",
+        "url": "https://images.nationalarchives.gov.uk/asset/32334/"
       }
     ]
   }
