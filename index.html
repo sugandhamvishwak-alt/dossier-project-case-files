@@ -70,7 +70,19 @@
         <div id="caseModal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <div id="caseDetail"></div>
+
+                <!-- Folder opening animation stage -->
+                <div class="folder-stage" id="folderStage">
+                    <div class="big-folder" id="bigFolder">
+                        <div class="folder-back"></div>
+                        <div class="folder-tab"></div>
+                        <div class="folder-paper-peek" id="folderPaperPeek"></div>
+                        <div class="folder-front-flap"></div>
+                    </div>
+                </div>
+
+                <!-- Case paper content, revealed after the folder opens -->
+                <div id="caseDetail" class="case-papers"></div>
             </div>
         </div>
     </div>
